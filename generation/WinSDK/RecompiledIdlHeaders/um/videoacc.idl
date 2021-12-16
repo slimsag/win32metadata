@@ -53,7 +53,7 @@ interface IAMVideoAcceleratorNotify : IUnknown
     // get information necessary to allocate uncompressed data buffers
     // which is not part of the mediatype format (like how many buffers to allocate etc)
     HRESULT GetUncompSurfacesInfo([in] const GUID *pGuid, 
-                                  [in] [out] [annotation("_Inout_")] LPAMVAUncompBufferInfo pUncompBufferInfo);
+                                  [in] [out] LPAMVAUncompBufferInfo pUncompBufferInfo);
 
     // set information regarding allocated uncompressed data buffers
     HRESULT SetUncompSurfacesInfo([in] DWORD dwActualUncompSurfacesAllocated);
@@ -61,8 +61,8 @@ interface IAMVideoAcceleratorNotify : IUnknown
     // get information necessary to create video accelerator object. It is the caller's responsibility
     // to call CoTaskMemFree() on *ppMiscData
     HRESULT GetCreateVideoAcceleratorData([in] const GUID *pGuid, 
-                                          [out] [annotation("_Out_")] LPDWORD pdwSizeMiscData, 
-                                          [out] [annotation("_Outptr_result_bytebuffer_(*pdwSizeMiscData)")] LPVOID *ppMiscData);
+                                          [out] LPDWORD pdwSizeMiscData, 
+                                          [out] LPVOID *ppMiscData);
 };
 
 [
@@ -82,8 +82,8 @@ interface IAMVideoAccelerator : IUnknown
     // number of uncompressed pixel formats supported
     // Otherwise pGuidsSupported is an array of *pdwNumGuidsSupported structures
     HRESULT GetVideoAcceleratorGUIDs(
-       [in] [out] [annotation("_Inout_")] LPDWORD pdwNumGuidsSupported, 
-       [in] [out] [annotation("_Out_writes_to_opt_(*pdwNumGuidsSupported, *pdwNumGuidsSupported)")] LPGUID pGuidsSupported);
+       [in] [out] LPDWORD pdwNumGuidsSupported, 
+       [in] [out] LPGUID pGuidsSupported);
 
     // pGuid is an IN parameter
     // pdwNumFormatsSupported is an IN OUT paramter
@@ -93,8 +93,8 @@ interface IAMVideoAccelerator : IUnknown
     // Otherwise pFormatsSupported is an array of *pdwNumFormatsSupported structures
     HRESULT GetUncompFormatsSupported( 
         [in] const GUID *pGuid, 
-        [in] [out] [annotation("_Inout_")] LPDWORD pdwNumFormatsSupported,
-        [in] [out] [annotation("_Out_writes_to_opt_(*pdwNumFormatsSupported, *pdwNumFormatsSupported)")] LPDDPIXELFORMAT pFormatsSupported);
+        [in] [out] LPDWORD pdwNumFormatsSupported,
+        [in] [out] LPDDPIXELFORMAT pFormatsSupported);
 
     // pGuid is an IN parameter
     // pamvaUncompDataInfo is an IN parameter
@@ -103,7 +103,7 @@ interface IAMVideoAccelerator : IUnknown
     HRESULT GetInternalMemInfo(
         [in] const GUID *pGuid, 
         [in] const AMVAUncompDataInfo *pamvaUncompDataInfo,
-        [in] [out] [annotation("_Inout_")] LPAMVAInternalMemInfo pamvaInternalMemInfo);
+        [in] [out] LPAMVAInternalMemInfo pamvaInternalMemInfo);
 
     // pGuid is an IN parameter
     // pamvaUncompDataInfo is an IN parameter
@@ -113,8 +113,8 @@ interface IAMVideoAccelerator : IUnknown
     // compressed buffers
     // Otherwise pamvaCompBufferInfo is an array of *pdwNumTypesCompBuffers structures
     HRESULT GetCompBufferInfo([in] const GUID *pGuid, [in] const AMVAUncompDataInfo *pamvaUncompDataInfo,
-        [in] [out] [annotation("_Inout_")] LPDWORD pdwNumTypesCompBuffers, 
-        [out] [annotation("_Out_writes_to_opt_(*pdwNumTypesCompBuffers, *pdwNumTypesCompBuffers)")] LPAMVACompBufferInfo pamvaCompBufferInfo);
+        [in] [out] LPDWORD pdwNumTypesCompBuffers, 
+        [out] LPAMVACompBufferInfo pamvaCompBufferInfo);
 
 
     // pdwNumTypesCompBuffers is an IN OUT paramter
@@ -124,8 +124,8 @@ interface IAMVideoAccelerator : IUnknown
     // Otherwise pamvaCompBufferInfo is an array of *pdwNumTypesCompBuffers structures
     // only valid to call this after the pins are connected
     HRESULT GetInternalCompBufferInfo(
-        [in] [out] [annotation("_Inout_")] LPDWORD pdwNumTypesCompBuffers, 
-        [out] [annotation("_Out_writes_to_opt_(*pdwNumTypesCompBuffers, *pdwNumTypesCompBuffers)")] LPAMVACompBufferInfo pamvaCompBufferInfo);
+        [in] [out] LPDWORD pdwNumTypesCompBuffers, 
+        [out] LPAMVACompBufferInfo pamvaCompBufferInfo);
 
     // begin a frame, the pMiscData is passed directly to the hal
     // only valid to call this after the pins are connected
@@ -147,8 +147,8 @@ interface IAMVideoAccelerator : IUnknown
         [in] DWORD dwTypeIndex,
         [in] DWORD dwBufferIndex,
         [in] BOOL bReadOnly,
-        [out] [annotation("_Out_")] LPVOID *ppBuffer,
-        [out] [annotation("_Out_")] LONG *lpStride);
+        [out] LPVOID *ppBuffer,
+        [out] LONG *lpStride);
 
     // unlock a single buffer
     // Buffers are identified by type and index within that type
@@ -167,7 +167,7 @@ interface IAMVideoAccelerator : IUnknown
         [in] LPVOID lpPrivateOutputDat,
         [in] DWORD cbPrivateOutputData,
         [in] DWORD dwNumBuffers,
-        [in] [annotation("_In_reads_(dwNumBuffers)")] const AMVABUFFERINFO *pamvaBufferInfo);
+        [in] const AMVABUFFERINFO *pamvaBufferInfo);
 
     // query the decode status of a particular decompression operation
     // dwTypeIndex and dwBufferIndex define the buffer whose status is

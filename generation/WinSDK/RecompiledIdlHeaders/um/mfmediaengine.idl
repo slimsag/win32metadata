@@ -764,7 +764,7 @@ enum MF_MEDIA_ENGINE_FRAME_PROTECTION_FLAGS
 interface IMFMediaEngineProtectedContent : IUnknown
 {
     //  Call this to share surfaces in a device with the PMP process
-    HRESULT ShareResources([annotation("_In_")] IUnknown *pUnkDeviceContext);
+    HRESULT ShareResources(IUnknown *pUnkDeviceContext);
 
     //  Get required frame protections
     //  these may be required by some or all frames in the content
@@ -1234,10 +1234,10 @@ interface IMFCdmSuspendNotify;
 interface IMFMediaEngineEME : IUnknown
 {
     HRESULT get_Keys(
-       [annotation("_COM_Outptr_result_maybenull_")] IMFMediaKeys **keys
+       IMFMediaKeys **keys
        );
     HRESULT SetMediaKeys(
-       [annotation("_In_opt_")] IMFMediaKeys *keys
+       IMFMediaKeys *keys
        );
 }
 
@@ -1250,14 +1250,14 @@ interface IMFMediaEngineEME : IUnknown
 interface IMFMediaEngineSrcElementsEx : IMFMediaEngineSrcElements
 {
     HRESULT AddElementEx(
-        [annotation("_In_opt_")] BSTR pURL, 
-        [annotation("_In_opt_")] BSTR pType, 
-        [annotation("_In_opt_")] BSTR pMedia,
-        [annotation("_In_opt_")] BSTR keySystem
+        BSTR pURL, 
+        BSTR pType, 
+        BSTR pMedia,
+        BSTR keySystem
         );
     HRESULT GetKeySystem(
-        [annotation("_In_")] DWORD index,
-        [annotation("_Outptr_result_maybenull_")] BSTR* pType
+        DWORD index,
+        BSTR* pType
         );
 }
 
@@ -1285,8 +1285,8 @@ cpp_quote("0x7ea80843, 0xb6e4, 0x432c, 0x8e, 0xa4, 0x78, 0x48, 0xff, 0xe4, 0x22,
 interface IMFMediaEngineNeedKeyNotify : IUnknown
 {
    void NeedKey(
-      [annotation("_In_reads_bytes_opt_(cb)")] const BYTE *initData,
-      [annotation("_In_")] DWORD cb
+      const BYTE *initData,
+      DWORD cb
       );
 }
 
@@ -1306,22 +1306,22 @@ interface IMFMediaEngineNeedKeyNotify : IUnknown
 interface IMFMediaKeys : IUnknown
 {
    HRESULT CreateSession(
-      [annotation("_In_opt_")] BSTR mimeType,
-      [annotation("_In_reads_bytes_opt_(cb)")] const BYTE *initData,
-      [annotation("_In_opt_")] DWORD cb,
-      [annotation("_In_reads_bytes_opt_(cbCustomData)")] const BYTE *customData,
-      [annotation("_In_")] DWORD cbCustomData,
-      [annotation("_In_")] IMFMediaKeySessionNotify *notify,
-      [annotation("_COM_Outptr_")] IMFMediaKeySession **ppSession
+      BSTR mimeType,
+      const BYTE *initData,
+      DWORD cb,
+      const BYTE *customData,
+      DWORD cbCustomData,
+      IMFMediaKeySessionNotify *notify,
+      IMFMediaKeySession **ppSession
       );
 
    HRESULT get_KeySystem(
-      [annotation("_COM_Outptr_")] BSTR *keySystem
+      BSTR *keySystem
       );
 
    HRESULT Shutdown();
 
-   HRESULT GetSuspendNotify([annotation("_COM_Outptr_")] IMFCdmSuspendNotify **notify);
+   HRESULT GetSuspendNotify(IMFCdmSuspendNotify **notify);
 }
 
 
@@ -1352,17 +1352,17 @@ typedef enum _MF_MEDIA_ENGINE_KEYERR {
 interface IMFMediaKeySession : IUnknown
 {
    //  Caller must turn this into a MediaKeyError object
-   HRESULT GetError([annotation("_Out_")] USHORT *code, [annotation("_Out_")] DWORD *systemCode);
+   HRESULT GetError(DWORD *systemCode);
 
    HRESULT get_KeySystem(
-      [annotation("_COM_Outptr_")] BSTR *keySystem
+      BSTR *keySystem
       );
 
    HRESULT get_SessionId(
-      [annotation("_COM_Outptr_")] BSTR *sessionId
+      BSTR *sessionId
       );
 
-   HRESULT Update([annotation("_In_reads_bytes_(cb)")] const BYTE *key, [annotation("_In_")] DWORD cb);
+   HRESULT Update(DWORD cb);
 
    HRESULT Close();
 }
@@ -1383,17 +1383,17 @@ interface IMFMediaKeySession : IUnknown
 interface IMFMediaKeySessionNotify : IUnknown
 {
    void KeyMessage(
-      [annotation("_In_opt_")] BSTR destinationURL,
-      [annotation("_In_reads_bytes_(cb)")] const BYTE *message,
-      [annotation("_In_")] DWORD cb
+      BSTR destinationURL,
+      const BYTE *message,
+      DWORD cb
       );
 
    void KeyAdded();
 
    //  Caller should turn data into MediaKeyError object
    void KeyError(
-      [annotation("_In_")] USHORT code,
-      [annotation("_In_")] DWORD systemCode
+      USHORT code,
+      DWORD systemCode
       );
 
 }
@@ -1760,15 +1760,15 @@ interface IMFMediaEngineClassFactoryEx : IMFMediaEngineClassFactory
         );
 
     HRESULT CreateMediaKeys(
-        [annotation("_In_")] BSTR keySystem,
-        [annotation("_In_opt_")] BSTR cdmStorePath,
-        [annotation("_COM_Outptr_")] IMFMediaKeys **ppKeys
+        BSTR keySystem,
+        BSTR cdmStorePath,
+        IMFMediaKeys **ppKeys
         );
 
     HRESULT IsTypeSupported(
-        [annotation("_In_opt_")] BSTR type,
-        [annotation("_In_")] BSTR keySystem,
-        [annotation("_Out_")] BOOL* isSupported
+        BSTR type,
+        BSTR keySystem,
+        BOOL* isSupported
         );
 }
 
@@ -1781,10 +1781,10 @@ interface IMFMediaEngineClassFactoryEx : IMFMediaEngineClassFactory
 interface IMFMediaEngineClassFactory2 : IUnknown
 {
     HRESULT CreateMediaKeys2(
-        [annotation("_In_")] BSTR keySystem,
-        [annotation("_In_")] BSTR defaultCdmStorePath,
-        [annotation("_In_opt_")] BSTR inprivateCdmStorePath,
-        [annotation("_COM_Outptr_")] IMFMediaKeys **ppKeys
+        BSTR keySystem,
+        BSTR defaultCdmStorePath,
+        BSTR inprivateCdmStorePath,
+        IMFMediaKeys **ppKeys
         );
 }
 
@@ -1797,9 +1797,9 @@ interface IMFMediaEngineClassFactory2 : IUnknown
 interface IMFExtendedDRMTypeSupport : IUnknown
 {
     HRESULT IsTypeSupportedEx(
-        [annotation("_In_opt_")] BSTR type,
-        [annotation("_In_")] BSTR keySystem,
-        [annotation("_Out_")] MF_MEDIA_ENGINE_CANPLAY * pAnswer
+        BSTR type,
+        BSTR keySystem,
+        MF_MEDIA_ENGINE_CANPLAY * pAnswer
         );
 }
 
@@ -2613,9 +2613,9 @@ cpp_quote("0x494553a7, 0xa481, 0x4cb7, 0xbe, 0xc5, 0x38, 0x09, 0x03, 0x51, 0x37,
 interface IMFMediaEngineEMENotify : IUnknown
 {
     void Encrypted(
-        [annotation("_In_reads_bytes_opt_(cb)")] const BYTE *pbInitData,
-        [annotation("_In_")] DWORD cb,
-        [annotation("_In_")] BSTR bstrInitDataType
+        const BYTE *pbInitData,
+        DWORD cb,
+        BSTR bstrInitDataType
         );
 
     void WaitingForKey();
@@ -2666,10 +2666,10 @@ cpp_quote("#if (WINVER >= _WIN32_WINNT_WINTHRESHOLD) ")
 interface IMFMediaKeySessionNotify2 : IMFMediaKeySessionNotify
 {
     void KeyMessage2(
-        [annotation("_In_")] MF_MEDIAKEYSESSION_MESSAGETYPE eMessageType,
-        [annotation("_In_opt_")] BSTR destinationURL,
-        [annotation("_In_reads_bytes_(cbMessage)")] const BYTE *pbMessage,
-        [annotation("_In_")] DWORD cbMessage
+        MF_MEDIAKEYSESSION_MESSAGETYPE eMessageType,
+        BSTR destinationURL,
+        const BYTE *pbMessage,
+        DWORD cbMessage
         );
 
     void KeyStatusChange();
@@ -2690,16 +2690,16 @@ interface IMFMediaKeySessionNotify2 : IMFMediaKeySessionNotify
 interface IMFMediaKeySystemAccess : IUnknown
 {
     HRESULT CreateMediaKeys(
-        [annotation("_In_opt_")] IPropertyStore *pCdmCustomConfig,
-        [annotation("_COM_Outptr_")] IMFMediaKeys2 **ppKeys
+        IPropertyStore *pCdmCustomConfig,
+        IMFMediaKeys2 **ppKeys
         );
 
     HRESULT get_SupportedConfiguration(
-        [annotation("_COM_Outptr_")] IPropertyStore **ppSupportedConfiguration
+        IPropertyStore **ppSupportedConfiguration
         );
 
     HRESULT get_KeySystem(
-        [annotation("_Out_")] BSTR *pKeySystem
+        BSTR *pKeySystem
         );
 }
 
@@ -2719,10 +2719,10 @@ interface IMFMediaKeySystemAccess : IUnknown
 interface IMFMediaEngineClassFactory3 : IUnknown
 {
     HRESULT CreateMediaKeySystemAccess(
-        [annotation("_In_")] BSTR keySystem,
-        [annotation("_In_count_(uSize)")] IPropertyStore **ppSupportedConfigurationsArray,
-        [annotation("_In_")] UINT uSize,
-        [annotation("_COM_Outptr_")] IMFMediaKeySystemAccess **ppKeyAccess
+        BSTR keySystem,
+        IPropertyStore **ppSupportedConfigurationsArray,
+        UINT uSize,
+        IMFMediaKeySystemAccess **ppKeyAccess
         );
 }
 
@@ -2774,19 +2774,19 @@ cpp_quote("#if (WINVER >= _WIN32_WINNT_WINTHRESHOLD) ")
 interface IMFMediaKeys2 : IMFMediaKeys
 {
     HRESULT CreateSession2(
-        [annotation("_In_")] MF_MEDIAKEYSESSION_TYPE eSessionType,
-        [annotation("_In_")] IMFMediaKeySessionNotify2 *pMFMediaKeySessionNotify2,
-        [annotation("_COM_Outptr_")] IMFMediaKeySession2 **ppSession
+        MF_MEDIAKEYSESSION_TYPE eSessionType,
+        IMFMediaKeySessionNotify2 *pMFMediaKeySessionNotify2,
+        IMFMediaKeySession2 **ppSession
         );
 
     HRESULT SetServerCertificate(
-        [annotation("_In_reads_bytes_opt_(cb)")] const BYTE *pbServerCertificate,
-        [annotation("_In_")] DWORD cb
+        const BYTE *pbServerCertificate,
+        DWORD cb
         );
 
     HRESULT GetDOMException(
-        [annotation("_In_")] HRESULT systemCode, 
-        [annotation("_Out_")] HRESULT *code
+        HRESULT systemCode, 
+        HRESULT *code
         );
 }
 
@@ -2805,23 +2805,23 @@ interface IMFMediaKeys2 : IMFMediaKeys
 interface IMFMediaKeySession2 : IMFMediaKeySession
 {
     HRESULT get_KeyStatuses(
-        [annotation("_Outptr_result_buffer_(*puSize)")] MFMediaKeyStatus **pKeyStatusesArray,
-        [annotation("_Out_")] UINT *puSize
+        MFMediaKeyStatus **pKeyStatusesArray,
+        UINT *puSize
         );
 
     HRESULT Load(
-        [annotation("_In_")] BSTR bstrSessionId,
-        [annotation("_Out_")] BOOL *pfLoaded
+        BSTR bstrSessionId,
+        BOOL *pfLoaded
         );
 
     HRESULT GenerateRequest(
-        [annotation("_In_")] BSTR initDataType,
-        [annotation("_In_reads_bytes_(cb)")] const BYTE *pbInitData,
-        [annotation("_In_")] DWORD cb
+        BSTR initDataType,
+        const BYTE *pbInitData,
+        DWORD cb
         );
 
     HRESULT get_Expiration(
-        [annotation("_Out_")] double *dblExpiration
+        double *dblExpiration
         );
 
     HRESULT Remove();

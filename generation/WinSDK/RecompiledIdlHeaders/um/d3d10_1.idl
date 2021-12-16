@@ -101,7 +101,7 @@ typedef struct D3D10_BLEND_DESC1
 interface ID3D10BlendState1
     : ID3D10BlendState
 {
-    void GetDesc1( [annotation("_Out_")] D3D10_BLEND_DESC1* pDesc );
+    void GetDesc1( D3D10_BLEND_DESC1* pDesc );
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -143,7 +143,7 @@ typedef struct D3D10_SHADER_RESOURCE_VIEW_DESC1
 interface ID3D10ShaderResourceView1
     : ID3D10ShaderResourceView
 {
-    void GetDesc1( [annotation("_Out_")] D3D10_SHADER_RESOURCE_VIEW_DESC1* pDesc );
+    void GetDesc1( D3D10_SHADER_RESOURCE_VIEW_DESC1* pDesc );
 };
 
 typedef enum D3D10_STANDARD_MULTISAMPLE_QUALITY_LEVELS
@@ -157,12 +157,12 @@ interface ID3D10Device1
     : ID3D10Device
 {
     HRESULT CreateShaderResourceView1(
-        [annotation("_In_")] ID3D10Resource* pResource,
-        [annotation("_In_opt_")] const D3D10_SHADER_RESOURCE_VIEW_DESC1* pDesc,
-        [annotation("_Out_opt_")] ID3D10ShaderResourceView1** ppSRView );
+        ID3D10Resource* pResource,
+        const D3D10_SHADER_RESOURCE_VIEW_DESC1* pDesc,
+        ID3D10ShaderResourceView1** ppSRView );
     HRESULT CreateBlendState1(
-        [annotation("_In_")] const D3D10_BLEND_DESC1* pBlendStateDesc,
-        [annotation("_Out_opt_")] ID3D10BlendState1** ppBlendState );
+        const D3D10_BLEND_DESC1* pBlendStateDesc,
+        ID3D10BlendState1** ppBlendState );
     D3D10_FEATURE_LEVEL1 GetFeatureLevel(); 
 };
 // + 0x20 puts us in safe range to detect when application isn't using the correct version number.

@@ -151,10 +151,10 @@ interface IDXGIFactory6 :
     IDXGIFactory5
 {
     HRESULT EnumAdapterByGpuPreference(
-        [annotation("_In_")] UINT Adapter,
-        [annotation("_In_")] DXGI_GPU_PREFERENCE GpuPreference,
-        [annotation("_In_")] REFIID riid,
-        [annotation("_COM_Outptr_")] void** ppvAdapter
+        UINT Adapter,
+        DXGI_GPU_PREFERENCE GpuPreference,
+        REFIID riid,
+        void** ppvAdapter
     );
 };
 

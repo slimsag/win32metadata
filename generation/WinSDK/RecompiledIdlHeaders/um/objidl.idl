@@ -332,7 +332,7 @@ interface IEnumMoniker : IUnknown
         [in] ULONG celt,
         [annotation("_Out_writes_to_(celt,*pceltFetched)")]
         IMoniker **rgelt,
-        [annotation("_Out_opt_")] ULONG *pceltFetched);
+        ULONG *pceltFetched);
 
     [call_as(Next)]
     HRESULT RemoteNext(
@@ -660,8 +660,8 @@ interface IEnumSTATSTG : IUnknown
     [local]
     HRESULT Next(
         [in] ULONG celt,
-        [annotation("_Out_writes_to_(celt,*pceltFetched)")] STATSTG *rgelt,
-        [annotation("_Out_opt_")] ULONG *pceltFetched);
+        STATSTG *rgelt,
+        ULONG *pceltFetched);
 
     [call_as(Next)]
     HRESULT RemoteNext(
@@ -1001,8 +1001,8 @@ midl_pragma warning( default: 2480 )
     [local]
     HRESULT Next(
         [in] ULONG celt,
-        [annotation("_Out_writes_to_(celt,*pceltFetched)")] FORMATETC *rgelt,
-        [annotation("_Out_opt_")] ULONG *pceltFetched);
+        FORMATETC *rgelt,
+        ULONG *pceltFetched);
 
     [call_as(Next)]
     HRESULT RemoteNext(
@@ -1059,8 +1059,8 @@ interface IEnumSTATDATA : IUnknown
     [local]
     HRESULT Next(
         [in] ULONG celt,
-        [annotation("_Out_writes_to_(celt,*pceltFetched)")] STATDATA *rgelt,
-        [annotation("_Out_opt_")] ULONG *pceltFetched);
+        STATDATA *rgelt,
+        ULONG *pceltFetched);
 
     [call_as(Next)]
     HRESULT RemoteNext(
@@ -1707,7 +1707,7 @@ interface IEnumConnections : IUnknown
         [in, annotation("_In_")]    ULONG           cConnections,
         [annotation("_Out_writes_to_(cConnections, *lpcFetched)")]
                                     CONNECTDATA *   rgcd,
-        [annotation("_Out_opt_")]   ULONG *         lpcFetched
+          ULONG *         lpcFetched
     );
 
     [call_as(Next)]
@@ -1751,7 +1751,7 @@ interface IEnumConnectionPoints : IUnknown
         [in, annotation("_In_")]    ULONG               cConnections,
         [annotation("_Out_writes_to_(cConnections,*lpcFetched)")]
                                     IConnectionPoint ** rgpcn,
-        [annotation("_Out_opt_")]   ULONG *             lpcFetched
+          ULONG *             lpcFetched
     );
 
     [call_as(Next)]

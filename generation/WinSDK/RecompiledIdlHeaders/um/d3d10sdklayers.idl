@@ -704,18 +704,18 @@ typedef struct D3D10_MESSAGE
     D3D10_MESSAGE_CATEGORY  Category;
     D3D10_MESSAGE_SEVERITY  Severity;
     D3D10_MESSAGE_ID        ID;
-    [annotation("_Field_size_(DescriptionByteLength)")] const char*             pDescription;
+    const char*             pDescription;
     SIZE_T                  DescriptionByteLength;
 } D3D10_MESSAGE;
 
 typedef struct D3D10_INFO_QUEUE_FILTER_DESC
 {
     UINT                    NumCategories;
-    [annotation("_Field_size_(NumCategories)")] D3D10_MESSAGE_CATEGORY* pCategoryList;
+    D3D10_MESSAGE_CATEGORY* pCategoryList;
     UINT                    NumSeverities;
-    [annotation("_Field_size_(NumSeverities)")] D3D10_MESSAGE_SEVERITY* pSeverityList;
+    D3D10_MESSAGE_SEVERITY* pSeverityList;
     UINT                    NumIDs;
-    [annotation("_Field_size_(NumIDs)")] D3D10_MESSAGE_ID*       pIDList;
+    D3D10_MESSAGE_ID*       pIDList;
 } D3D10_INFO_QUEUE_FILTER_DESC;
 
 // To use, memset to 0, then fill in what you need.
@@ -749,7 +749,7 @@ interface ID3D10InfoQueue
     // The default message count size is
     // D3D10_INFO_QUEUE_DEFAULT_MESSAGE_COUNT_LIMIT
     // Returns S_OK or E_INVALIDARG.
-    HRESULT SetMessageCountLimit( [annotation("_In_")]  UINT64 MessageCountLimit );
+    HRESULT SetMessageCountLimit(  UINT64 MessageCountLimit );
 
     // ClearStoredMessages
     void    ClearStoredMessages();
@@ -784,9 +784,9 @@ interface ID3D10InfoQueue
     //
     // Returns: S_OK, S_FALSE, E_INVALIDARG or E_OUTOFMEMORY.
     HRESULT GetMessage(
-        [annotation("_In_")]    UINT64  MessageIndex,
-        [annotation("_Out_writes_bytes_opt_(*pMessageByteLength)")] D3D10_MESSAGE* pMessage,
-        [annotation("_Inout_")] SIZE_T*  pMessageByteLength );
+           UINT64  MessageIndex,
+        D3D10_MESSAGE* pMessage,
+        SIZE_T*  pMessageByteLength );
 
     // GetNumMessagesAllowedByStorageFilter()
     // Returns how many messages sent to the queue passed
@@ -827,7 +827,7 @@ interface ID3D10InfoQueue
     // Adds to the existing entries at top of stack
     // Returns: S_OK, E_INVALIDARG or E_OUTOFMEMORY.
     HRESULT AddStorageFilterEntries(
-        [annotation("_In_")]   D3D10_INFO_QUEUE_FILTER* pFilter );
+          D3D10_INFO_QUEUE_FILTER* pFilter );
 
     // GetStorageFilter()
     // Gets all entries at top of stack.
@@ -839,8 +839,8 @@ interface ID3D10InfoQueue
     // data.  So the application needs to only allocate/free the memory for pFilter.
     // Returns S_OK, S_FALSE, E_INVALIDARG or E_OUTOFMEMORY
     HRESULT GetStorageFilter(
-        [annotation("_Out_writes_bytes_opt_(*pFilterByteLength)")] D3D10_INFO_QUEUE_FILTER* pFilter,
-        [annotation("_Inout_")] SIZE_T* pFilterByteLength );
+        D3D10_INFO_QUEUE_FILTER* pFilter,
+        SIZE_T* pFilterByteLength );
 
     // ClearStorageFilter()
     // Clears filter at the top of the stack (if there is one)
@@ -866,7 +866,7 @@ interface ID3D10InfoQueue
     // by AddStorageFilterEntries()
     // Returns S_OK, E_INVALIDARG or E_OUTOFMEMORY.
     HRESULT PushStorageFilter(
-        [annotation("_In_")] D3D10_INFO_QUEUE_FILTER* pFilter );
+        D3D10_INFO_QUEUE_FILTER* pFilter );
 
     // PopStorageFilter()
     // Pop the current storage filter off the stack (if there is one)
@@ -882,7 +882,7 @@ interface ID3D10InfoQueue
     // Adds to the existing entries at top of stack
     // Returns: S_OK, E_INVALIDARG or E_OUTOFMEMORY.
     HRESULT AddRetrievalFilterEntries(
-        [annotation("_In_")]   D3D10_INFO_QUEUE_FILTER* pFilter );
+          D3D10_INFO_QUEUE_FILTER* pFilter );
 
     // GetRetrievalFilter()
     // Gets all entries at top of stack.
@@ -894,8 +894,8 @@ interface ID3D10InfoQueue
     // data.  So the application needs to only allocate/free the memory for pFilter.
     // Returns S_OK, S_FALSE, E_INVALIDARG or E_OUTOFMEMORY
     HRESULT GetRetrievalFilter(
-        [annotation("_Out_writes_bytes_opt_(*pFilterByteLength)")] D3D10_INFO_QUEUE_FILTER* pFilter,
-        [annotation("_Inout_")] SIZE_T* pFilterByteLength );
+        D3D10_INFO_QUEUE_FILTER* pFilter,
+        SIZE_T* pFilterByteLength );
 
     // ClearRetrievalFilter()
     // Clears filter at the top of the stack (if there is one)
@@ -921,7 +921,7 @@ interface ID3D10InfoQueue
     // by AddRetrievalFilterEntries()
     // Returns S_OK, E_INVALIDARG or E_OUTOFMEMORY.
     HRESULT PushRetrievalFilter(
-        [annotation("_In_")] D3D10_INFO_QUEUE_FILTER* pFilter );
+        D3D10_INFO_QUEUE_FILTER* pFilter );
 
     // PopRetrievalFilter()
     // Pop the current storage filter off the stack (if there is one)
@@ -935,16 +935,16 @@ interface ID3D10InfoQueue
 
     // AddMessage()
     // This is used by D3D10 components to log messages.  Nothing stops
-    // applications from calling this, but it isn’t particularly useful.
+    // applications from calling this, but it isnï¿½t particularly useful.
     // If an application wishes to insert custom strings into the queue,
     // AddApplicationMessage() below is suggested.  See below.
     //
     // Returns S_OK, E_INVALIDARG or E_OUTOFMEMORY
     HRESULT AddMessage(
-        [annotation("_In_")]    D3D10_MESSAGE_CATEGORY Category,
-        [annotation("_In_")]    D3D10_MESSAGE_SEVERITY Severity,
-        [annotation("_In_")]    D3D10_MESSAGE_ID       ID,
-        [annotation("_In_")]    LPCSTR                pDescription);
+           D3D10_MESSAGE_CATEGORY Category,
+           D3D10_MESSAGE_SEVERITY Severity,
+           D3D10_MESSAGE_ID       ID,
+           LPCSTR                pDescription);
 
     // AddApplicationMessage()
     // This is a convenience for applications that want
@@ -959,32 +959,32 @@ interface ID3D10InfoQueue
     //
     // Returns S_OK, E_INVALIDARG or E_OUTOFMEMORY
     HRESULT AddApplicationMessage(
-        [annotation("_In_")] D3D10_MESSAGE_SEVERITY Severity,
-        [annotation("_In_")] LPCSTR                pDescription);
+        D3D10_MESSAGE_SEVERITY Severity,
+        LPCSTR                pDescription);
 
     //=========================================================================
     //  Methods for breaking on errors that pass the storage filter.
     HRESULT SetBreakOnCategory(
-        [annotation("_In_")]    D3D10_MESSAGE_CATEGORY Category,
-        [annotation("_In_")]    BOOL bEnable );
+           D3D10_MESSAGE_CATEGORY Category,
+           BOOL bEnable );
     HRESULT SetBreakOnSeverity(
-        [annotation("_In_")]    D3D10_MESSAGE_SEVERITY Severity,
-        [annotation("_In_")]    BOOL bEnable );
+           D3D10_MESSAGE_SEVERITY Severity,
+           BOOL bEnable );
     HRESULT SetBreakOnID(
-        [annotation("_In_")]    D3D10_MESSAGE_ID ID,
-        [annotation("_In_")]    BOOL bEnable );
+           D3D10_MESSAGE_ID ID,
+           BOOL bEnable );
 
     BOOL GetBreakOnCategory(
-        [annotation("_In_")]    D3D10_MESSAGE_CATEGORY Category );
+           D3D10_MESSAGE_CATEGORY Category );
     BOOL GetBreakOnSeverity(
-        [annotation("_In_")]    D3D10_MESSAGE_SEVERITY Severity );
+           D3D10_MESSAGE_SEVERITY Severity );
     BOOL GetBreakOnID(
-        [annotation("_In_")]    D3D10_MESSAGE_ID ID );
+           D3D10_MESSAGE_ID ID );
 
     //=========================================================================
     //  Methods for globally muting debug spte from the InfoQueue
     void SetMuteDebugOutput(
-        [annotation("_In_")]    BOOL bMute );
+           BOOL bMute );
     BOOL GetMuteDebugOutput();
 
 

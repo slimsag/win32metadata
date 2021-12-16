@@ -249,7 +249,7 @@ interface IMalloc : IUnknown
 
     void Free([in, annotation("_In_opt_")] void *pv);
 
-    //[annotation("_Success_(return != SIZE_MAX)")] #pragma prefast(disable:28285 28309, "MSENG:186222")
+    //#pragma prefast(disable:28285 28309, "MSENG:186222")
     SIZE_T GetSize([in, annotation("_In_opt_ _Post_writable_byte_size_(return)")] void *pv);
 
     int DidAlloc([in, annotation("_In_opt_")] void *pv);
@@ -418,7 +418,7 @@ interface IEnumString : IUnknown
         [in] ULONG celt,
         [annotation("_Out_writes_to_(celt,*pceltFetched)")]
         LPOLESTR *rgelt,
-        [annotation("_Out_opt_")] ULONG *pceltFetched);
+        ULONG *pceltFetched);
 
     [call_as(Next)]
     HRESULT RemoteNext(
@@ -449,7 +449,7 @@ interface ISequentialStream : IUnknown
         [annotation("_Out_writes_bytes_to_(cb, *pcbRead)")]
         void *pv,
         [in, annotation("_In_")] ULONG cb,
-        [annotation("_Out_opt_")] ULONG *pcbRead);
+        ULONG *pcbRead);
 
     [call_as(Read)]
     HRESULT RemoteRead(
@@ -460,9 +460,9 @@ interface ISequentialStream : IUnknown
 
     [local]
     HRESULT Write(
-        [annotation("_In_reads_bytes_(cb)")] void const *pv,
+        void const *pv,
         [in, annotation("_In_")] ULONG cb,
-        [annotation("_Out_opt_")] ULONG *pcbWritten);
+        ULONG *pcbWritten);
 
     [call_as(Write)]
     HRESULT RemoteWrite(
@@ -529,7 +529,7 @@ interface IStream : ISequentialStream
     HRESULT Seek(
         [in] LARGE_INTEGER dlibMove,
         [in] DWORD dwOrigin,
-        [annotation("_Out_opt_")] ULARGE_INTEGER *plibNewPosition);
+        ULARGE_INTEGER *plibNewPosition);
 
     [call_as(Seek)]
     HRESULT RemoteSeek(
@@ -544,8 +544,8 @@ interface IStream : ISequentialStream
     HRESULT CopyTo(
         [in, unique, annotation("_In_")] IStream *pstm,
         [in] ULARGE_INTEGER cb,
-        [annotation("_Out_opt_")] ULARGE_INTEGER *pcbRead,
-        [annotation("_Out_opt_")] ULARGE_INTEGER *pcbWritten);
+        ULARGE_INTEGER *pcbRead,
+        ULARGE_INTEGER *pcbWritten);
 
     [call_as(CopyTo)]
     HRESULT RemoteCopyTo(

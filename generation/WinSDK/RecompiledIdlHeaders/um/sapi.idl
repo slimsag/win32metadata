@@ -469,11 +469,11 @@ interface ISpDataKey : IUnknown
                 [in] ULONG* pcbData, 
                 [out] BYTE* pData);
     HRESULT SetStringValue( 
-                [annotation("_In_opt_")] [in] LPCWSTR pszValueName, 
+                [in] LPCWSTR pszValueName, 
                 [in] LPCWSTR pszValue );
     HRESULT GetStringValue( 
-                [annotation("_In_opt_")] [in] LPCWSTR pszValueName, 
-                [annotation("_Outptr_")] [out] LPWSTR* ppszValue);
+                [in] LPCWSTR pszValueName, 
+                [out] LPWSTR* ppszValue);
     HRESULT SetDWORD(
                 [in] LPCWSTR pszValueName, 
                 [in] DWORD dwValue );
@@ -482,20 +482,20 @@ interface ISpDataKey : IUnknown
                 [out] DWORD* pdwValue );
     HRESULT OpenKey(
                 [in] LPCWSTR pszSubKeyName, 
-                [annotation("_Outptr_")] [out] ISpDataKey** ppSubKey);
+                [out] ISpDataKey** ppSubKey);
     HRESULT CreateKey(
                 [in] LPCWSTR pszSubKey, 
-                [annotation("_Outptr_")] [out] ISpDataKey** ppSubKey);
+                [out] ISpDataKey** ppSubKey);
     HRESULT DeleteKey(
                 [in] LPCWSTR pszSubKey);
     HRESULT DeleteValue(
                 [in] LPCWSTR pszValueName);
     HRESULT EnumKeys(
                 [in] ULONG Index, 
-                [annotation("_Outptr_")] [out] LPWSTR* ppszSubKeyName);
+                [out] LPWSTR* ppszSubKeyName);
     HRESULT EnumValues(
                 [in] ULONG Index, 
-                [annotation("_Outptr_")] [out] LPWSTR* ppszValueName);
+                [out] LPWSTR* ppszValueName);
 };
 
 //--- ISpRegDataKey ---------------------------------------------------------
@@ -528,10 +528,10 @@ interface ISpObjectTokenCategory : ISpDataKey
                 [in] LPCWSTR pszCategoryId, 
                 [in] BOOL fCreateIfNotExist);
     HRESULT GetId(
-                [annotation("_Outptr_")] [out] LPWSTR* ppszCoMemCategoryId);
+                [out] LPWSTR* ppszCoMemCategoryId);
     HRESULT GetDataKey(
                 [in] SPDATAKEYLOCATION spdkl, 
-                [annotation("_Outptr_")] [out] ISpDataKey** ppDataKey);
+                [out] ISpDataKey** ppDataKey);
     HRESULT EnumTokens(
                 [annotation ("_In_opt_")] [in, string] LPCWSTR pzsReqAttribs, 
                 [annotation ("_In_opt_")] [in, string] LPCWSTR pszOptAttribs, 
@@ -539,7 +539,7 @@ interface ISpObjectTokenCategory : ISpDataKey
     HRESULT SetDefaultTokenId(
                 [in] LPCWSTR pszTokenId);
     HRESULT GetDefaultTokenId(
-                [annotation("_Outptr_")] [out] LPWSTR* ppszCoMemTokenId);
+                [out] LPWSTR* ppszCoMemTokenId);
 };
 
 //--- ISpObjectToken --------------------------------------------------------
@@ -554,13 +554,13 @@ interface ISpObjectTokenCategory : ISpDataKey
 interface ISpObjectToken : ISpDataKey
 {
     HRESULT SetId(
-                [annotation("_In_opt_")] LPCWSTR pszCategoryId, 
+                LPCWSTR pszCategoryId, 
                 [in] LPCWSTR pszTokenId, 
                 [in] BOOL fCreateIfNotExist);
     HRESULT GetId(
-                [annotation("_Outptr_")] [out] LPWSTR* ppszCoMemTokenId);
+                [out] LPWSTR* ppszCoMemTokenId);
     HRESULT GetCategory(
-                [annotation("_Outptr_")] [out] ISpObjectTokenCategory** ppTokenCategory);
+                [out] ISpObjectTokenCategory** ppTokenCategory);
     HRESULT CreateInstance(
                 [in] IUnknown* pUnkOuter, 
                 [in] DWORD dwClsContext,
@@ -568,7 +568,7 @@ interface ISpObjectToken : ISpDataKey
                 [out, iid_is(riid)] void** ppvObject);
     HRESULT GetStorageFileName(
                 [in] REFCLSID clsidCaller,
-                [in][annotation("_In_")] LPCWSTR pszValueName,
+                [in]LPCWSTR pszValueName,
                 [annotation ("_In_opt_")][in, string] LPCWSTR pszFileNameSpecifier,
                 [in] ULONG nFolder,       // Same as SHGetFolderPath -- If non-zero, must set CSIDL_FLAG_CREATE
                 [annotation("_Outptr_")][out] LPWSTR* ppszFilePath);
@@ -627,7 +627,7 @@ interface IEnumSpObjectTokens : IUnknown
     HRESULT Next(
                 [in] ULONG celt,
                 [out, size_is(celt), length_is(*pceltFetched)] ISpObjectToken** pelt,
-                [annotation("_Out_opt_")] [out] ULONG* pceltFetched);
+                [out] ULONG* pceltFetched);
     HRESULT Skip(
                 [in] ULONG celt);
     HRESULT Reset(void);
@@ -1030,12 +1030,12 @@ interface ISpStream : ISpStreamFormat
                 [in] REFGUID rguidFormat, 
                 [in] const WAVEFORMATEX* pWaveFormatEx);
     HRESULT GetBaseStream(
-                [annotation("_Outptr_")] [out] IStream** ppStream);
+                [out] IStream** ppStream);
     HRESULT BindToFile(
-                [annotation("_In_z_")] [in] LPCWSTR pszFileName, 
+                [in] LPCWSTR pszFileName, 
                 [in] SPFILEMODE eMode,
-                [annotation("_In_opt_")] [in] const GUID* pFormatId, 
-                [annotation("_In_opt_")] const WAVEFORMATEX* pWaveFormatEx, 
+                [in] const GUID* pFormatId, 
+                const WAVEFORMATEX* pWaveFormatEx, 
                 [in] ULONGLONG ullEventInterest);
     HRESULT Close();
 }
@@ -1602,12 +1602,12 @@ interface ISpLexicon : IUnknown
                 [in] LPCWSTR pszWord,
                 [in] LANGID LangID,
                 [in] SPPARTOFSPEECH ePartOfSpeech,
-                [annotation("_In_opt_")] [in] PCSPPHONEID pszPronunciation);
+                [in] PCSPPHONEID pszPronunciation);
     HRESULT RemovePronunciation(
                 [in] LPCWSTR pszWord,
                 [in] LANGID LangID,
                 [in] SPPARTOFSPEECH ePartOfSpeech,
-                [annotation("_In_opt_")] [in] PCSPPHONEID pszPronunciation);
+                [in] PCSPPHONEID pszPronunciation);
     HRESULT GetGeneration(
                 [out] DWORD* pdwGeneration);
     HRESULT GetGenerationChange(
@@ -1617,7 +1617,7 @@ interface ISpLexicon : IUnknown
     HRESULT GetWords(
                 [in] DWORD dwFlags,
                 [in, out] DWORD* pdwGeneration,
-                [annotation("_Inout_opt_")] [in, out] DWORD* pdwCookie,
+                [in, out] DWORD* pdwCookie,
                 [in, out] SPWORDLIST* pWordList);
 };
 
@@ -1739,21 +1739,21 @@ interface ISpPhoneConverter : ISpObjectWithToken
 interface ISpPhoneticAlphabetConverter : IUnknown
 {
     HRESULT GetLangId(
-                [annotation("_Out_writes_(1)")] [out] LANGID* pLangID);
+                [out] LANGID* pLangID);
     HRESULT SetLangId(
                 [in] LANGID LangID);
     HRESULT SAPI2UPS(
-                [annotation("_In_z_")] [in] const SPPHONEID* pszSAPIId, 
-                [annotation("_Out_writes_z_(cMaxLength)")] [out] SPPHONEID* pszUPSId, 
+                [in] const SPPHONEID* pszSAPIId, 
+                [out] SPPHONEID* pszUPSId, 
                 [in] DWORD cMaxLength);
     HRESULT UPS2SAPI(
-                [annotation("_In_z_")] [in] const SPPHONEID* pszUPSId, 
-                [annotation("_Out_writes_z_(cMaxLength)")] [out] SPPHONEID* pszSAPIId, 
+                [in] const SPPHONEID* pszUPSId, 
+                [out] SPPHONEID* pszSAPIId, 
                 [in] DWORD cMaxLength);
     HRESULT GetMaxConvertLength(
                 [in] DWORD cSrcLength, 
                 [in] BOOL bSAPI2UPS, 
-                [annotation("_Out_writes_(1)")] [out] DWORD* pcMaxDestLength);
+                [out] DWORD* pcMaxDestLength);
 };
 
 //--- ISpPhoneticAlphabetSelection -----------------------------------------------------
@@ -1902,7 +1902,7 @@ interface ISpVoice : ISpEventSource
                 [in] IUnknown* pUnkOutput, 
                 [in] BOOL fAllowFormatChanges );
     HRESULT GetOutputObjectToken(
-                [annotation("_Outptr_")] [out] ISpObjectToken** ppObjectToken );
+                [out] ISpObjectToken** ppObjectToken );
     HRESULT GetOutputStream(
                 [out] ISpStreamFormat** ppStream );
     HRESULT Pause( void );
@@ -1910,9 +1910,9 @@ interface ISpVoice : ISpEventSource
     HRESULT SetVoice(
                 [in] ISpObjectToken* pToken);
     HRESULT GetVoice(
-                [annotation("_Outptr_")] [out] ISpObjectToken** ppToken);
+                [out] ISpObjectToken** ppToken);
     HRESULT Speak(
-                [annotation("_In_opt_")] [in, string] LPCWSTR pwcs, 
+                [in, string] LPCWSTR pwcs, 
                 [in] DWORD dwFlags,
                 [annotation ("_Out_opt_")] [out] ULONG* pulStreamNumber);
     HRESULT SpeakStream(
@@ -1921,7 +1921,7 @@ interface ISpVoice : ISpEventSource
                 [annotation ("_Out_opt_")] [out] ULONG* pulStreamNumber);
     HRESULT GetStatus(
                 [out] SPVOICESTATUS* pStatus, 
-                [annotation("_Outptr_")] [out] LPWSTR* ppszLastBookmark);
+                [out] LPWSTR* ppszLastBookmark);
     HRESULT Skip(
                 [in,string] LPCWSTR pItemType, 
                 [in] long lNumItems, 
@@ -1975,9 +1975,9 @@ interface ISpVoice : ISpEventSource
 interface ISpPhrase : IUnknown
 {
     HRESULT GetPhrase(
-                [annotation("_Outptr_")] [out] SPPHRASE** ppCoMemPhrase);
+                [out] SPPHRASE** ppCoMemPhrase);
     HRESULT GetSerializedPhrase(
-                [annotation("_Outptr_")] [out] SPSERIALIZEDPHRASE** ppCoMemPhrase);
+                [out] SPSERIALIZEDPHRASE** ppCoMemPhrase);
     HRESULT GetText(
                 [in] ULONG ulStart, 
                 [in] ULONG ulCount, 
@@ -2031,7 +2031,7 @@ interface ISpPhrase2 : ISpPhrase
     HRESULT GetAudio(
                 [in] ULONG ulStartElement, 
                 [in] ULONG cElements, 
-                [annotation("_Outptr_")] [out] ISpStreamFormat** ppStream);
+                [out] ISpStreamFormat** ppStream);
 };
 #endif // _SAPI_BUILD_VER >= 0x053
 
@@ -2073,7 +2073,7 @@ interface ISpRecoResult : ISpPhrase
                 [in] ULONG ulStartElement,
                 [in] ULONG cElements,
                 [in] ULONG ulRequestCount,
-                [annotation("_Out_writes_to_(ulRequestCount,*pcPhrasesReturned)")] [out] ISpPhraseAlt** ppPhrases,
+                [out] ISpPhraseAlt** ppPhrases,
                 [out] ULONG* pcPhrasesReturned);
 
     HRESULT GetAudio(
@@ -2273,8 +2273,8 @@ interface ISpGrammarBuilder : IUnknown
     HRESULT AddWordTransition(
                 [in] SPSTATEHANDLE hFromState,
                 [in] SPSTATEHANDLE hToState,
-                [annotation("_In_opt_")] [in] LPCWSTR psz, // If NULL then epsilon
-                [annotation("_In_opt_")] [in] LPCWSTR pszSeparators, // If NULL then psz points to a single word, else specifies valid separator characters
+                [in] LPCWSTR psz, // If NULL then epsilon
+                [in] LPCWSTR pszSeparators, // If NULL then psz points to a single word, else specifies valid separator characters
                 [in] SPGRAMMARWORDTYPE eWordType,
                 [in] float Weight,
                 [in] const SPPROPERTYINFO* pPropInfo);
@@ -2287,7 +2287,7 @@ interface ISpGrammarBuilder : IUnknown
     HRESULT AddResource(
                 [in] SPSTATEHANDLE hRuleState,  // Any state handle in a rule is OK
                 [in] LPCWSTR pszResourceName,
-                [annotation("_In_opt_")] [in] LPCWSTR pszResourceValue);
+                [in] LPCWSTR pszResourceValue);
     HRESULT Commit(
                 [in] DWORD dwReserved);
 };
@@ -2315,7 +2315,7 @@ interface ISpRecoGrammar : ISpGrammarBuilder
     HRESULT GetGrammarId(
                 [out] ULONGLONG* pullGrammarId);
     HRESULT GetRecoContext(
-                [annotation("_Outptr_")] [out] ISpRecoContext** ppRecoCtxt);
+                [out] ISpRecoContext** ppRecoCtxt);
 
     // Command and control interfaces
     HRESULT LoadCmdFromFile(
@@ -2341,7 +2341,7 @@ interface ISpRecoGrammar : ISpGrammarBuilder
                 [in] ULONG cbDataSize,
                 [in] SPLOADOPTIONS Options);
     HRESULT SetRuleState(
-                [annotation("_In_opt_")] [in, string] LPCWSTR pszName, 
+                [in, string] LPCWSTR pszName, 
                 [in] void* pReserved,
                 [in] SPRULESTATE NewState);
     HRESULT SetRuleIdState(
@@ -2350,7 +2350,7 @@ interface ISpRecoGrammar : ISpGrammarBuilder
 
     // Dictation / statistical language model
     HRESULT LoadDictation(
-                [annotation("_In_opt_")] [in, string] LPCWSTR pszTopicName, 
+                [in, string] LPCWSTR pszTopicName, 
                 [in] SPLOADOPTIONS Options);
     HRESULT UnloadDictation();
     HRESULT SetDictationState(
@@ -2358,7 +2358,7 @@ interface ISpRecoGrammar : ISpGrammarBuilder
 
     // Word sequence buffer
     HRESULT SetWordSequenceData(
-                [annotation("_In_reads_opt_(cchText)")] [in] const WCHAR* pText, 
+                [in] const WCHAR* pText, 
                 [in] ULONG cchText, 
                 [in] const SPTEXTSELECTIONINFO* pInfo);
     HRESULT SetTextSelection(
@@ -2436,13 +2436,13 @@ interface ISpRecoGrammar2 : IUnknown
     HRESULT LoadCmdFromFile2(
                 [in, string] LPCWSTR pszFileName,
                 [in] SPLOADOPTIONS Options,
-                [annotation("_In_opt_")] [in, string] LPCWSTR pszSharingUri,
-                [annotation("_In_opt_")] [in, string] LPCWSTR pszBaseUri);
+                [in, string] LPCWSTR pszSharingUri,
+                [in, string] LPCWSTR pszBaseUri);
     HRESULT LoadCmdFromMemory2(
                 [in] const SPBINARYGRAMMAR* pGrammar,
                 [in] SPLOADOPTIONS Options,
-                [annotation("_In_opt_")] [in, string] LPCWSTR pszSharingUri,
-                [annotation("_In_opt_")] [in, string] LPCWSTR pszBaseUri);
+                [in, string] LPCWSTR pszSharingUri,
+                [in, string] LPCWSTR pszBaseUri);
     HRESULT SetRulePriority(
                 [in, string] LPCWSTR pszRuleName, 
                 [in] ULONG ulRuleId, 
@@ -2718,13 +2718,13 @@ interface ISpRecognizer : ISpProperties
                 [annotation ("_In_opt_")] [in] IUnknown* pUnkInput, 
                 [in] BOOL fAllowFormatChanges);
     HRESULT GetInputObjectToken(
-                [annotation("_Outptr_")] [out] ISpObjectToken** ppToken);
+                [out] ISpObjectToken** ppToken);
     HRESULT GetInputStream(
-                [annotation("_Outptr_")] [out] ISpStreamFormat** ppStream);
+                [out] ISpStreamFormat** ppStream);
     HRESULT CreateRecoContext(
-                [annotation("_Outptr_")] [out] ISpRecoContext** ppNewCtxt);
+                [out] ISpRecoContext** ppNewCtxt);
     HRESULT GetRecoProfile(
-                [annotation("_Outptr_")] [out] ISpObjectToken** ppToken);
+                [out] ISpObjectToken** ppToken);
     HRESULT SetRecoProfile(
                 [in] ISpObjectToken* pToken);
     HRESULT IsSharedInstance(void);
@@ -2737,7 +2737,7 @@ interface ISpRecognizer : ISpProperties
     HRESULT GetFormat(
                 [in] SPSTREAMFORMATTYPE WaveFormatType, 
                 [out] GUID* pFormatId, 
-                [annotation("_Outptr_")] [out] WAVEFORMATEX** ppCoMemWFEX);
+                [out] WAVEFORMATEX** ppCoMemWFEX);
     [local] HRESULT IsUISupported(
                 [in] LPCWSTR pszTypeOfUI,
                 [in] void* pvExtraData,
@@ -2745,7 +2745,7 @@ interface ISpRecognizer : ISpProperties
                 [out] BOOL* pfSupported);
     [local] HRESULT DisplayUI(
                 [in] HWND hwndParent,
-                [annotation("_In_opt_")] [in] LPCWSTR pszTitle,
+                [in] LPCWSTR pszTitle,
                 [in] LPCWSTR pszTypeOfUI,
                 [in] void* pvExtraData,
                 [in] ULONG cbExtraData);
@@ -2833,11 +2833,11 @@ interface ISpRecognizer3 : IUnknown
 {
     HRESULT GetCategory(
                 [in] SPCATEGORYTYPE categoryType, 
-                [annotation("_Outptr_")] [out] ISpRecoCategory** ppCategory);
+                [out] ISpRecoCategory** ppCategory);
     HRESULT SetActiveCategory(
                 [in] ISpRecoCategory* pCategory);
     HRESULT GetActiveCategory(
-                [annotation("_Outptr_")] [out] ISpRecoCategory** ppCategory);
+                [out] ISpRecoCategory** ppCategory);
 }
 #endif // _SAPI_BUILD_VER >= 0x054
 

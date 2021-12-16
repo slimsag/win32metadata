@@ -288,37 +288,37 @@ interface IDocHostUIHandler : IUnknown
     } DOCHOSTUIINFO;
 
     HRESULT ShowContextMenu(
-            [in] [annotation("_In_")] DWORD dwID,
-            [in] [annotation("_In_")] POINT* ppt,
-            [in] [annotation("_In_")] IUnknown* pcmdtReserved,
-            [in] [annotation("_In_")] IDispatch* pdispReserved);
-    HRESULT GetHostInfo([in, out] [annotation("_Inout_")] DOCHOSTUIINFO * pInfo);
+            [in] DWORD dwID,
+            [in] POINT* ppt,
+            [in] IUnknown* pcmdtReserved,
+            [in] IDispatch* pdispReserved);
+    HRESULT GetHostInfo([in, out] DOCHOSTUIINFO * pInfo);
     HRESULT ShowUI(
-            [in] [annotation("_In_")] DWORD dwID,
-            [in] [annotation("_In_")] IOleInPlaceActiveObject * pActiveObject,
-            [in] [annotation("_In_")] IOleCommandTarget * pCommandTarget,
-            [in] [annotation("_In_")] IOleInPlaceFrame * pFrame,
-            [in] [annotation("_In_")] IOleInPlaceUIWindow * pDoc);
+            [in] DWORD dwID,
+            [in] IOleInPlaceActiveObject * pActiveObject,
+            [in] IOleCommandTarget * pCommandTarget,
+            [in] IOleInPlaceFrame * pFrame,
+            [in] IOleInPlaceUIWindow * pDoc);
     HRESULT HideUI();
     HRESULT UpdateUI();
     HRESULT EnableModeless([in] BOOL fEnable);
     HRESULT OnDocWindowActivate([in] BOOL fActivate);
     HRESULT OnFrameWindowActivate([in] BOOL fActivate);
     HRESULT ResizeBorder(
-            [in] [annotation("_In_")] LPCRECT prcBorder,
-            [in] [annotation("_In_")] IOleInPlaceUIWindow * pUIWindow,
-            [in] [annotation("_In_")] BOOL fRameWindow);
+            [in] LPCRECT prcBorder,
+            [in] IOleInPlaceUIWindow * pUIWindow,
+            [in] BOOL fRameWindow);
     HRESULT TranslateAccelerator(
             [in] LPMSG lpMsg,
             [in] const GUID * pguidCmdGroup,
             [in] DWORD nCmdID);
-    HRESULT GetOptionKeyPath([out] [annotation("_Out_")] LPOLESTR * pchKey, [in] DWORD dw);
+    HRESULT GetOptionKeyPath([out] LPOLESTR * pchKey, [in] DWORD dw);
     HRESULT GetDropTarget(
-            [in] [annotation("_In_")] IDropTarget * pDropTarget,
-            [out] [annotation("_Outptr_")] IDropTarget ** ppDropTarget);
-    HRESULT GetExternal([out] [annotation("_Outptr_result_maybenull_")] IDispatch **ppDispatch);
-    HRESULT TranslateUrl([in]DWORD dwTranslate, [in] [annotation("_In_")] LPWSTR pchURLIn, [out] [annotation("_Outptr_")] LPWSTR *ppchURLOut);
-    HRESULT FilterDataObject([in] [annotation("_In_")] IDataObject *pDO, [out] [annotation("_Outptr_result_maybenull_")] IDataObject **ppDORet);
+            [in] IDropTarget * pDropTarget,
+            [out] IDropTarget ** ppDropTarget);
+    HRESULT GetExternal([out] IDispatch **ppDispatch);
+    HRESULT TranslateUrl([in]DWORD dwTranslate, [in] LPWSTR *ppchURLOut);
+    HRESULT FilterDataObject([in] IDataObject **ppDORet);
 }
 
 [
@@ -329,7 +329,7 @@ interface IDocHostUIHandler : IUnknown
 ]
 interface IDocHostUIHandler2 : IDocHostUIHandler
 {
-    HRESULT GetOverrideKeyPath([out] [annotation("_Outptr_")] LPOLESTR * pchKey, [in] DWORD dw);
+    HRESULT GetOverrideKeyPath([out] LPOLESTR * pchKey, [in] DWORD dw);
 }
 
 cpp_quote("DEFINE_GUID(CGID_DocHostCommandHandler,0xf38bc242,0xb950,0x11d1,0x89,0x18,0x00,0xc0,0x4f,0xc2,0xc8,0x36);")
@@ -366,15 +366,15 @@ interface IDocHostShowUI : IUnknown
 {
     HRESULT ShowMessage(
             [in] HWND hwnd,
-            [in] [annotation("_In_")] LPOLESTR lpstrText,
-            [in] [annotation("_In_")] LPOLESTR lpstrCaption,
+            [in] LPOLESTR lpstrText,
+            [in] LPOLESTR lpstrCaption,
             [in] DWORD dwType,
-            [in] [annotation("_In_")] LPOLESTR lpstrHelpFile,
+            [in] LPOLESTR lpstrHelpFile,
             [in] DWORD dwHelpContext,
             [out] LRESULT * plResult);
     HRESULT ShowHelp(
             [in] HWND hwnd,
-            [in] [annotation("_In_")] LPOLESTR pszHelpFile,
+            [in] LPOLESTR pszHelpFile,
             [in] UINT uCommand,
             [in] DWORD dwData,
             [in] POINT ptMouse,

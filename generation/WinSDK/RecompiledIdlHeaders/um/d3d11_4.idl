@@ -35,11 +35,11 @@ interface ID3D11Device4
     : ID3D11Device3
 {
     HRESULT RegisterDeviceRemovedEvent(
-        [annotation("_In_")] HANDLE hEvent,
-        [annotation("_Out_")] DWORD* pdwCookie
+        HANDLE hEvent,
+        DWORD* pdwCookie
         );
 
-    void UnregisterDeviceRemoved( [annotation("_In_")] DWORD dwCookie );
+    void UnregisterDeviceRemoved( DWORD dwCookie );
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -52,16 +52,16 @@ interface ID3D11Device5
     : ID3D11Device4
 {
     HRESULT OpenSharedFence(
-        [annotation("_In_")] HANDLE hFence,
-        [annotation("_In_")] REFIID ReturnedInterface,
-        [annotation("_COM_Outptr_opt_")] void ** ppFence
+        HANDLE hFence,
+        REFIID ReturnedInterface,
+        void ** ppFence
         );
         
     HRESULT CreateFence(
-        [annotation("_In_")] UINT64 InitialValue,
-        [annotation("_In_")] D3D11_FENCE_FLAG Flags,        
-        [annotation("_In_")] REFIID ReturnedInterface,
-        [annotation("_COM_Outptr_opt_")] void ** ppFence
+        UINT64 InitialValue,
+        D3D11_FENCE_FLAG Flags,        
+        REFIID ReturnedInterface,
+        void ** ppFence
         );    
 };
 
@@ -76,7 +76,7 @@ interface ID3D11Multithread
 {
     void Enter();
     void Leave();
-    BOOL SetMultithreadProtected( [annotation("_In_")] BOOL bMTProtect );
+    BOOL SetMultithreadProtected( BOOL bMTProtect );
     BOOL GetMultithreadProtected();
 };
 
@@ -91,33 +91,33 @@ interface ID3D11VideoContext2
     : ID3D11VideoContext1
 {
     void VideoProcessorSetOutputHDRMetaData(
-        [annotation("_In_")] ID3D11VideoProcessor* pVideoProcessor,
-        [annotation("_In_")] DXGI_HDR_METADATA_TYPE Type,
-        [annotation("_In_")] UINT Size,
-        [annotation("_In_reads_bytes_opt_(Size)")] const void* pHDRMetaData
+        ID3D11VideoProcessor* pVideoProcessor,
+        DXGI_HDR_METADATA_TYPE Type,
+        UINT Size,
+        const void* pHDRMetaData
         );
 
     void VideoProcessorGetOutputHDRMetaData(
-        [annotation("_In_")] ID3D11VideoProcessor* pVideoProcessor,
-        [annotation("_Out_")] DXGI_HDR_METADATA_TYPE* pType,
-        [annotation("_In_")] UINT Size,
-        [annotation("_Out_writes_bytes_opt_(Size)")] void* pMetaData
+        ID3D11VideoProcessor* pVideoProcessor,
+        DXGI_HDR_METADATA_TYPE* pType,
+        UINT Size,
+        void* pMetaData
         );
 
     void VideoProcessorSetStreamHDRMetaData(
-        [annotation("_In_")] ID3D11VideoProcessor* pVideoProcessor,
-        [annotation("_In_")] UINT StreamIndex,
-        [annotation("_In_")] DXGI_HDR_METADATA_TYPE Type,
-        [annotation("_In_")] UINT Size,
-        [annotation("_In_reads_bytes_opt_(Size)")] const void* pHDRMetaData
+        ID3D11VideoProcessor* pVideoProcessor,
+        UINT StreamIndex,
+        DXGI_HDR_METADATA_TYPE Type,
+        UINT Size,
+        const void* pHDRMetaData
         );
 
     void VideoProcessorGetStreamHDRMetaData(
-        [annotation("_In_")] ID3D11VideoProcessor* pVideoProcessor,
-        [annotation("_In_")] UINT StreamIndex,
-        [annotation("_Out_")] DXGI_HDR_METADATA_TYPE* pType,
-        [annotation("_In_")] UINT Size,
-        [annotation("_Out_writes_bytes_opt_(Size)")] void* pMetaData
+        ID3D11VideoProcessor* pVideoProcessor,
+        UINT StreamIndex,
+        DXGI_HDR_METADATA_TYPE* pType,
+        UINT Size,
+        void* pMetaData
         );
 };
 
@@ -181,15 +181,15 @@ interface ID3D11VideoDevice2
 {
     HRESULT CheckFeatureSupport(
         D3D11_FEATURE_VIDEO Feature,
-        [annotation("_Out_writes_bytes_(FeatureSupportDataSize)")] void* pFeatureSupportData,
+        void* pFeatureSupportData,
         UINT FeatureSupportDataSize
         ); 
 
     HRESULT NegotiateCryptoSessionKeyExchangeMT(
-        [annotation("_In_")] ID3D11CryptoSession* pCryptoSession,
-        [annotation("_In_")] D3D11_CRYPTO_SESSION_KEY_EXCHANGE_FLAGS flags,
-        [annotation("_In_")] UINT DataSize,
-        [annotation("_Inout_updates_bytes_(DataSize)")] void* pData);
+        ID3D11CryptoSession* pCryptoSession,
+        D3D11_CRYPTO_SESSION_KEY_EXCHANGE_FLAGS flags,
+        UINT DataSize,
+        void* pData);
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -203,9 +203,9 @@ typedef struct D3D11_VIDEO_DECODER_BUFFER_DESC2
     D3D11_VIDEO_DECODER_BUFFER_TYPE BufferType;
     UINT DataOffset;
     UINT DataSize;
-    [annotation("_Field_size_opt_(IVSize)")] void* pIV;
+    void* pIV;
     UINT IVSize;
-    [annotation("_Field_size_opt_(SubSampleMappingCount)")] D3D11_VIDEO_DECODER_SUB_SAMPLE_MAPPING_BLOCK* pSubSampleMappingBlock;
+    D3D11_VIDEO_DECODER_SUB_SAMPLE_MAPPING_BLOCK* pSubSampleMappingBlock;
     UINT SubSampleMappingCount;
     UINT cBlocksStripeEncrypted;
     UINT cBlocksStripeClear;
@@ -216,19 +216,19 @@ interface ID3D11VideoContext3
     : ID3D11VideoContext2
 {
     HRESULT DecoderBeginFrame1(
-                [annotation("_In_")] ID3D11VideoDecoder* pDecoder,
-                [annotation("_In_")] ID3D11VideoDecoderOutputView* pView,
+                ID3D11VideoDecoder* pDecoder,
+                ID3D11VideoDecoderOutputView* pView,
                 UINT ContentKeySize,
-                [annotation("_In_reads_bytes_opt_(ContentKeySize)")] const void* pContentKey,
-                [annotation("_In_range_(0, D3D11_4_VIDEO_DECODER_MAX_HISTOGRAM_COMPONENTS)")] UINT NumComponentHistograms, 
-                [annotation("_In_reads_opt_(NumComponentHistograms)")] const UINT* pHistogramOffsets,
-                [annotation("_In_reads_opt_(NumComponentHistograms)")] ID3D11Buffer* const* ppHistogramBuffers
+                const void* pContentKey,
+                UINT NumComponentHistograms, 
+                const UINT* pHistogramOffsets,
+                ID3D11Buffer* const* ppHistogramBuffers
                 );
 
         HRESULT SubmitDecoderBuffers2(
-                [annotation("_In_")] ID3D11VideoDecoder* pDecoder,
-                [annotation("_In_")] UINT NumBuffers,
-                [annotation("_In_reads_(NumBuffers)")] const D3D11_VIDEO_DECODER_BUFFER_DESC2* pBufferDesc);
+                ID3D11VideoDecoder* pDecoder,
+                UINT NumBuffers,
+                const D3D11_VIDEO_DECODER_BUFFER_DESC2* pBufferDesc);
 
 };
 

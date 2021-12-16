@@ -89,7 +89,7 @@ interface ISpTokenUI : IUnknown
                 [out] BOOL *pfSupported);
     [local] HRESULT DisplayUI(
                 [in] HWND hwndParent,
-                [annotation("_In_opt_")] [in] LPCWSTR pszTitle,
+                [in] LPCWSTR pszTitle,
                 [in] LPCWSTR pszTypeOfUI,
                 [in] void* pvExtraData,
                 [in] ULONG cbExtraData,
@@ -109,8 +109,8 @@ interface ISpTokenUI : IUnknown
 interface ISpObjectTokenEnumBuilder : IEnumSpObjectTokens
 {
     HRESULT SetAttribs(
-                [annotation("_In_opt_")] [in] LPCWSTR pszReqAttribs, 
-                [annotation("_In_opt_")] [in] LPCWSTR pszOptAttribs);
+                [in] LPCWSTR pszReqAttribs, 
+                [in] LPCWSTR pszOptAttribs);
     HRESULT AddTokens(
                 [in] ULONG cTokens, 
                 [in] ISpObjectToken** pToken);
@@ -161,7 +161,7 @@ interface ISpErrorLog : IUnknown
                 [in] const long lLineNumber,
                 [in] HRESULT hr, 
                 [in] LPCWSTR pszDescription, 
-                [annotation("_In_opt_")] [in] LPCWSTR pszHelpFile, 
+                [in] LPCWSTR pszHelpFile, 
                 [in] DWORD dwHelpContext);
 };
 
@@ -180,9 +180,9 @@ interface ISpGrammarCompiler : IUnknown
     HRESULT CompileStream(
                 [in] IStream* pSource, 
                 [out] IStream* pDest, 
-                [annotation("_In_opt_")] [in] IStream* pHeader, 
-                [annotation("_In_opt_")] [in] IUnknown* pReserved, 
-                [annotation("_In_opt_")] [in] ISpErrorLog* pErrorLog, 
+                [in] IStream* pHeader, 
+                [in] IUnknown* pReserved, 
+                [in] ISpErrorLog* pErrorLog, 
                 [in] DWORD dwFlags);
 };
 
@@ -214,7 +214,7 @@ interface ISpGramCompBackend : ISpGrammarBuilder
 interface ISpITNProcessor : IUnknown
 {
     HRESULT LoadITNGrammar(
-                [annotation("_In_")] [in] LPWSTR pszCLSID);
+                [in] LPWSTR pszCLSID);
     HRESULT ITNPhrase(
                 [in] ISpPhraseBuilder *pPhrase);
 };
@@ -357,7 +357,7 @@ interface ISpTaskManager : IUnknown
                 [in] ISpThreadTask* pTask, 
                 [in] void* pvTaskData, 
                 [in] long nPriority, 
-                [annotation("_Outptr_")] [out] ISpThreadControl** ppTaskCtrl);
+                [out] ISpThreadControl** ppTaskCtrl);
     HRESULT TerminateTask(
                 [in] DWORD dwTaskId, 
                 [in] ULONG ulWaitPeriod);
@@ -438,7 +438,7 @@ interface ISpTTSEngine : IUnknown
                 [in] const GUID* pTargetFmtId, 
                 [in] const WAVEFORMATEX* pTargetWaveFormatEx,
                 [out] GUID* pOutputFormatId, 
-                [annotation("_Outptr_")] [out] WAVEFORMATEX** ppCoMemOutputWaveFormatEx);
+                [out] WAVEFORMATEX** ppCoMemOutputWaveFormatEx);
 };
 
 //--- SR Engine data structures ----------------------------------------
@@ -549,7 +549,7 @@ interface ISpCFGInterpreterSite : IUnknown
                 [in] const SPPHRASEPROPERTY *pProperty);
     HRESULT GetResourceValue(
                 [in] LPCWSTR pszResourceName,
-                [annotation("_Outptr_")] [out] LPWSTR* ppCoMemResource);
+                [out] LPWSTR* ppCoMemResource);
 };
 
 
@@ -733,10 +733,10 @@ interface ISpSREngineSite : IUnknown
     HRESULT GetResource( 
                 [in] SPRULEHANDLE hRule, 
                 [in] LPCWSTR pszResourceName, 
-                [annotation("_Outptr_")] [out] LPWSTR* ppCoMemResource );
+                [out] LPWSTR* ppCoMemResource );
     HRESULT GetTransitionProperty(
                 [in] SPTRANSITIONID ID, 
-                [annotation("_Outptr_")] [out] SPTRANSITIONPROPERTY **ppCoMemProperty);
+                [out] SPTRANSITIONPROPERTY **ppCoMemProperty);
     HRESULT IsAlternate(
                 [in] SPRULEHANDLE hRule, 
                 [in] SPRULEHANDLE hAltRule );
@@ -798,7 +798,7 @@ interface ISpSREngine : IUnknown
                 [in] const GUID* pguidSourceFormatId,
                 [in] const WAVEFORMATEX* pSourceWaveFormatEx,
                 [out] GUID* pguidDesiredFormatId, 
-                [annotation("_Outptr_")] [out] WAVEFORMATEX** ppCoMemDesiredWaveFormatEx);
+                [out] WAVEFORMATEX** ppCoMemDesiredWaveFormatEx);
     HRESULT RecognizeStream(
                 [in] REFGUID rguidFmtId, 
                 [in] const WAVEFORMATEX* pWaveFormatEx,
@@ -813,7 +813,7 @@ interface ISpSREngine : IUnknown
     HRESULT OnCreateGrammar(
                 [in] void* pvEngineRecoContext,
                 [in] SPGRAMMARHANDLE hSAPIGrammar,
-                [annotation("_Outptr_")] [out] void** ppvEngineGrammarContext);
+                [out] void** ppvEngineGrammarContext);
     HRESULT OnDeleteGrammar(
                 [in] void* pvEngineGrammar);
     HRESULT LoadProprietaryGrammar(
@@ -866,7 +866,7 @@ interface ISpSREngine : IUnknown
                 [in] ULONG ulCallFrameSize);
     HRESULT SetAdaptationData(
                 [in] void* pvEngineContext, 
-                [annotation("_In_reads_(cch)")] const WCHAR* pAdaptationData, 
+                const WCHAR* pAdaptationData, 
                 [in] const ULONG cch);
     HRESULT SetPropertyNum(
                 [in] SPPROPSRC eSrc, 
@@ -887,7 +887,7 @@ interface ISpSREngine : IUnknown
                 [in] SPPROPSRC eSrc, 
                 [in] void* pvSrcObj,
                 [in] LPCWSTR pName, 
-                [annotation("_Outptr_")] [out] LPWSTR* ppCoMemValue );
+                [out] LPWSTR* ppCoMemValue );
     HRESULT SetGrammarState(
                 [in] void* pvEngineGrammar, 
                 [in] SPGRAMMARSTATE eGrammarState);
@@ -924,7 +924,7 @@ interface ISpSREngine2 : ISpSREngine
                 [in] void* pvEngineContext,
                 [in] const void* pInCallFrame,
                 [in] ULONG ulInCallFrameSize,
-                [annotation("_Outptr_")] [out] void** ppvCoMemResponse,
+                [out] void** ppvCoMemResponse,
                 [out] ULONG* pulResponseSize);
     HRESULT SetAdaptationData2(
                 [in] void* pvEngineContext, 
@@ -1016,7 +1016,7 @@ interface ISpSRAlternates2 : ISpSRAlternates
     // Used when app Commits particular text. The original phrase, and start and count of elements being replaced are stored in the pAltRequest.
     HRESULT CommitText(
                 [in] SPPHRASEALTREQUEST* pAltRequest, 
-                [annotation("_In_opt_")] LPCWSTR pcszNewText, 
+                LPCWSTR pcszNewText, 
                 [in] SPCOMMITFLAGS commitFlags);
 }
 #endif // _SAPI_BUILD_VER >= 0x053
@@ -1033,13 +1033,13 @@ interface ISpSRAlternates2 : ISpSRAlternates
 interface _ISpPrivateEngineCall : IUnknown
 {
     HRESULT CallEngine(
-                [annotation("_Inout_updates_bytes_(ulCallFrameSize)")] [in, out] void* pCallFrame, 
+                [in, out] void* pCallFrame, 
                 [in] ULONG ulCallFrameSize);
     HRESULT CallEngineEx(
-                [annotation("_In_reads_bytes_(ulInFrameSize)")] [in] const void* pInFrame, 
+                [in] const void* pInFrame, 
                 [in] ULONG ulInFrameSize,
-                [annotation("_Outptr_result_buffer_maybenull_(*pulOutFrameSize)")] [out] void** ppCoMemOutFrame, 
-                [annotation("_Out_writes_(1)")] [out] ULONG* pulOutFrameSize);
+                [out] void** ppCoMemOutFrame, 
+                [out] ULONG* pulOutFrameSize);
 }
 
 #if _SAPI_BUILD_VER >= 0x053
@@ -1054,15 +1054,15 @@ interface _ISpPrivateEngineCall : IUnknown
 interface ISpPrivateEngineCallEx : IUnknown
 {
     HRESULT CallEngineSynchronize(
-                [annotation("_In_reads_bytes_(ulInFrameSize)")] [in] const void* pInFrame, 
+                [in] const void* pInFrame, 
                 [in] ULONG ulInFrameSize,
-                [annotation("_Outptr_result_bytebuffer_(*pulOutFrameSize)")] [out] void** ppCoMemOutFrame, 
-                [annotation("_Out_writes_(1)")] [out] ULONG* pulOutFrameSize);
+                [out] void** ppCoMemOutFrame, 
+                [out] ULONG* pulOutFrameSize);
     HRESULT CallEngineImmediate(
-                [annotation("_In_reads_bytes_(ulInFrameSize)")] [in] const void* pInFrame, 
+                [in] const void* pInFrame, 
                 [in] ULONG ulInFrameSize,
-                [annotation("_Outptr_result_bytebuffer_(*pulOutFrameSize)")] [out] void** ppCoMemOutFrame, 
-                [annotation("_Out_writes_(1)")] [out] ULONG* pulOutFrameSize);
+                [out] void** ppCoMemOutFrame, 
+                [out] ULONG* pulOutFrameSize);
 }
 #endif // _SAPI_BUILD_VER >= 0x053
 

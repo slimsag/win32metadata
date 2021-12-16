@@ -84,13 +84,13 @@ interface IDXGIFactory4 :
     IDXGIFactory3
 {
     HRESULT EnumAdapterByLuid(
-        [annotation("_In_")] LUID AdapterLuid,
-        [annotation("_In_")] REFIID riid,
-        [annotation("_COM_Outptr_")] void** ppvAdapter
+        LUID AdapterLuid,
+        REFIID riid,
+        void** ppvAdapter
         );
     HRESULT EnumWarpAdapter(
-        [annotation("_In_")] REFIID riid,
-        [annotation("_COM_Outptr_")] void** ppvAdapter
+        REFIID riid,
+        void** ppvAdapter
         );
 };
 

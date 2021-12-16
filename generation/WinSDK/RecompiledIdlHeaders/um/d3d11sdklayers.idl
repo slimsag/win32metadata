@@ -54,9 +54,9 @@ interface ID3D11Debug
     UINT GetPresentPerRenderOpDelay();
     HRESULT SetSwapChain( [ annotation( "_In_opt_" ) ] IDXGISwapChain* pSwapChain );
     HRESULT GetSwapChain( [ annotation( "_Out_" ) ] IDXGISwapChain** ppSwapChain );
-    HRESULT ValidateContext( [annotation("_In_")] ID3D11DeviceContext* pContext );
+    HRESULT ValidateContext( ID3D11DeviceContext* pContext );
     HRESULT ReportLiveDeviceObjects( D3D11_RLDO_FLAGS Flags );
-    HRESULT ValidateContextForDispatch( [annotation("_In_")] ID3D11DeviceContext* pContext );
+    HRESULT ValidateContextForDispatch( ID3D11DeviceContext* pContext );
 };
 
 cpp_quote("#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP) */")
@@ -149,15 +149,15 @@ interface ID3D11TracingDevice
 {
     HRESULT SetShaderTrackingOptionsByType(
         // UINT so that bitwise operations may be used
-        [annotation("_In_")] UINT ResourceTypeFlags,
-        [annotation("_In_")] UINT Options);
+        UINT ResourceTypeFlags,
+        UINT Options);
 
     // Note that this will set the options for all invocations of this shader after
     // the call until the next call. Specifying a flag that is UAV-specific here for a
     // compute shader will be ignored.
     HRESULT SetShaderTrackingOptions(
-        [annotation("_In_")] IUnknown* pShader,
-        [annotation("_In_")] UINT Options);
+        IUnknown* pShader,
+        UINT Options);
 };
 
 [ uuid( 193dacdf-0db2-4c05-a55c-ef06cac56fd9 ), object, local, pointer_default( unique ) ]
@@ -1747,18 +1747,18 @@ typedef struct D3D11_MESSAGE
     D3D11_MESSAGE_CATEGORY  Category;
     D3D11_MESSAGE_SEVERITY  Severity;
     D3D11_MESSAGE_ID        ID;
-    [annotation("_Field_size_(DescriptionByteLength)")] const char*             pDescription;
+    const char*             pDescription;
     SIZE_T                  DescriptionByteLength;
 } D3D11_MESSAGE;
 
 typedef struct D3D11_INFO_QUEUE_FILTER_DESC
 {
     UINT                    NumCategories;
-    [annotation("_Field_size_(NumCategories)")] D3D11_MESSAGE_CATEGORY* pCategoryList;
+    D3D11_MESSAGE_CATEGORY* pCategoryList;
     UINT                    NumSeverities;
-    [annotation("_Field_size_(NumSeverities)")] D3D11_MESSAGE_SEVERITY* pSeverityList;
+    D3D11_MESSAGE_SEVERITY* pSeverityList;
     UINT                    NumIDs;
-    [annotation("_Field_size_(NumIDs)")] D3D11_MESSAGE_ID*       pIDList;
+    D3D11_MESSAGE_ID*       pIDList;
 } D3D11_INFO_QUEUE_FILTER_DESC;
 
 // To use, memset to 0, then fill in what you need.
@@ -1792,7 +1792,7 @@ interface ID3D11InfoQueue
     // The default message count size is
     // D3D11_INFO_QUEUE_DEFAULT_MESSAGE_COUNT_LIMIT
     // Returns S_OK or E_INVALIDARG.
-    HRESULT SetMessageCountLimit( [annotation("_In_")]  UINT64 MessageCountLimit );
+    HRESULT SetMessageCountLimit(  UINT64 MessageCountLimit );
 
     // ClearStoredMessages
     void    ClearStoredMessages();
@@ -1827,9 +1827,9 @@ interface ID3D11InfoQueue
     //
     // Returns: S_OK, S_FALSE, E_INVALIDARG or E_OUTOFMEMORY.
     HRESULT GetMessage(
-        [annotation("_In_")]    UINT64  MessageIndex,
-        [annotation("_Out_writes_bytes_opt_(*pMessageByteLength)")] D3D11_MESSAGE* pMessage,
-        [annotation("_Inout_")] SIZE_T*  pMessageByteLength );
+           UINT64  MessageIndex,
+        D3D11_MESSAGE* pMessage,
+        SIZE_T*  pMessageByteLength );
 
     // GetNumMessagesAllowedByStorageFilter()
     // Returns how many messages sent to the queue passed
@@ -1870,7 +1870,7 @@ interface ID3D11InfoQueue
     // Adds to the existing entries at top of stack
     // Returns: S_OK, E_INVALIDARG or E_OUTOFMEMORY.
     HRESULT AddStorageFilterEntries(
-        [annotation("_In_")]   D3D11_INFO_QUEUE_FILTER* pFilter );
+          D3D11_INFO_QUEUE_FILTER* pFilter );
 
     // GetStorageFilter()
     // Gets all entries at top of stack.
@@ -1882,8 +1882,8 @@ interface ID3D11InfoQueue
     // data.  So the application needs to only allocate/free the memory for pFilter.
     // Returns S_OK, S_FALSE, E_INVALIDARG or E_OUTOFMEMORY
     HRESULT GetStorageFilter(
-        [annotation("_Out_writes_bytes_opt_(*pFilterByteLength)")] D3D11_INFO_QUEUE_FILTER* pFilter,
-        [annotation("_Inout_")] SIZE_T* pFilterByteLength );
+        D3D11_INFO_QUEUE_FILTER* pFilter,
+        SIZE_T* pFilterByteLength );
 
     // ClearStorageFilter()
     // Clears filter at the top of the stack (if there is one)
@@ -1909,7 +1909,7 @@ interface ID3D11InfoQueue
     // by AddStorageFilterEntries()
     // Returns S_OK, E_INVALIDARG or E_OUTOFMEMORY.
     HRESULT PushStorageFilter(
-        [annotation("_In_")] D3D11_INFO_QUEUE_FILTER* pFilter );
+        D3D11_INFO_QUEUE_FILTER* pFilter );
 
     // PopStorageFilter()
     // Pop the current storage filter off the stack (if there is one)
@@ -1925,7 +1925,7 @@ interface ID3D11InfoQueue
     // Adds to the existing entries at top of stack
     // Returns: S_OK, E_INVALIDARG or E_OUTOFMEMORY.
     HRESULT AddRetrievalFilterEntries(
-        [annotation("_In_")]   D3D11_INFO_QUEUE_FILTER* pFilter );
+          D3D11_INFO_QUEUE_FILTER* pFilter );
 
     // GetRetrievalFilter()
     // Gets all entries at top of stack.
@@ -1937,8 +1937,8 @@ interface ID3D11InfoQueue
     // data.  So the application needs to only allocate/free the memory for pFilter.
     // Returns S_OK, S_FALSE, E_INVALIDARG or E_OUTOFMEMORY
     HRESULT GetRetrievalFilter(
-        [annotation("_Out_writes_bytes_opt_(*pFilterByteLength)")] D3D11_INFO_QUEUE_FILTER* pFilter,
-        [annotation("_Inout_")] SIZE_T* pFilterByteLength );
+        D3D11_INFO_QUEUE_FILTER* pFilter,
+        SIZE_T* pFilterByteLength );
 
     // ClearRetrievalFilter()
     // Clears filter at the top of the stack (if there is one)
@@ -1964,7 +1964,7 @@ interface ID3D11InfoQueue
     // by AddRetrievalFilterEntries()
     // Returns S_OK, E_INVALIDARG or E_OUTOFMEMORY.
     HRESULT PushRetrievalFilter(
-        [annotation("_In_")] D3D11_INFO_QUEUE_FILTER* pFilter );
+        D3D11_INFO_QUEUE_FILTER* pFilter );
 
     // PopRetrievalFilter()
     // Pop the current storage filter off the stack (if there is one)
@@ -1984,10 +1984,10 @@ interface ID3D11InfoQueue
     //
     // Returns S_OK, E_INVALIDARG or E_OUTOFMEMORY
     HRESULT AddMessage(
-        [annotation("_In_")]    D3D11_MESSAGE_CATEGORY Category,
-        [annotation("_In_")]    D3D11_MESSAGE_SEVERITY Severity,
-        [annotation("_In_")]    D3D11_MESSAGE_ID       ID,
-        [annotation("_In_")]    LPCSTR                pDescription);
+           D3D11_MESSAGE_CATEGORY Category,
+           D3D11_MESSAGE_SEVERITY Severity,
+           D3D11_MESSAGE_ID       ID,
+           LPCSTR                pDescription);
 
     // AddApplicationMessage()
     // This is a convenience for applications that want
@@ -2002,32 +2002,32 @@ interface ID3D11InfoQueue
     //
     // Returns S_OK, E_INVALIDARG or E_OUTOFMEMORY
     HRESULT AddApplicationMessage(
-        [annotation("_In_")] D3D11_MESSAGE_SEVERITY Severity,
-        [annotation("_In_")] LPCSTR                pDescription);
+        D3D11_MESSAGE_SEVERITY Severity,
+        LPCSTR                pDescription);
 
     //=========================================================================
     //  Methods for breaking on errors that pass the storage filter.
     HRESULT SetBreakOnCategory(
-        [annotation("_In_")]    D3D11_MESSAGE_CATEGORY Category,
-        [annotation("_In_")]    BOOL bEnable );
+           D3D11_MESSAGE_CATEGORY Category,
+           BOOL bEnable );
     HRESULT SetBreakOnSeverity(
-        [annotation("_In_")]    D3D11_MESSAGE_SEVERITY Severity,
-        [annotation("_In_")]    BOOL bEnable );
+           D3D11_MESSAGE_SEVERITY Severity,
+           BOOL bEnable );
     HRESULT SetBreakOnID(
-        [annotation("_In_")]    D3D11_MESSAGE_ID ID,
-        [annotation("_In_")]    BOOL bEnable );
+           D3D11_MESSAGE_ID ID,
+           BOOL bEnable );
 
     BOOL GetBreakOnCategory(
-        [annotation("_In_")]    D3D11_MESSAGE_CATEGORY Category );
+           D3D11_MESSAGE_CATEGORY Category );
     BOOL GetBreakOnSeverity(
-        [annotation("_In_")]    D3D11_MESSAGE_SEVERITY Severity );
+           D3D11_MESSAGE_SEVERITY Severity );
     BOOL GetBreakOnID(
-        [annotation("_In_")]    D3D11_MESSAGE_ID ID );
+           D3D11_MESSAGE_ID ID );
 
     //=========================================================================
     //  Methods for globally muting debug spte from the InfoQueue
     void SetMuteDebugOutput(
-        [annotation("_In_")]    BOOL bMute );
+           BOOL bMute );
     BOOL GetMuteDebugOutput();
 
 

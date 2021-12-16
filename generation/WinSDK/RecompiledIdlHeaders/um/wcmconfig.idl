@@ -419,7 +419,7 @@ interface ISettingsEngine : IUnknown
     [helpstring("Applies the context to this engine")]
     HRESULT ApplySettingsContext(
         [in]  ISettingsContext  *SettingsContext,
-        [out, size_is(,*pcIdentities)][annotation("_Outptr_result_buffer_(*pcIdentities)")] LPWSTR           **pppwzIdentities,
+        [out, size_is(,*pcIdentities)]LPWSTR           **pppwzIdentities,
         [out, retval] SIZE_T            *pcIdentities);
 
     [helpstring("Gets the current settings context for engine")]

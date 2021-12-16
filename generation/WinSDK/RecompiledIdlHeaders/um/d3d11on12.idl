@@ -95,8 +95,8 @@ interface ID3D11On12Device
     : IUnknown
 {
     HRESULT CreateWrappedResource(
-        [annotation("_In_")] IUnknown* pResource12,
-        [annotation("_In_")] const D3D11_RESOURCE_FLAGS* pFlags11,
+        IUnknown* pResource12,
+        const D3D11_RESOURCE_FLAGS* pFlags11,
         D3D12_RESOURCE_STATES InState,
         D3D12_RESOURCE_STATES OutState,
         [in] REFIID riid, // Expected: D3D11 resource interface
@@ -104,11 +104,11 @@ interface ID3D11On12Device
         );
 
     void ReleaseWrappedResources(
-        [annotation("_In_reads_( NumResources )")] ID3D11Resource* const* ppResources,
+        ID3D11Resource* const* ppResources,
         UINT NumResources
         );
     void AcquireWrappedResources(
-        [annotation("_In_reads_( NumResources )")] ID3D11Resource* const* ppResources,
+        ID3D11Resource* const* ppResources,
         UINT NumResources
         );
 }
@@ -117,7 +117,7 @@ interface ID3D11On12Device
 interface ID3D11On12Device1
     : ID3D11On12Device
 {
-    HRESULT GetD3D12Device(REFIID riid, [annotation("_COM_Outptr_")] void** ppvDevice);
+    HRESULT GetD3D12Device(REFIID riid, void** ppvDevice);
 }
 
 [ uuid( dc90f331-4740-43fa-866e-67f12cb58223 ), object, local, pointer_default( unique ) ]
@@ -125,16 +125,16 @@ interface ID3D11On12Device2
     : ID3D11On12Device1
 {
     HRESULT UnwrapUnderlyingResource(
-        [annotation("_In_")] ID3D11Resource* pResource11, 
-        [annotation("_In_")] ID3D12CommandQueue* pCommandQueue,
+        ID3D11Resource* pResource11, 
+        ID3D12CommandQueue* pCommandQueue,
         REFIID riid,
-        [annotation("_COM_Outptr_")] void** ppvResource12 );
+        void** ppvResource12 );
 
     HRESULT ReturnUnderlyingResource(
-        [annotation("_In_")] ID3D11Resource* pResource11, 
+        ID3D11Resource* pResource11, 
         UINT NumSync,
-        [annotation("_In_reads_(NumSync) ")] UINT64* pSignalValues,
-        [annotation("_In_reads_(NumSync) ")] ID3D12Fence** ppFences );
+        UINT64* pSignalValues,
+        ID3D12Fence** ppFences );
 }
 
 

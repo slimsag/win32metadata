@@ -410,7 +410,7 @@ local
 interface IDMOVideoOutputOptimizations : IUnknown {
     HRESULT QueryOperationModePreferences (
         ULONG ulOutputStreamIndex,
-        [annotation("_Out_")] DWORD *pdwRequestedCapabilities
+        DWORD *pdwRequestedCapabilities
     );
     HRESULT SetOperationMode (
         ULONG ulOutputStreamIndex,
@@ -418,11 +418,11 @@ interface IDMOVideoOutputOptimizations : IUnknown {
     );
     HRESULT GetCurrentOperationMode (
         ULONG ulOutputStreamIndex,
-        [annotation("_Out_")] DWORD *pdwEnabledFeatures
+        DWORD *pdwEnabledFeatures
     );
     HRESULT GetCurrentSampleRequirements (
         ULONG ulOutputStreamIndex,
-        [annotation("_Out_")] DWORD *pdwRequestedFeatures
+        DWORD *pdwRequestedFeatures
     );
 }
 

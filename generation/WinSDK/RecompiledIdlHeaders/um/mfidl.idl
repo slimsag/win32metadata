@@ -2073,10 +2073,10 @@ interface IMFVideoSampleAllocatorCallback : IUnknown
 interface IMFVideoSampleAllocatorEx : IMFVideoSampleAllocator
 {
     HRESULT InitializeSampleAllocatorEx(
-        [annotation("_In_")]  DWORD cInitialSamples,
-        [annotation("_In_")]  DWORD cMaximumSamples,
-        [annotation("_In_opt_")]  IMFAttributes *pAttributes,
-        [annotation("_In_")]  IMFMediaType *pMediaType
+         DWORD cInitialSamples,
+         DWORD cMaximumSamples,
+         IMFAttributes *pAttributes,
+         IMFMediaType *pMediaType
     );
 };
 
@@ -12301,9 +12301,9 @@ interface IMFSignedLibrary;
 ]
 interface IMFProtectedEnvironmentAccess : IUnknown
 {
-    HRESULT Call([annotation("_In_")] UINT32 inputLength, [annotation("_In_reads_bytes_(inputLength)")] const BYTE *input,
-                 [annotation("_In_")] UINT32 outputLength, [annotation("_Out_writes_bytes_(outputLength)")] BYTE *output);
-    HRESULT ReadGRL([annotation("_Out_")] UINT32 *outputLength, [annotation("_Outptr_result_bytebuffer_(*outputLength)")] BYTE **output);
+    HRESULT Call(const BYTE *input,
+                 BYTE *output);
+    HRESULT ReadGRL(BYTE **output);
 }
 
 [
@@ -12313,7 +12313,7 @@ interface IMFProtectedEnvironmentAccess : IUnknown
 ]
 interface IMFSignedLibrary : IUnknown
 {
-    HRESULT GetProcedureAddress([annotation("_In_")] LPCSTR name, [annotation("_Outptr_")] PVOID *address);
+    HRESULT GetProcedureAddress(PVOID *address);
 }
 
 [
@@ -12323,10 +12323,10 @@ interface IMFSignedLibrary : IUnknown
 ]
 interface IMFSystemId : IUnknown
 {
-    HRESULT GetData([annotation("_Out_")] UINT32 *size, [annotation("_Outptr_result_bytebuffer_(*size)")] BYTE **data);
+    HRESULT GetData(BYTE **data);
     HRESULT Setup(UINT32 stage, 
-                  UINT32 cbIn, [annotation("_In_reads_bytes_(cbIn)")] const BYTE *pbIn,
-                  [annotation("_Out_")] UINT32 *pcbOut, [annotation("_Outptr_result_bytebuffer_(*pcbOut)")] BYTE **ppbOut);
+                  UINT32 cbIn, const BYTE *pbIn,
+                  BYTE **ppbOut);
                   
 }
 

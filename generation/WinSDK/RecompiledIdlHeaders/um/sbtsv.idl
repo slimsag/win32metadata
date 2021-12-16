@@ -814,9 +814,9 @@ interface ITsSbClientConnection : IUnknown
     [local, id(6), helpstring("method PutContext")]
     HRESULT
     PutContext(
-         [annotation("_In_")] BSTR contextId,
-         [annotation("_In_")] VARIANT context,
-         [annotation("_Out_opt_")] VARIANT *existingContext
+         BSTR contextId,
+         VARIANT context,
+         VARIANT *existingContext
          );          
 
     [id(7), helpstring("method GetContext")]

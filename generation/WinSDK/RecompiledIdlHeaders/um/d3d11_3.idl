@@ -131,7 +131,7 @@ cpp_quote( "#endif" )
 interface ID3D11Texture2D1
     : ID3D11Texture2D
 {
-    void GetDesc1( [annotation("_Out_")] D3D11_TEXTURE2D_DESC1* pDesc );
+    void GetDesc1( D3D11_TEXTURE2D_DESC1* pDesc );
 };
 
 
@@ -210,7 +210,7 @@ cpp_quote( "#endif" )
 interface ID3D11Texture3D1
     : ID3D11Texture3D
 {
-    void GetDesc1( [annotation("_Out_")] D3D11_TEXTURE3D_DESC1* pDesc );
+    void GetDesc1( D3D11_TEXTURE3D_DESC1* pDesc );
 };
 
 
@@ -302,7 +302,7 @@ cpp_quote( "#endif" )
 interface ID3D11RasterizerState2
     : ID3D11RasterizerState1
 {
-    void GetDesc2( [annotation("_Out_")] D3D11_RASTERIZER_DESC2* pDesc );
+    void GetDesc2( D3D11_RASTERIZER_DESC2* pDesc );
 };
 
 
@@ -564,7 +564,7 @@ cpp_quote( "#endif" )
 interface ID3D11ShaderResourceView1
     : ID3D11ShaderResourceView
 {
-    void GetDesc1( [annotation("_Out_")] D3D11_SHADER_RESOURCE_VIEW_DESC1* pDesc1 );
+    void GetDesc1( D3D11_SHADER_RESOURCE_VIEW_DESC1* pDesc1 );
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -773,7 +773,7 @@ cpp_quote( "#endif" )
 interface ID3D11RenderTargetView1
     : ID3D11RenderTargetView
 {
-    void GetDesc1( [annotation("_Out_")] D3D11_RENDER_TARGET_VIEW_DESC1* pDesc1 );
+    void GetDesc1( D3D11_RENDER_TARGET_VIEW_DESC1* pDesc1 );
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -970,7 +970,7 @@ cpp_quote( "#endif" )
 interface ID3D11UnorderedAccessView1
     : ID3D11UnorderedAccessView
 {
-    void GetDesc1( [annotation("_Out_")] D3D11_UNORDERED_ACCESS_VIEW_DESC1* pDesc1 );
+    void GetDesc1( D3D11_UNORDERED_ACCESS_VIEW_DESC1* pDesc1 );
 };
 
 
@@ -1011,7 +1011,7 @@ cpp_quote( "#endif" )
 interface ID3D11Query1
     : ID3D11Query
 {
-    void GetDesc1( [annotation("_Out_")] D3D11_QUERY_DESC1* pDesc1 );
+    void GetDesc1( D3D11_QUERY_DESC1* pDesc1 );
 };
 
 
@@ -1035,13 +1035,13 @@ interface ID3D11DeviceContext3
 {
     void Flush1(
         D3D11_CONTEXT_TYPE ContextType,
-        [annotation("_In_opt_")] HANDLE hEvent);
+        HANDLE hEvent);
 
     void SetHardwareProtectionState(
-        [annotation("_In_")] BOOL HwProtectionEnable);
+        BOOL HwProtectionEnable);
 
     void GetHardwareProtectionState(
-        [annotation("_Out_")] BOOL* pHwProtectionEnable);
+        BOOL* pHwProtectionEnable);
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1055,17 +1055,17 @@ interface ID3D11Fence
     : ID3D11DeviceChild
 {
     HRESULT CreateSharedHandle(
-        [annotation("_In_opt_")] const SECURITY_ATTRIBUTES *pAttributes,
-        [annotation("_In_")] DWORD dwAccess,
-        [annotation("_In_opt_")] LPCWSTR lpName,
-        [annotation("_Out_")] HANDLE *pHandle
+        const SECURITY_ATTRIBUTES *pAttributes,
+        DWORD dwAccess,
+        LPCWSTR lpName,
+        HANDLE *pHandle
         );
     
     UINT64 GetCompletedValue();
     
     HRESULT SetEventOnCompletion(
-        [annotation("_In_")] UINT64 Value,
-        [annotation("_In_")] HANDLE hEvent
+        UINT64 Value,
+        HANDLE hEvent
         );
 };
 
@@ -1081,13 +1081,13 @@ interface ID3D11DeviceContext4
     : ID3D11DeviceContext3
 {
     HRESULT Signal(
-        [annotation("_In_")] ID3D11Fence *pFence,
-        [annotation("_In_")] UINT64 Value
+        ID3D11Fence *pFence,
+        UINT64 Value
         );
 
     HRESULT Wait(
-        [annotation("_In_")] ID3D11Fence *pFence,
-        [annotation("_In_")] UINT64 Value
+        ID3D11Fence *pFence,
+        UINT64 Value
         );
 };
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1100,64 +1100,64 @@ interface ID3D11Device3
     : ID3D11Device2
 {
     HRESULT CreateTexture2D1(
-        [annotation("_In_")] const D3D11_TEXTURE2D_DESC1* pDesc1,
-        [annotation("_In_reads_opt_(_Inexpressible_(pDesc1->MipLevels * pDesc1->ArraySize))")] const D3D11_SUBRESOURCE_DATA* pInitialData,
-        [annotation("_COM_Outptr_opt_")] ID3D11Texture2D1** ppTexture2D );
+        const D3D11_TEXTURE2D_DESC1* pDesc1,
+        const D3D11_SUBRESOURCE_DATA* pInitialData,
+        ID3D11Texture2D1** ppTexture2D );
         
     HRESULT CreateTexture3D1(
-        [annotation("_In_")] const D3D11_TEXTURE3D_DESC1* pDesc1,
-        [annotation("_In_reads_opt_(_Inexpressible_(pDesc1->MipLevels))")] const D3D11_SUBRESOURCE_DATA* pInitialData,
-        [annotation("_COM_Outptr_opt_")] ID3D11Texture3D1** ppTexture3D );
+        const D3D11_TEXTURE3D_DESC1* pDesc1,
+        const D3D11_SUBRESOURCE_DATA* pInitialData,
+        ID3D11Texture3D1** ppTexture3D );
 
     HRESULT CreateRasterizerState2(
-        [annotation("_In_")] const D3D11_RASTERIZER_DESC2* pRasterizerDesc,
-        [annotation("_COM_Outptr_opt_")] ID3D11RasterizerState2** ppRasterizerState );
+        const D3D11_RASTERIZER_DESC2* pRasterizerDesc,
+        ID3D11RasterizerState2** ppRasterizerState );
 
     HRESULT CreateShaderResourceView1(
-        [annotation("_In_")] ID3D11Resource* pResource,
-        [annotation("_In_opt_")] const D3D11_SHADER_RESOURCE_VIEW_DESC1* pDesc1,
-        [annotation("_COM_Outptr_opt_")] ID3D11ShaderResourceView1** ppSRView1 );
+        ID3D11Resource* pResource,
+        const D3D11_SHADER_RESOURCE_VIEW_DESC1* pDesc1,
+        ID3D11ShaderResourceView1** ppSRView1 );
 
     HRESULT CreateUnorderedAccessView1(
-        [annotation("_In_")] ID3D11Resource* pResource,
-        [annotation("_In_opt_")] const D3D11_UNORDERED_ACCESS_VIEW_DESC1* pDesc1,
-        [annotation("_COM_Outptr_opt_")] ID3D11UnorderedAccessView1** ppUAView1 );
+        ID3D11Resource* pResource,
+        const D3D11_UNORDERED_ACCESS_VIEW_DESC1* pDesc1,
+        ID3D11UnorderedAccessView1** ppUAView1 );
 
     HRESULT CreateRenderTargetView1(
-        [annotation("_In_")] ID3D11Resource* pResource,
-        [annotation("_In_opt_")] const D3D11_RENDER_TARGET_VIEW_DESC1* pDesc1,
-        [annotation("_COM_Outptr_opt_")] ID3D11RenderTargetView1** ppRTView1 );
+        ID3D11Resource* pResource,
+        const D3D11_RENDER_TARGET_VIEW_DESC1* pDesc1,
+        ID3D11RenderTargetView1** ppRTView1 );
 
     HRESULT CreateQuery1(
-        [annotation("_In_")] const D3D11_QUERY_DESC1 *pQueryDesc1,
-        [annotation("_COM_Outptr_opt_")] ID3D11Query1 **ppQuery1
+        const D3D11_QUERY_DESC1 *pQueryDesc1,
+        ID3D11Query1 **ppQuery1
         );
 
     void GetImmediateContext3(
-        [annotation("_Outptr_")] ID3D11DeviceContext3** ppImmediateContext
+        ID3D11DeviceContext3** ppImmediateContext
         );
 
     HRESULT CreateDeferredContext3(
         UINT ContextFlags, 
-        [annotation("_COM_Outptr_opt_")] ID3D11DeviceContext3** ppDeferredContext
+        ID3D11DeviceContext3** ppDeferredContext
         );
  
     void WriteToSubresource(
-        [annotation("_In_")] ID3D11Resource* pDstResource,
-        [annotation("_In_")] UINT DstSubresource,
-        [annotation("_In_opt_")] const D3D11_BOX* pDstBox,
-        [annotation("_In_")] const void* pSrcData,
-        [annotation("_In_")] UINT SrcRowPitch,
-        [annotation("_In_")] UINT SrcDepthPitch 
+        ID3D11Resource* pDstResource,
+        UINT DstSubresource,
+        const D3D11_BOX* pDstBox,
+        const void* pSrcData,
+        UINT SrcRowPitch,
+        UINT SrcDepthPitch 
         );
         
     void ReadFromSubresource(
-        [annotation("_Out_")] void* pDstData,
-        [annotation("_In_")] UINT DstRowPitch,
-        [annotation("_In_")] UINT DstDepthPitch,
-        [annotation("_In_")] ID3D11Resource* pSrcResource,
-        [annotation("_In_")] UINT SrcSubresource,
-        [annotation("_In_opt_")] const D3D11_BOX* pSrcBox
+        void* pDstData,
+        UINT DstRowPitch,
+        UINT DstDepthPitch,
+        ID3D11Resource* pSrcResource,
+        UINT SrcSubresource,
+        const D3D11_BOX* pSrcBox
         );
 };
 cpp_quote( "DEFINE_GUID(IID_ID3D11Texture2D1,0x51218251,0x1E33,0x4617,0x9C,0xCB,0x4D,0x3A,0x43,0x67,0xE7,0xBB);" )

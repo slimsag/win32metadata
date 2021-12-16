@@ -141,7 +141,7 @@ interface IDXGIFactory5 :
 {
     HRESULT CheckFeatureSupport(
         DXGI_FEATURE Feature,
-        [annotation("_Inout_updates_bytes_(FeatureSupportDataSize)")] void* pFeatureSupportData,
+        void* pFeatureSupportData,
         UINT FeatureSupportDataSize
         );
 };

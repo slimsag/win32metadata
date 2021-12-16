@@ -58,7 +58,7 @@ interface IUIAnimationTimerEventHandler;
 
 // Annotations on methods are not supported by earlier versions of MIDL
 #ifdef NTDDI_WIN7
-#define UI_CHECKRETURN                              [annotation("_Check_return_")] 
+#define UI_CHECKRETURN                              
 #else
 #define UI_CHECKRETURN                    
 #endif

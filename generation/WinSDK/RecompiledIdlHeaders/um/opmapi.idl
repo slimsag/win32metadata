@@ -517,29 +517,29 @@ cpp_quote( "#endif // defined( _WIN32 ) && !defined( _NO_COM )" )
 interface IOPMVideoOutput : IUnknown
 {
     HRESULT StartInitialization( 
-        [out] [annotation("_Out_")] OPM_RANDOM_NUMBER* prnRandomNumber,
-        [out] [annotation("_Outptr_result_bytebuffer_(*pulCertificateLength)")] BYTE** ppbCertificate,
-        [out] [annotation("_Out_")] ULONG* pulCertificateLength
+        [out] OPM_RANDOM_NUMBER* prnRandomNumber,
+        [out] BYTE** ppbCertificate,
+        [out] ULONG* pulCertificateLength
         );
 
     HRESULT FinishInitialization(
-        [in] [annotation("_In_")] const OPM_ENCRYPTED_INITIALIZATION_PARAMETERS* pParameters
+        [in] const OPM_ENCRYPTED_INITIALIZATION_PARAMETERS* pParameters
         );
 
     HRESULT GetInformation(
-        [in] [annotation("_In_")] const OPM_GET_INFO_PARAMETERS* pParameters,
-        [out][annotation("_Out_")] OPM_REQUESTED_INFORMATION* pRequestedInformation
+        [in] const OPM_GET_INFO_PARAMETERS* pParameters,
+        [out]OPM_REQUESTED_INFORMATION* pRequestedInformation
         );
 
     HRESULT COPPCompatibleGetInformation( 
-        [in] [annotation("_In_")] const OPM_COPP_COMPATIBLE_GET_INFO_PARAMETERS* pParameters,
-        [out][annotation("_Out_")] OPM_REQUESTED_INFORMATION* pRequestedInformation
+        [in] const OPM_COPP_COMPATIBLE_GET_INFO_PARAMETERS* pParameters,
+        [out]OPM_REQUESTED_INFORMATION* pRequestedInformation
         );
 
     HRESULT Configure(
-        [in] [annotation("_In_")] const OPM_CONFIGURE_PARAMETERS* pParameters,
-        [in] [annotation("_In_")] ULONG ulAdditionalParametersSize,
-        [in] [annotation("_In_reads_bytes_opt_(ulAdditionalParametersSize)")] const BYTE* pbAdditionalParameters
+        [in] const OPM_CONFIGURE_PARAMETERS* pParameters,
+        [in] ULONG ulAdditionalParametersSize,
+        [in] const BYTE* pbAdditionalParameters
         );
 };
 

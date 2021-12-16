@@ -5045,7 +5045,7 @@ interface IAMCertifiedOutputProtection : IUnknown
 ]
 interface IAMAsyncReaderTimestampScaling : IUnknown
 {
-    HRESULT GetTimestampMode([annotation("_Out_")] BOOL *pfRaw);
+    HRESULT GetTimestampMode(BOOL *pfRaw);
     HRESULT SetTimestampMode(BOOL fRaw);
 };
 
@@ -5071,24 +5071,24 @@ interface IAMAsyncReaderTimestampScaling : IUnknown
 interface IAMPluginControl : IUnknown
 {
    HRESULT GetPreferredClsid(
-               [annotation("_In_")] REFGUID subType,
-               [annotation("_Out_")] CLSID *clsid
+               REFGUID subType,
+               CLSID *clsid
                );
    HRESULT GetPreferredClsidByIndex(
                DWORD index,
-               [annotation("_Out_")] GUID *subType,
-               [annotation("_Out_")] CLSID *clsid
+               GUID *subType,
+               CLSID *clsid
                );
    HRESULT SetPreferredClsid(
-               [annotation("_In_")] REFGUID subType,
-               [annotation("_In_opt_")] const CLSID *clsid
+               REFGUID subType,
+               const CLSID *clsid
                );
    HRESULT IsDisabled(
                REFCLSID clsid
                );
    HRESULT GetDisabledByIndex(
                DWORD index,
-               [annotation("_Out_")] CLSID *clsid
+               CLSID *clsid
                );
    HRESULT SetDisabled(
                REFCLSID clsid,

@@ -76,20 +76,20 @@ typedef struct DXGI_INFO_QUEUE_MESSAGE {
     DXGI_INFO_QUEUE_MESSAGE_CATEGORY    Category;
     DXGI_INFO_QUEUE_MESSAGE_SEVERITY    Severity;
     DXGI_INFO_QUEUE_MESSAGE_ID          ID;
-    [annotation("_Field_size_(DescriptionByteLength)")] const char*                         pDescription;
+    const char*                         pDescription;
     SIZE_T                              DescriptionByteLength;
 } DXGI_INFO_QUEUE_MESSAGE;
 
 typedef struct DXGI_INFO_QUEUE_FILTER_DESC
 {
     UINT                                NumCategories;
-    [annotation("_Field_size_(NumCategories)")] DXGI_INFO_QUEUE_MESSAGE_CATEGORY*   pCategoryList;
+    DXGI_INFO_QUEUE_MESSAGE_CATEGORY*   pCategoryList;
 
     UINT                                NumSeverities;
-    [annotation("_Field_size_(NumSeverities)")] DXGI_INFO_QUEUE_MESSAGE_SEVERITY*   pSeverityList;
+    DXGI_INFO_QUEUE_MESSAGE_SEVERITY*   pSeverityList;
     
     UINT                                NumIDs;
-    [annotation("_Field_size_(NumIDs)")] DXGI_INFO_QUEUE_MESSAGE_ID*         pIDList;
+    DXGI_INFO_QUEUE_MESSAGE_ID*         pIDList;
 } DXGI_INFO_QUEUE_FILTER_DESC;
 
 // To use, memset to 0, then fill in what you need.
@@ -129,12 +129,12 @@ interface IDXGIInfoQueue
     // The default message count size is DXGI_INFO_QUEUE_DEFAULT_MESSAGE_COUNT_LIMIT
     // Returns S_OK or E_INVALIDARG.
     HRESULT SetMessageCountLimit( 
-        [annotation("_In_")]    DXGI_DEBUG_ID               Producer,
-        [annotation("_In_")]    UINT64                      MessageCountLimit );
+           DXGI_DEBUG_ID               Producer,
+           UINT64                      MessageCountLimit );
 
     // ClearStoredMessages
     void    ClearStoredMessages(
-        [annotation("_In_")]    DXGI_DEBUG_ID               Producer);
+           DXGI_DEBUG_ID               Producer);
 
     //=========================================================================
     // Methods for retrieving data or statistics from the queue.
@@ -169,10 +169,10 @@ interface IDXGIInfoQueue
     //
     // Returns: S_OK, S_FALSE, E_INVALIDARG or E_OUTOFMEMORY.
     HRESULT GetMessage(
-        [annotation("_In_")]    DXGI_DEBUG_ID               Producer,
-        [annotation("_In_")]    UINT64                      MessageIndex,
-        [annotation("_Out_writes_bytes_opt_(*pMessageByteLength)")] DXGI_INFO_QUEUE_MESSAGE* pMessage,
-        [annotation("_Inout_")] SIZE_T*                     pMessageByteLength );
+           DXGI_DEBUG_ID               Producer,
+           UINT64                      MessageIndex,
+        DXGI_INFO_QUEUE_MESSAGE* pMessage,
+        SIZE_T*                     pMessageByteLength );
 
     // GetNumStoredMessagesAllowedByRetrievalFilter()
     // Returns how many messages that are currently in the queue which
@@ -180,23 +180,23 @@ interface IDXGIInfoQueue
     // The MessageIndex parameter to GetMessage() indexes
     // an array of this many results.
     UINT64  GetNumStoredMessagesAllowedByRetrievalFilters(
-        [annotation("_In_")]    DXGI_DEBUG_ID               Producer);
+           DXGI_DEBUG_ID               Producer);
 
     // GetNumStoredMessages()
     // Returns how many messages are currently stored in the queue for the specified producer.
     UINT64  GetNumStoredMessages(
-        [annotation("_In_")]    DXGI_DEBUG_ID               Producer);
+           DXGI_DEBUG_ID               Producer);
 
     // GetNumMessagesDiscardedByMessageCountLimit() for the specified producer.
     UINT64  GetNumMessagesDiscardedByMessageCountLimit(
-        [annotation("_In_")]    DXGI_DEBUG_ID               Producer);
+           DXGI_DEBUG_ID               Producer);
 
     // GetMessageCountLimit
     // This is how many messages can be stored in the queue for the specified producer.
     // When the queue is full, new messages coming in push old messages out.
     // -1 means there is no limit.
     UINT64  GetMessageCountLimit(
-        [annotation("_In_")]    DXGI_DEBUG_ID               Producer);
+           DXGI_DEBUG_ID               Producer);
 
     // GetNumMessagesAllowedByStorageFilter()
     // Returns how many messages sent to the queue passed
@@ -206,11 +206,11 @@ interface IDXGIInfoQueue
     // returned by GetMessageCountLimit(), since old messages are discarded
     // when the queue is full to prevent overflow.
     UINT64  GetNumMessagesAllowedByStorageFilter(
-        [annotation("_In_")]    DXGI_DEBUG_ID               Producer);
+           DXGI_DEBUG_ID               Producer);
 
     // GetNumMessagesDeniedByStorageFilter()
     UINT64  GetNumMessagesDeniedByStorageFilter(
-        [annotation("_In_")]    DXGI_DEBUG_ID               Producer);
+           DXGI_DEBUG_ID               Producer);
 
 
     //=========================================================================
@@ -220,8 +220,8 @@ interface IDXGIInfoQueue
     // Adds to the existing entries at top of stack
     // Returns: S_OK, E_INVALIDARG or E_OUTOFMEMORY.
     HRESULT AddStorageFilterEntries(
-        [annotation("_In_")]    DXGI_DEBUG_ID               Producer,
-        [annotation("_In_")]    DXGI_INFO_QUEUE_FILTER*     pFilter );
+           DXGI_DEBUG_ID               Producer,
+           DXGI_INFO_QUEUE_FILTER*     pFilter );
 
     // GetStorageFilter()
     // Gets all entries at top of stack.
@@ -233,14 +233,14 @@ interface IDXGIInfoQueue
     // data.  So the application needs to only allocate/free the memory for pFilter.
     // Returns S_OK, S_FALSE, E_INVALIDARG or E_OUTOFMEMORY
     HRESULT GetStorageFilter(
-        [annotation("_In_")]    DXGI_DEBUG_ID               Producer,
-        [annotation("_Out_writes_bytes_opt_(*pFilterByteLength)")] DXGI_INFO_QUEUE_FILTER* pFilter,
-        [annotation("_Inout_")] SIZE_T* pFilterByteLength );
+           DXGI_DEBUG_ID               Producer,
+        DXGI_INFO_QUEUE_FILTER* pFilter,
+        SIZE_T* pFilterByteLength );
 
     // ClearStorageFilter()
     // Clears filter at the top of the stack (if there is one)
     void    ClearStorageFilter(
-        [annotation("_In_")]    DXGI_DEBUG_ID               Producer);
+           DXGI_DEBUG_ID               Producer);
 
     // PushEmptyStorageFilter()
     // Push an empty storage filter on the stack to allow local filtering changes.
@@ -249,7 +249,7 @@ interface IDXGIInfoQueue
     // defined without ever bothering to push or pop.
     // Returns S_OK or E_OUTOFMEMORY
     HRESULT PushEmptyStorageFilter(
-        [annotation("_In_")]    DXGI_DEBUG_ID               Producer);
+           DXGI_DEBUG_ID               Producer);
 
     // PushDenyAllStorageFilter()
     // Push a storage filter that denies all messages.  This is for convience to
@@ -258,14 +258,14 @@ interface IDXGIInfoQueue
     // A deny all will be a filter with all of the severities in the deny list.
     // Returns S_OK or E_OUTOFMEMORY
     HRESULT PushDenyAllStorageFilter(
-        [annotation("_In_")]    DXGI_DEBUG_ID               Producer);
+           DXGI_DEBUG_ID               Producer);
 
     // PushCopyOfStorageFilter()
     // Push a copy of the current filter so that local modifications can be made
     // starting from what currently exists.
     // Returns S_OK or E_OUTOFMEMORY
     HRESULT PushCopyOfStorageFilter(
-        [annotation("_In_")]    DXGI_DEBUG_ID               Producer);
+           DXGI_DEBUG_ID               Producer);
 
 
     // PushStorageFilter()
@@ -274,17 +274,17 @@ interface IDXGIInfoQueue
     // by AddStorageFilterEntries()
     // Returns S_OK, E_INVALIDARG or E_OUTOFMEMORY.
     HRESULT PushStorageFilter(
-        [annotation("_In_")]    DXGI_DEBUG_ID               Producer,
-        [annotation("_In_")]    DXGI_INFO_QUEUE_FILTER*     pFilter );
+           DXGI_DEBUG_ID               Producer,
+           DXGI_INFO_QUEUE_FILTER*     pFilter );
 
     // PopStorageFilter()
     // Pop the current storage filter off the stack (if there is one)
     void    PopStorageFilter(
-        [annotation("_In_")]    DXGI_DEBUG_ID               Producer);
+           DXGI_DEBUG_ID               Producer);
 
     // GetStorageFilterStackSize()
     UINT    GetStorageFilterStackSize(
-        [annotation("_In_")]    DXGI_DEBUG_ID               Producer);
+           DXGI_DEBUG_ID               Producer);
 
     //=========================================================================
     // Methods for filtering what gets read out of the queue by GetMessage().
@@ -293,8 +293,8 @@ interface IDXGIInfoQueue
     // Adds to the existing entries at top of stack
     // Returns: S_OK, E_INVALIDARG or E_OUTOFMEMORY.
     HRESULT AddRetrievalFilterEntries(
-        [annotation("_In_")]    DXGI_DEBUG_ID               Producer,
-        [annotation("_In_")]    DXGI_INFO_QUEUE_FILTER*     pFilter );
+           DXGI_DEBUG_ID               Producer,
+           DXGI_INFO_QUEUE_FILTER*     pFilter );
 
     // GetRetrievalFilter()
     // Gets all entries at top of stack.
@@ -306,14 +306,14 @@ interface IDXGIInfoQueue
     // data.  So the application needs to only allocate/free the memory for pFilter.
     // Returns S_OK, S_FALSE, E_INVALIDARG or E_OUTOFMEMORY
     HRESULT GetRetrievalFilter(
-        [annotation("_In_")]    DXGI_DEBUG_ID               Producer,
-        [annotation("_Out_writes_bytes_opt_(*pFilterByteLength)")] DXGI_INFO_QUEUE_FILTER* pFilter,
-        [annotation("_Inout_")] SIZE_T* pFilterByteLength );
+           DXGI_DEBUG_ID               Producer,
+        DXGI_INFO_QUEUE_FILTER* pFilter,
+        SIZE_T* pFilterByteLength );
 
     // ClearRetrievalFilter()
     // Clears filter at the top of the stack (if there is one)
     void    ClearRetrievalFilter(
-        [annotation("_In_")]    DXGI_DEBUG_ID               Producer);
+           DXGI_DEBUG_ID               Producer);
 
     // PushEmptyRetrievalFilter()
     // Push an empty retrieval filter on the stack to allow local filtering changes.
@@ -322,7 +322,7 @@ interface IDXGIInfoQueue
     // defined without ever bothering to push or pop.
     // Returns S_OK or E_OUTOFMEMORY
     HRESULT PushEmptyRetrievalFilter(
-        [annotation("_In_")]    DXGI_DEBUG_ID               Producer);
+           DXGI_DEBUG_ID               Producer);
 
     // PushDenyAllRetrievalFilter()
     // Push a retrieval filter that denies all messages.  This is for convience to
@@ -330,14 +330,14 @@ interface IDXGIInfoQueue
     // A deny all will be a filter with all of the severities in the deny list.
     // Returns S_OK or E_OUTOFMEMORY
     HRESULT PushDenyAllRetrievalFilter(
-        [annotation("_In_")]    DXGI_DEBUG_ID               Producer);
+           DXGI_DEBUG_ID               Producer);
 
     // PushCopyOfRetrievalFilter()
     // Push a copy of the current filter so that local modifications can be made
     // starting from what currently exists.
     // Returns S_OK or E_OUTOFMEMORY
     HRESULT PushCopyOfRetrievalFilter(
-        [annotation("_In_")]    DXGI_DEBUG_ID               Producer);
+           DXGI_DEBUG_ID               Producer);
 
     // PushRetrievalFilter()
     // Push a filter passed as a parameter onto the stack.  This is
@@ -345,17 +345,17 @@ interface IDXGIInfoQueue
     // by AddRetrievalFilterEntries()
     // Returns S_OK, E_INVALIDARG or E_OUTOFMEMORY.
     HRESULT PushRetrievalFilter(
-        [annotation("_In_")]    DXGI_DEBUG_ID               Producer,
-        [annotation("_In_")]    DXGI_INFO_QUEUE_FILTER* pFilter );
+           DXGI_DEBUG_ID               Producer,
+           DXGI_INFO_QUEUE_FILTER* pFilter );
 
     // PopRetrievalFilter()
     // Pop the current storage filter off the stack (if there is one)
     void    PopRetrievalFilter(
-        [annotation("_In_")]    DXGI_DEBUG_ID               Producer);
+           DXGI_DEBUG_ID               Producer);
 
     // GetRetrievalFilterStackSize()
     UINT    GetRetrievalFilterStackSize(        
-        [annotation("_In_")]    DXGI_DEBUG_ID               Producer);
+           DXGI_DEBUG_ID               Producer);
 
     //=========================================================================
     //  Methods for adding entries to the queue.
@@ -368,11 +368,11 @@ interface IDXGIInfoQueue
     //
     // Returns S_OK, E_INVALIDARG or E_OUTOFMEMORY
     HRESULT AddMessage(
-        [annotation("_In_")]    DXGI_DEBUG_ID                           Producer,
-        [annotation("_In_")]    DXGI_INFO_QUEUE_MESSAGE_CATEGORY        Category,
-        [annotation("_In_")]    DXGI_INFO_QUEUE_MESSAGE_SEVERITY        Severity,
-        [annotation("_In_")]    DXGI_INFO_QUEUE_MESSAGE_ID              ID,
-        [annotation("_In_")]    LPCSTR                                  pDescription);
+           DXGI_DEBUG_ID                           Producer,
+           DXGI_INFO_QUEUE_MESSAGE_CATEGORY        Category,
+           DXGI_INFO_QUEUE_MESSAGE_SEVERITY        Severity,
+           DXGI_INFO_QUEUE_MESSAGE_ID              ID,
+           LPCSTR                                  pDescription);
 
     // AddApplicationMessage()
     // This is a convenience for applications that want
@@ -387,41 +387,41 @@ interface IDXGIInfoQueue
     //
     // Returns S_OK, E_INVALIDARG or E_OUTOFMEMORY
     HRESULT AddApplicationMessage(
-        [annotation("_In_")]    DXGI_INFO_QUEUE_MESSAGE_SEVERITY        Severity,
-        [annotation("_In_")]    LPCSTR                                  pDescription);
+           DXGI_INFO_QUEUE_MESSAGE_SEVERITY        Severity,
+           LPCSTR                                  pDescription);
 
     //=========================================================================
     //  Methods for breaking on errors that pass the storage filter.
     HRESULT SetBreakOnCategory(
-        [annotation("_In_")]    DXGI_DEBUG_ID                           Producer,
-        [annotation("_In_")]    DXGI_INFO_QUEUE_MESSAGE_CATEGORY        Category,
-        [annotation("_In_")]    BOOL                                    bEnable );
+           DXGI_DEBUG_ID                           Producer,
+           DXGI_INFO_QUEUE_MESSAGE_CATEGORY        Category,
+           BOOL                                    bEnable );
     HRESULT SetBreakOnSeverity(
-        [annotation("_In_")]    DXGI_DEBUG_ID                           Producer,
-        [annotation("_In_")]    DXGI_INFO_QUEUE_MESSAGE_SEVERITY        Severity,
-        [annotation("_In_")]    BOOL                                    bEnable );
+           DXGI_DEBUG_ID                           Producer,
+           DXGI_INFO_QUEUE_MESSAGE_SEVERITY        Severity,
+           BOOL                                    bEnable );
     HRESULT SetBreakOnID(
-        [annotation("_In_")]    DXGI_DEBUG_ID                           Producer,
-        [annotation("_In_")]    DXGI_INFO_QUEUE_MESSAGE_ID              ID,
-        [annotation("_In_")]    BOOL                                    bEnable );
+           DXGI_DEBUG_ID                           Producer,
+           DXGI_INFO_QUEUE_MESSAGE_ID              ID,
+           BOOL                                    bEnable );
 
     BOOL GetBreakOnCategory(
-        [annotation("_In_")]    DXGI_DEBUG_ID                           Producer,
-        [annotation("_In_")]    DXGI_INFO_QUEUE_MESSAGE_CATEGORY        Category );
+           DXGI_DEBUG_ID                           Producer,
+           DXGI_INFO_QUEUE_MESSAGE_CATEGORY        Category );
     BOOL GetBreakOnSeverity(
-        [annotation("_In_")]    DXGI_DEBUG_ID                           Producer,
-        [annotation("_In_")]    DXGI_INFO_QUEUE_MESSAGE_SEVERITY        Severity );
+           DXGI_DEBUG_ID                           Producer,
+           DXGI_INFO_QUEUE_MESSAGE_SEVERITY        Severity );
     BOOL GetBreakOnID(
-        [annotation("_In_")]    DXGI_DEBUG_ID                           Producer,
-        [annotation("_In_")]    DXGI_INFO_QUEUE_MESSAGE_ID              ID );
+           DXGI_DEBUG_ID                           Producer,
+           DXGI_INFO_QUEUE_MESSAGE_ID              ID );
 
     //=========================================================================
     //  Methods for muting debug spew from the InfoQueue
     void SetMuteDebugOutput(
-        [annotation("_In_")]    DXGI_DEBUG_ID                           Producer,
-        [annotation("_In_")]    BOOL                                    bMute );
+           DXGI_DEBUG_ID                           Producer,
+           BOOL                                    bMute );
     BOOL GetMuteDebugOutput(
-        [annotation("_In_")]    DXGI_DEBUG_ID                           Producer);
+           DXGI_DEBUG_ID                           Producer);
 };
 
 [ uuid(119E7452-DE9E-40fe-8806-88F90C12B441), object, local, pointer_default( unique ) ]

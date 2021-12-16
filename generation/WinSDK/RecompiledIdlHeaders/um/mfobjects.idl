@@ -4411,8 +4411,8 @@ interface IMFPluginControl : IUnknown
    /// </returns>
    HRESULT GetPreferredClsid(
                DWORD pluginType,
-               [annotation("_In_")] LPCWSTR selector,
-               [annotation("_Out_")] CLSID *clsid
+               LPCWSTR selector,
+               CLSID *clsid
                );
 
 
@@ -4434,8 +4434,8 @@ interface IMFPluginControl : IUnknown
    HRESULT GetPreferredClsidByIndex(
                DWORD pluginType,
                DWORD index,
-               [annotation("_Out_")] LPWSTR *selector,
-               [annotation("_Out_")] CLSID *clsid
+               LPWSTR *selector,
+               CLSID *clsid
                );
 
    /// <summary>
@@ -4452,8 +4452,8 @@ interface IMFPluginControl : IUnknown
    /// </param>
    HRESULT SetPreferredClsid(
                DWORD pluginType,
-               [annotation("_In_")] LPCWSTR selector,
-               [annotation("_In_opt_")] const CLSID *clsid
+               LPCWSTR selector,
+               const CLSID *clsid
                );
 
    /// <summary>
@@ -4492,7 +4492,7 @@ interface IMFPluginControl : IUnknown
    HRESULT GetDisabledByIndex(
                DWORD pluginType,
                DWORD index,
-               [annotation("_Out_")] CLSID *clsid
+               CLSID *clsid
                );
 
    /// <summary>
@@ -4555,32 +4555,32 @@ cpp_quote("#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_G
 interface IMFDXGIDeviceManager : IUnknown
 {
     HRESULT CloseDeviceHandle(
-      [annotation("_In_")]  HANDLE hDevice
+       HANDLE hDevice
     );
     HRESULT GetVideoService(
-      [annotation("_In_")]   HANDLE hDevice,
-      [annotation("_In_")]   REFIID riid,
-      [annotation("_Outptr_")]  void **ppService
+        HANDLE hDevice,
+        REFIID riid,
+       void **ppService
     );
     HRESULT LockDevice(
-      [annotation("_In_")]   HANDLE hDevice,
-      [annotation("_In_")]   REFIID riid,
-      [annotation("_Outptr_")]  void **ppUnkDevice,
-      [annotation("_In_")]   BOOL fBlock
+        HANDLE hDevice,
+        REFIID riid,
+       void **ppUnkDevice,
+        BOOL fBlock
     );
     HRESULT OpenDeviceHandle(
-      [annotation("_Out_")]  HANDLE *phDevice
+       HANDLE *phDevice
     );
     HRESULT ResetDevice(
-      [annotation("_In_")]  IUnknown *pUnkDevice,
-      [annotation("_In_")]  UINT resetToken
+       IUnknown *pUnkDevice,
+       UINT resetToken
     );
     HRESULT TestDevice(
-      [annotation("_In_")]  HANDLE hDevice
+       HANDLE hDevice
     );
     HRESULT UnlockDevice(
-      [annotation("_In_")]  HANDLE hDevice,
-      [annotation("_In_")]  BOOL fSaveState
+       HANDLE hDevice,
+       BOOL fSaveState
     );
 }
 
@@ -4614,12 +4614,12 @@ cpp_quote("#if (NTDDI_VERSION >= NTDDI_WIN10_RS2)")
 interface IMFMuxStreamAttributesManager : IUnknown
 {
     HRESULT GetStreamCount(
-        [annotation("_Out_")] DWORD* pdwMuxStreamCount
+        DWORD* pdwMuxStreamCount
     );
 
     HRESULT GetAttributes(
-        [annotation("_In_")] DWORD dwMuxStreamIndex,
-        [annotation("_COM_Outptr_")] IMFAttributes **ppStreamAttributes
+        DWORD dwMuxStreamIndex,
+        IMFAttributes **ppStreamAttributes
     );
 }
 
@@ -4636,29 +4636,29 @@ interface IMFMuxStreamAttributesManager : IUnknown
 interface IMFMuxStreamMediaTypeManager : IUnknown
 {
     HRESULT GetStreamCount(
-        [annotation("_Out_")] DWORD* pdwMuxStreamCount
+        DWORD* pdwMuxStreamCount
     );
 
     HRESULT GetMediaType(
-        [annotation("_In_")] DWORD dwMuxStreamIndex,
-        [annotation("_COM_Outptr_")] IMFMediaType** ppMediaType
+        DWORD dwMuxStreamIndex,
+        IMFMediaType** ppMediaType
     );
 
     HRESULT GetStreamConfigurationCount(
-        [annotation("_Out_")] DWORD *pdwCount
+        DWORD *pdwCount
     );
 
     HRESULT AddStreamConfiguration(
-        [annotation("_In_")] ULONGLONG ullStreamMask
+        ULONGLONG ullStreamMask
     );
 
     HRESULT RemoveStreamConfiguration(
-        [annotation("_In_")] ULONGLONG ullStreamMask
+        ULONGLONG ullStreamMask
     );
 
     HRESULT GetStreamConfiguration(
-        [annotation("_In_")] DWORD ulIndex,
-        [annotation("_Out_")] ULONGLONG *pullStreamMask
+        DWORD ulIndex,
+        ULONGLONG *pullStreamMask
     );
 }
 
@@ -4675,12 +4675,12 @@ interface IMFMuxStreamMediaTypeManager : IUnknown
 interface IMFMuxStreamSampleManager : IUnknown
 {
     HRESULT GetStreamCount(
-        [annotation("_Out_")] DWORD* pdwMuxStreamCount
+        DWORD* pdwMuxStreamCount
     );
 
     HRESULT GetSample(
-        [annotation("_In_")] DWORD dwMuxStreamIndex,
-        [annotation("_COM_Outptr_")] IMFSample** ppSample
+        DWORD dwMuxStreamIndex,
+        IMFSample** ppSample
     );
 
     ULONGLONG GetStreamConfiguration();

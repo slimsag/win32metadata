@@ -433,7 +433,7 @@ interface IPortableDeviceUnitsStream : IUnknown
         [in] LARGE_INTEGER dlibMove,
         [in] WPD_STREAM_UNITS units,
         [in] DWORD dwOrigin,
-        [annotation("_Out_opt_")] ULARGE_INTEGER *plibNewPosition);
+        ULARGE_INTEGER *plibNewPosition);
 
     [call_as(SeekInUnits)]
     HRESULT RemoteSeekInUnits(

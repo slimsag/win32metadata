@@ -247,60 +247,60 @@ typedef enum XmlError
 interface IXmlReader : IUnknown
 {
     HRESULT SetInput(
-        [annotation("_In_opt_")] IUnknown * pInput);
+        IUnknown * pInput);
 
     HRESULT GetProperty(
-        [annotation("_In_")] UINT nProperty, 
-        [annotation("_Out_")] LONG_PTR * ppValue);
+        UINT nProperty, 
+        LONG_PTR * ppValue);
     HRESULT SetProperty(
-        [annotation("_In_")] UINT nProperty, 
-        [annotation("_In_opt_")] LONG_PTR pValue);
+        UINT nProperty, 
+        LONG_PTR pValue);
 
     HRESULT Read(
-        [annotation("_Out_opt_")] XmlNodeType * pNodeType);
+        XmlNodeType * pNodeType);
     HRESULT GetNodeType(
-        [annotation("_Out_")] XmlNodeType * pNodeType);
+        XmlNodeType * pNodeType);
     HRESULT MoveToFirstAttribute();
     HRESULT MoveToNextAttribute();
     HRESULT MoveToAttributeByName(
-        [annotation("_In_")] LPCWSTR pwszLocalName, 
-        [annotation("_In_opt_")] LPCWSTR pwszNamespaceUri);
+        LPCWSTR pwszLocalName, 
+        LPCWSTR pwszNamespaceUri);
     HRESULT MoveToElement();
 
     HRESULT GetQualifiedName(
-        [annotation("_Outptr_result_buffer_maybenull_(*pcwchQualifiedName+1)")] LPCWSTR * ppwszQualifiedName, 
-        [annotation("_Out_opt_")] UINT * pcwchQualifiedName);
+        LPCWSTR * ppwszQualifiedName, 
+        UINT * pcwchQualifiedName);
     HRESULT GetNamespaceUri(
-        [annotation("_Outptr_result_buffer_maybenull_(*pcwchNamespaceUri+1)")] LPCWSTR * ppwszNamespaceUri, 
-        [annotation("_Out_opt_")] UINT * pcwchNamespaceUri);
+        LPCWSTR * ppwszNamespaceUri, 
+        UINT * pcwchNamespaceUri);
     HRESULT GetLocalName(
-        [annotation("_Outptr_result_buffer_maybenull_(*pcwchLocalName+1)")] LPCWSTR * ppwszLocalName, 
-        [annotation("_Out_opt_")] UINT * pcwchLocalName);
+        LPCWSTR * ppwszLocalName, 
+        UINT * pcwchLocalName);
     HRESULT GetPrefix(
-        [annotation("_Outptr_result_buffer_maybenull_(*pcwchPrefix+1)")] LPCWSTR * ppwszPrefix, 
-        [annotation("_Out_opt_")] UINT * pcwchPrefix);
+        LPCWSTR * ppwszPrefix, 
+        UINT * pcwchPrefix);
     HRESULT GetValue(
-        [annotation("_Outptr_result_buffer_maybenull_(*pcwchValue+1)")] LPCWSTR * ppwszValue, 
-        [annotation("_Out_opt_")] UINT * pcwchValue);
+        LPCWSTR * ppwszValue, 
+        UINT * pcwchValue);
     HRESULT ReadValueChunk(
-        [annotation("_Out_writes_to_(cwchChunkSize, *pcwchRead)")] WCHAR * pwchBuffer, 
-        [annotation("_In_")] UINT cwchChunkSize, 
-        [annotation("_Inout_")] UINT * pcwchRead);
+        WCHAR * pwchBuffer, 
+        UINT cwchChunkSize, 
+        UINT * pcwchRead);
     HRESULT GetBaseUri(
-        [annotation("_Outptr_result_buffer_maybenull_(*pcwchBaseUri+1)")] LPCWSTR * ppwszBaseUri, 
-        [annotation("_Out_opt_")] UINT * pcwchBaseUri);
+        LPCWSTR * ppwszBaseUri, 
+        UINT * pcwchBaseUri);
     BOOL IsDefault();
     BOOL IsEmptyElement();
 
     HRESULT GetLineNumber(
-        [annotation("_Out_")] UINT * pnLineNumber);
+        UINT * pnLineNumber);
     HRESULT GetLinePosition(
-        [annotation("_Out_")] UINT * pnLinePosition);
+        UINT * pnLinePosition);
 
     HRESULT GetAttributeCount(
-        [annotation("_Out_")] UINT * pnAttributeCount);
+        UINT * pnAttributeCount);
     HRESULT GetDepth(
-        [annotation("_Out_")] UINT * pnDepth);
+        UINT * pnDepth);
     BOOL IsEOF();
 };
 
@@ -314,10 +314,10 @@ interface IXmlReader : IUnknown
 interface IXmlResolver : IUnknown
 {
     HRESULT ResolveUri(
-        [annotation("_In_opt_")] LPCWSTR pwszBaseUri,
-        [annotation("_In_opt_")] LPCWSTR pwszPublicIdentifier,
-        [annotation("_In_opt_")] LPCWSTR pwszSystemIdentifier,
-        [annotation("_Out_")] IUnknown ** ppResolvedInput);
+        LPCWSTR pwszBaseUri,
+        LPCWSTR pwszPublicIdentifier,
+        LPCWSTR pwszSystemIdentifier,
+        IUnknown ** ppResolvedInput);
 };
 
 /*
@@ -339,9 +339,9 @@ interface IXmlStringAllocator : IUnknown
     //   but the cache probably would. That's why this call will always provide the
     //   whole string (so that it can be easily atomized).
     HRESULT CreateName(
-        [annotation("_In_reads_(cwch)")] const WCHAR *pwch, 
-        [annotation("_In_")] UINT cwch, 
-        [annotation("_Out_")] LPWSTR *ppwsz);
+        const WCHAR *pwch, 
+        UINT cwch, 
+        LPWSTR *ppwsz);
 
     // Given the size of the value, this returns a buffer in which a string
     //   should be stored. Please note, that the size will be given INCLUDING the
@@ -349,8 +349,8 @@ interface IXmlStringAllocator : IUnknown
     // This is basically a simple memory allocator.
     // The reader will fill the returned buffer with the string.
     HRESULT CreateValue(
-        [annotation("_In_")] UINT cwch,
-        [annotation("_Out_")] WCHAR **ppwch);
+        UINT cwch,
+        WCHAR **ppwch);
 };
 */
 
@@ -385,81 +385,81 @@ typedef enum XmlWriterProperty
 interface IXmlWriter : IUnknown
 {
     HRESULT SetOutput(
-        [annotation("_In_opt_")] IUnknown *pOutput);
+        IUnknown *pOutput);
 
     HRESULT GetProperty(
-        [annotation("_In_")] UINT nProperty, 
-        [annotation("_Out_")] LONG_PTR *ppValue);
+        UINT nProperty, 
+        LONG_PTR *ppValue);
     HRESULT SetProperty(
-        [annotation("_In_")] UINT nProperty, 
-        [annotation("_In_opt_")] LONG_PTR pValue);
+        UINT nProperty, 
+        LONG_PTR pValue);
 
     HRESULT WriteAttributes(
-        [annotation("_In_")] IXmlReader *pReader, 
-        [annotation("_In_")] BOOL fWriteDefaultAttributes);
+        IXmlReader *pReader, 
+        BOOL fWriteDefaultAttributes);
     HRESULT WriteAttributeString(
-        [annotation("_In_opt_")] LPCWSTR pwszPrefix, 
-        [annotation("_In_opt_")] LPCWSTR pwszLocalName, 
-        [annotation("_In_opt_")] LPCWSTR pwszNamespaceUri, 
-        [annotation("_In_opt_")] LPCWSTR pwszValue);
+        LPCWSTR pwszPrefix, 
+        LPCWSTR pwszLocalName, 
+        LPCWSTR pwszNamespaceUri, 
+        LPCWSTR pwszValue);
     HRESULT WriteCData(
-        [annotation("_In_opt_")] LPCWSTR pwszText);
+        LPCWSTR pwszText);
     HRESULT WriteCharEntity(
-        [annotation("_In_")] WCHAR wch);
+        WCHAR wch);
     HRESULT WriteChars(
-        [annotation("_In_reads_opt_(cwch)")] const WCHAR *pwch, 
-        [annotation("_In_")] UINT cwch);
+        const WCHAR *pwch, 
+        UINT cwch);
     HRESULT WriteComment(
-        [annotation("_In_opt_")] LPCWSTR pwszComment);
+        LPCWSTR pwszComment);
     HRESULT WriteDocType(
-        [annotation("_In_opt_")] LPCWSTR pwszName, 
-        [annotation("_In_opt_")] LPCWSTR pwszPublicId, 
-        [annotation("_In_opt_")] LPCWSTR pwszSystemId, 
-        [annotation("_In_opt_")] LPCWSTR pwszSubset);
+        LPCWSTR pwszName, 
+        LPCWSTR pwszPublicId, 
+        LPCWSTR pwszSystemId, 
+        LPCWSTR pwszSubset);
     HRESULT WriteElementString(
-        [annotation("_In_opt_")] LPCWSTR pwszPrefix, 
-        [annotation("_In_")] LPCWSTR pwszLocalName, 
-        [annotation("_In_opt_")] LPCWSTR pwszNamespaceUri, 
-        [annotation("_In_opt_")] LPCWSTR pwszValue);
+        LPCWSTR pwszPrefix, 
+        LPCWSTR pwszLocalName, 
+        LPCWSTR pwszNamespaceUri, 
+        LPCWSTR pwszValue);
     HRESULT WriteEndDocument();
     HRESULT WriteEndElement();
     HRESULT WriteEntityRef(
-        [annotation("_In_")] LPCWSTR pwszName);
+        LPCWSTR pwszName);
     HRESULT WriteFullEndElement();
     HRESULT WriteName(
-        [annotation("_In_")] LPCWSTR pwszName);
+        LPCWSTR pwszName);
     HRESULT WriteNmToken(
-        [annotation("_In_")] LPCWSTR pwszNmToken);
+        LPCWSTR pwszNmToken);
     HRESULT WriteNode(
-        [annotation("_In_")] IXmlReader *pReader, 
-        [annotation("_In_")] BOOL fWriteDefaultAttributes);
+        IXmlReader *pReader, 
+        BOOL fWriteDefaultAttributes);
     HRESULT WriteNodeShallow(
-        [annotation("_In_")] IXmlReader *pReader, 
-        [annotation("_In_")] BOOL fWriteDefaultAttributes);
+        IXmlReader *pReader, 
+        BOOL fWriteDefaultAttributes);
     HRESULT WriteProcessingInstruction(
-        [annotation("_In_")] LPCWSTR pwszName, 
-        [annotation("_In_opt_")] LPCWSTR pwszText);
+        LPCWSTR pwszName, 
+        LPCWSTR pwszText);
     HRESULT WriteQualifiedName(
-        [annotation("_In_")] LPCWSTR pwszLocalName, 
-        [annotation("_In_opt_")] LPCWSTR pwszNamespaceUri);
+        LPCWSTR pwszLocalName, 
+        LPCWSTR pwszNamespaceUri);
     HRESULT WriteRaw(
-        [annotation("_In_opt_")] LPCWSTR pwszData);
+        LPCWSTR pwszData);
     HRESULT WriteRawChars(
-        [annotation("_In_reads_opt_(cwch)")] const WCHAR *pwch, 
-        [annotation("_In_")] UINT cwch);
+        const WCHAR *pwch, 
+        UINT cwch);
     HRESULT WriteStartDocument(
-        [annotation("_In_")] XmlStandalone standalone);
+        XmlStandalone standalone);
     HRESULT WriteStartElement(
-        [annotation("_In_opt_")] LPCWSTR pwszPrefix, 
-        [annotation("_In_")] LPCWSTR pwszLocalName, 
-        [annotation("_In_opt_")] LPCWSTR pwszNamespaceUri);
+        LPCWSTR pwszPrefix, 
+        LPCWSTR pwszLocalName, 
+        LPCWSTR pwszNamespaceUri);
     HRESULT WriteString(
-        [annotation("_In_opt_")] LPCWSTR pwszText);
+        LPCWSTR pwszText);
     HRESULT WriteSurrogateCharEntity(
-        [annotation("_In_")] WCHAR wchLow, 
-        [annotation("_In_")] WCHAR wchHigh);
+        WCHAR wchLow, 
+        WCHAR wchHigh);
     HRESULT WriteWhitespace(
-        [annotation("_In_opt_")] LPCWSTR pwszWhitespace);
+        LPCWSTR pwszWhitespace);
 
     HRESULT Flush();
 };
@@ -481,80 +481,80 @@ interface IXmlWriter : IUnknown
 interface IXmlWriterLite : IUnknown
 {
     HRESULT SetOutput(
-        [annotation("_In_opt_")] IUnknown *pOutput);
+        IUnknown *pOutput);
 
     HRESULT GetProperty(
-        [annotation("_In_")] UINT nProperty, 
-        [annotation("_Out_")] LONG_PTR *ppValue);
+        UINT nProperty, 
+        LONG_PTR *ppValue);
     HRESULT SetProperty(
-        [annotation("_In_")] UINT nProperty, 
-        [annotation("_In_opt_")] LONG_PTR pValue);
+        UINT nProperty, 
+        LONG_PTR pValue);
 
     HRESULT WriteAttributes(
-        [annotation("_In_")] IXmlReader *pReader, 
-        [annotation("_In_")] BOOL fWriteDefaultAttributes);
+        IXmlReader *pReader, 
+        BOOL fWriteDefaultAttributes);
     HRESULT WriteAttributeString(
-        [annotation("_In_reads_(cwszQName)")] const WCHAR *pwszQName, 
-        [annotation("_In_")] UINT cwszQName,
-        [annotation("_In_reads_opt_(cwszValue)")] const WCHAR *pwszValue, 
-        [annotation("_In_")] UINT cwszValue);
+        const WCHAR *pwszQName, 
+        UINT cwszQName,
+        const WCHAR *pwszValue, 
+        UINT cwszValue);
     HRESULT WriteCData(
-        [annotation("_In_opt_")] LPCWSTR pwszText);
+        LPCWSTR pwszText);
     HRESULT WriteCharEntity(
-        [annotation("_In_")] WCHAR wch);
+        WCHAR wch);
     HRESULT WriteChars(
-        [annotation("_In_reads_opt_(cwch)")] const WCHAR *pwch, 
-        [annotation("_In_")] UINT cwch);
+        const WCHAR *pwch, 
+        UINT cwch);
     HRESULT WriteComment(
-        [annotation("_In_opt_")] LPCWSTR pwszComment);
+        LPCWSTR pwszComment);
     HRESULT WriteDocType(
-        [annotation("_In_opt_")] LPCWSTR pwszName, 
-        [annotation("_In_opt_")] LPCWSTR pwszPublicId, 
-        [annotation("_In_opt_")] LPCWSTR pwszSystemId, 
-        [annotation("_In_opt_")] LPCWSTR pwszSubset);
+        LPCWSTR pwszName, 
+        LPCWSTR pwszPublicId, 
+        LPCWSTR pwszSystemId, 
+        LPCWSTR pwszSubset);
     HRESULT WriteElementString(
-        [annotation("_In_reads_(cwszQName)")] const WCHAR *pwszQName, 
-        [annotation("_In_")] UINT cwszQName,        
-        [annotation("_In_opt_")] LPCWSTR pwszValue);
+        const WCHAR *pwszQName, 
+        UINT cwszQName,        
+        LPCWSTR pwszValue);
     HRESULT WriteEndDocument();
     HRESULT WriteEndElement(
-        [annotation("_In_reads_(cwszQName)")] const WCHAR *pwszQName, 
-        [annotation("_In_")] UINT cwszQName);
+        const WCHAR *pwszQName, 
+        UINT cwszQName);
     HRESULT WriteEntityRef(
-        [annotation("_In_")] LPCWSTR pwszName);
+        LPCWSTR pwszName);
     HRESULT WriteFullEndElement(
-        [annotation("_In_reads_(cwszQName)")] const WCHAR *pwszQName, 
-        [annotation("_In_")] UINT cwszQName);
+        const WCHAR *pwszQName, 
+        UINT cwszQName);
     HRESULT WriteName(
-        [annotation("_In_")] LPCWSTR pwszName);
+        LPCWSTR pwszName);
     HRESULT WriteNmToken(
-        [annotation("_In_")] LPCWSTR pwszNmToken);
+        LPCWSTR pwszNmToken);
     HRESULT WriteNode(
-        [annotation("_In_")] IXmlReader *pReader, 
-        [annotation("_In_")] BOOL fWriteDefaultAttributes);
+        IXmlReader *pReader, 
+        BOOL fWriteDefaultAttributes);
     HRESULT WriteNodeShallow(
-        [annotation("_In_")] IXmlReader *pReader, 
-        [annotation("_In_")] BOOL fWriteDefaultAttributes);
+        IXmlReader *pReader, 
+        BOOL fWriteDefaultAttributes);
     HRESULT WriteProcessingInstruction(
-        [annotation("_In_")] LPCWSTR pwszName, 
-        [annotation("_In_opt_")] LPCWSTR pwszText);
+        LPCWSTR pwszName, 
+        LPCWSTR pwszText);
     HRESULT WriteRaw(
-        [annotation("_In_opt_")] LPCWSTR pwszData);
+        LPCWSTR pwszData);
     HRESULT WriteRawChars(
-        [annotation("_In_reads_opt_(cwch)")] const WCHAR *pwch, 
-        [annotation("_In_")] UINT cwch);
+        const WCHAR *pwch, 
+        UINT cwch);
     HRESULT WriteStartDocument(
-        [annotation("_In_")] XmlStandalone standalone);
+        XmlStandalone standalone);
     HRESULT WriteStartElement(
-        [annotation("_In_reads_(cwszQName)")] const WCHAR *pwszQName, 
-        [annotation("_In_")] UINT cwszQName);
+        const WCHAR *pwszQName, 
+        UINT cwszQName);
     HRESULT WriteString(
-        [annotation("_In_opt_")] LPCWSTR pwszText);
+        LPCWSTR pwszText);
     HRESULT WriteSurrogateCharEntity(
-        [annotation("_In_")] WCHAR wchLow, 
-        [annotation("_In_")] WCHAR wchHigh);
+        WCHAR wchLow, 
+        WCHAR wchHigh);
     HRESULT WriteWhitespace(
-        [annotation("_In_opt_")] LPCWSTR pwszWhitespace);
+        LPCWSTR pwszWhitespace);
 
     HRESULT Flush();
 };

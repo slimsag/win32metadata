@@ -107,7 +107,7 @@ cpp_quote( "#endif" )
 interface ID3D11BlendState1
     : ID3D11BlendState
 {
-    void GetDesc1( [annotation("_Out_")] D3D11_BLEND_DESC1* pDesc );
+    void GetDesc1( D3D11_BLEND_DESC1* pDesc );
 };
 
 
@@ -182,7 +182,7 @@ cpp_quote( "#endif" )
 interface ID3D11RasterizerState1
     : ID3D11RasterizerState
 {
-    void GetDesc1( [annotation("_Out_")] D3D11_RASTERIZER_DESC1* pDesc );
+    void GetDesc1( D3D11_RASTERIZER_DESC1* pDesc );
 };
 
 
@@ -213,154 +213,154 @@ interface ID3D11DeviceContext1
     : ID3D11DeviceContext
 {
     void CopySubresourceRegion1(
-        [annotation("_In_")] ID3D11Resource* pDstResource,
-        [annotation("_In_")] UINT DstSubresource,
-        [annotation("_In_")] UINT DstX,
-        [annotation("_In_")] UINT DstY,
-        [annotation("_In_")] UINT DstZ,
-        [annotation("_In_")] ID3D11Resource* pSrcResource,
-        [annotation("_In_")] UINT SrcSubresource,
-        [annotation("_In_opt_")] const D3D11_BOX* pSrcBox,
-        [annotation("_In_")] UINT CopyFlags ); 
+        ID3D11Resource* pDstResource,
+        UINT DstSubresource,
+        UINT DstX,
+        UINT DstY,
+        UINT DstZ,
+        ID3D11Resource* pSrcResource,
+        UINT SrcSubresource,
+        const D3D11_BOX* pSrcBox,
+        UINT CopyFlags ); 
 
     void UpdateSubresource1(
-        [annotation("_In_")] ID3D11Resource* pDstResource,
-        [annotation("_In_")] UINT DstSubresource,	
-        [annotation("_In_opt_")] const D3D11_BOX* pDstBox,
-        [annotation("_In_")] const void* pSrcData,
-        [annotation("_In_")] UINT SrcRowPitch,
-        [annotation("_In_")] UINT SrcDepthPitch,
-        [annotation("_In_")] UINT CopyFlags );
+        ID3D11Resource* pDstResource,
+        UINT DstSubresource,	
+        const D3D11_BOX* pDstBox,
+        const void* pSrcData,
+        UINT SrcRowPitch,
+        UINT SrcDepthPitch,
+        UINT CopyFlags );
 
     void DiscardResource(
-        [annotation("_In_")] ID3D11Resource* pResource
+        ID3D11Resource* pResource
     );
 
     void DiscardView (
-        [annotation("_In_")] ID3D11View* pResourceView
+        ID3D11View* pResourceView
     );
 
     void VSSetConstantBuffers1(
-        [annotation("_In_range_( 0, D3D11_COMMONSHADER_CONSTANT_BUFFER_API_SLOT_COUNT - 1 )")]    
+           
         UINT StartSlot,
-        [annotation("_In_range_( 0, D3D11_COMMONSHADER_CONSTANT_BUFFER_API_SLOT_COUNT - StartSlot )")] 
+        
         UINT NumBuffers,
-        [annotation("_In_reads_opt_(NumBuffers)")] ID3D11Buffer*const* ppConstantBuffers,
-        [annotation("_In_reads_opt_(NumBuffers)")] const UINT* pFirstConstant,
-        [annotation("_In_reads_opt_(NumBuffers)")] const UINT* pNumConstants );
+        ID3D11Buffer*const* ppConstantBuffers,
+        const UINT* pFirstConstant,
+        const UINT* pNumConstants );
 
     void HSSetConstantBuffers1(
-        [annotation("_In_range_( 0, D3D11_COMMONSHADER_CONSTANT_BUFFER_API_SLOT_COUNT - 1 )")]    
+           
         UINT StartSlot,
-        [annotation("_In_range_( 0, D3D11_COMMONSHADER_CONSTANT_BUFFER_API_SLOT_COUNT - StartSlot )")] 
+        
         UINT NumBuffers,
-        [annotation("_In_reads_opt_(NumBuffers)")] ID3D11Buffer*const* ppConstantBuffers,
-        [annotation("_In_reads_opt_(NumBuffers)")] const UINT* pFirstConstant,
-        [annotation("_In_reads_opt_(NumBuffers)")] const UINT* pNumConstants );
+        ID3D11Buffer*const* ppConstantBuffers,
+        const UINT* pFirstConstant,
+        const UINT* pNumConstants );
 
     void DSSetConstantBuffers1(
-        [annotation("_In_range_( 0, D3D11_COMMONSHADER_CONSTANT_BUFFER_API_SLOT_COUNT - 1 )")]    
+           
         UINT StartSlot,
-        [annotation("_In_range_( 0, D3D11_COMMONSHADER_CONSTANT_BUFFER_API_SLOT_COUNT - StartSlot )")] 
+        
         UINT NumBuffers,
-        [annotation("_In_reads_opt_(NumBuffers)")] ID3D11Buffer*const* ppConstantBuffers,
-        [annotation("_In_reads_opt_(NumBuffers)")] const UINT* pFirstConstant,
-        [annotation("_In_reads_opt_(NumBuffers)")] const UINT* pNumConstants );
+        ID3D11Buffer*const* ppConstantBuffers,
+        const UINT* pFirstConstant,
+        const UINT* pNumConstants );
 
     void GSSetConstantBuffers1(
-        [annotation("_In_range_( 0, D3D11_COMMONSHADER_CONSTANT_BUFFER_API_SLOT_COUNT - 1 )")]    
+           
         UINT StartSlot,
-        [annotation("_In_range_( 0, D3D11_COMMONSHADER_CONSTANT_BUFFER_API_SLOT_COUNT - StartSlot )")] 
+        
         UINT NumBuffers,
-        [annotation("_In_reads_opt_(NumBuffers)")] ID3D11Buffer*const* ppConstantBuffers,
-        [annotation("_In_reads_opt_(NumBuffers)")] const UINT* pFirstConstant,
-        [annotation("_In_reads_opt_(NumBuffers)")] const UINT* pNumConstants );
+        ID3D11Buffer*const* ppConstantBuffers,
+        const UINT* pFirstConstant,
+        const UINT* pNumConstants );
 
     void PSSetConstantBuffers1(
-        [annotation("_In_range_( 0, D3D11_COMMONSHADER_CONSTANT_BUFFER_API_SLOT_COUNT - 1 )")]    
+           
         UINT StartSlot,
-        [annotation("_In_range_( 0, D3D11_COMMONSHADER_CONSTANT_BUFFER_API_SLOT_COUNT - StartSlot )")] 
+        
         UINT NumBuffers,
-        [annotation("_In_reads_opt_(NumBuffers)")] ID3D11Buffer*const* ppConstantBuffers,
-        [annotation("_In_reads_opt_(NumBuffers)")] const UINT* pFirstConstant,
-        [annotation("_In_reads_opt_(NumBuffers)")] const UINT* pNumConstants );
+        ID3D11Buffer*const* ppConstantBuffers,
+        const UINT* pFirstConstant,
+        const UINT* pNumConstants );
 
     void CSSetConstantBuffers1(
-        [annotation("_In_range_( 0, D3D11_COMMONSHADER_CONSTANT_BUFFER_API_SLOT_COUNT - 1 )")]    
+           
         UINT StartSlot,
-        [annotation("_In_range_( 0, D3D11_COMMONSHADER_CONSTANT_BUFFER_API_SLOT_COUNT - StartSlot )")] 
+        
         UINT NumBuffers,
-        [annotation("_In_reads_opt_(NumBuffers)")] ID3D11Buffer*const* ppConstantBuffers,
-        [annotation("_In_reads_opt_(NumBuffers)")] const UINT* pFirstConstant,
-        [annotation("_In_reads_opt_(NumBuffers)")] const UINT* pNumConstants );
+        ID3D11Buffer*const* ppConstantBuffers,
+        const UINT* pFirstConstant,
+        const UINT* pNumConstants );
 
     void VSGetConstantBuffers1(
         [annotation("_In_range_( 0, D3D11_COMMONSHADER_CONSTANT_BUFFER_API_SLOT_COUNT - 1 )")]
         UINT StartSlot,
-        [annotation("_In_range_( 0, D3D11_COMMONSHADER_CONSTANT_BUFFER_API_SLOT_COUNT - StartSlot )")] 
+        
         UINT NumBuffers,
-        [annotation("_Out_writes_opt_(NumBuffers)")] ID3D11Buffer** ppConstantBuffers,
-        [annotation("_Out_writes_opt_(NumBuffers)")] UINT* pFirstConstant,
-        [annotation("_Out_writes_opt_(NumBuffers)")] UINT* pNumConstants );
+        ID3D11Buffer** ppConstantBuffers,
+        UINT* pFirstConstant,
+        UINT* pNumConstants );
 
     void HSGetConstantBuffers1(
         [annotation("_In_range_( 0, D3D11_COMMONSHADER_CONSTANT_BUFFER_API_SLOT_COUNT - 1 )")]
         UINT StartSlot,
-        [annotation("_In_range_( 0, D3D11_COMMONSHADER_CONSTANT_BUFFER_API_SLOT_COUNT - StartSlot )")] 
+        
         UINT NumBuffers,
-        [annotation("_Out_writes_opt_(NumBuffers)")] ID3D11Buffer** ppConstantBuffers,
-        [annotation("_Out_writes_opt_(NumBuffers)")] UINT* pFirstConstant,
-        [annotation("_Out_writes_opt_(NumBuffers)")] UINT* pNumConstants );
+        ID3D11Buffer** ppConstantBuffers,
+        UINT* pFirstConstant,
+        UINT* pNumConstants );
 
     void DSGetConstantBuffers1(
         [annotation("_In_range_( 0, D3D11_COMMONSHADER_CONSTANT_BUFFER_API_SLOT_COUNT - 1 )")]
         UINT StartSlot,
-        [annotation("_In_range_( 0, D3D11_COMMONSHADER_CONSTANT_BUFFER_API_SLOT_COUNT - StartSlot )")] 
+        
         UINT NumBuffers,
-        [annotation("_Out_writes_opt_(NumBuffers)")] ID3D11Buffer** ppConstantBuffers,
-        [annotation("_Out_writes_opt_(NumBuffers)")] UINT* pFirstConstant,
-        [annotation("_Out_writes_opt_(NumBuffers)")] UINT* pNumConstants );
+        ID3D11Buffer** ppConstantBuffers,
+        UINT* pFirstConstant,
+        UINT* pNumConstants );
 
     void GSGetConstantBuffers1(
         [annotation("_In_range_( 0, D3D11_COMMONSHADER_CONSTANT_BUFFER_API_SLOT_COUNT - 1 )")]
         UINT StartSlot,
-        [annotation("_In_range_( 0, D3D11_COMMONSHADER_CONSTANT_BUFFER_API_SLOT_COUNT - StartSlot )")] 
+        
         UINT NumBuffers,
-        [annotation("_Out_writes_opt_(NumBuffers)")] ID3D11Buffer** ppConstantBuffers,
-        [annotation("_Out_writes_opt_(NumBuffers)")] UINT* pFirstConstant,
-        [annotation("_Out_writes_opt_(NumBuffers)")] UINT* pNumConstants );
+        ID3D11Buffer** ppConstantBuffers,
+        UINT* pFirstConstant,
+        UINT* pNumConstants );
 
     void PSGetConstantBuffers1(
         [annotation("_In_range_( 0, D3D11_COMMONSHADER_CONSTANT_BUFFER_API_SLOT_COUNT - 1 )")]
         UINT StartSlot,
-        [annotation("_In_range_( 0, D3D11_COMMONSHADER_CONSTANT_BUFFER_API_SLOT_COUNT - StartSlot )")] 
+        
         UINT NumBuffers,
-        [annotation("_Out_writes_opt_(NumBuffers)")] ID3D11Buffer** ppConstantBuffers,
-        [annotation("_Out_writes_opt_(NumBuffers)")] UINT* pFirstConstant,
-        [annotation("_Out_writes_opt_(NumBuffers)")] UINT* pNumConstants );
+        ID3D11Buffer** ppConstantBuffers,
+        UINT* pFirstConstant,
+        UINT* pNumConstants );
 
     void CSGetConstantBuffers1(
         [annotation("_In_range_( 0, D3D11_COMMONSHADER_CONSTANT_BUFFER_API_SLOT_COUNT - 1 )")]
         UINT StartSlot,
-        [annotation("_In_range_( 0, D3D11_COMMONSHADER_CONSTANT_BUFFER_API_SLOT_COUNT - StartSlot )")] 
+        
         UINT NumBuffers,
-        [annotation("_Out_writes_opt_(NumBuffers)")] ID3D11Buffer** ppConstantBuffers,
-        [annotation("_Out_writes_opt_(NumBuffers)")] UINT* pFirstConstant,
-        [annotation("_Out_writes_opt_(NumBuffers)")] UINT* pNumConstants );
+        ID3D11Buffer** ppConstantBuffers,
+        UINT* pFirstConstant,
+        UINT* pNumConstants );
 
     void SwapDeviceContextState(
-        [annotation("_In_")] ID3DDeviceContextState* pState, 
-        [annotation("_Outptr_opt_")] ID3DDeviceContextState** ppPreviousState );
+        ID3DDeviceContextState* pState, 
+        ID3DDeviceContextState** ppPreviousState );
 
     void ClearView(
-        [annotation("_In_")] ID3D11View* pView,
-        [annotation("_In_")] const FLOAT Color[ 4 ],
-        [annotation("_In_reads_opt_(NumRects)")] const D3D11_RECT* pRect,
+        ID3D11View* pView,
+        const FLOAT Color[ 4 ],
+        const D3D11_RECT* pRect,
         UINT NumRects );
 
     void DiscardView1 (
-        [annotation("_In_")] ID3D11View* pResourceView,
-        [annotation("_In_reads_opt_(NumRects)")] const D3D11_RECT* pRects,
+        ID3D11View* pResourceView,
+        const D3D11_RECT* pRects,
         UINT NumRects
     );
 };
@@ -382,9 +382,9 @@ typedef struct D3D11_VIDEO_DECODER_BUFFER_DESC1
     D3D11_VIDEO_DECODER_BUFFER_TYPE BufferType;
     UINT DataOffset;
     UINT DataSize;
-    [annotation("_Field_size_opt_(IVSize)")] void* pIV;
+    void* pIV;
     UINT IVSize;
-    [annotation("_Field_size_opt_(SubSampleMappingCount)")] D3D11_VIDEO_DECODER_SUB_SAMPLE_MAPPING_BLOCK* pSubSampleMappingBlock;
+    D3D11_VIDEO_DECODER_SUB_SAMPLE_MAPPING_BLOCK* pSubSampleMappingBlock;
     UINT SubSampleMappingCount;
 } D3D11_VIDEO_DECODER_BUFFER_DESC1;
 
@@ -392,10 +392,10 @@ typedef struct D3D11_VIDEO_DECODER_BEGIN_FRAME_CRYPTO_SESSION
 {
     ID3D11CryptoSession* pCryptoSession;
     UINT  BlobSize;
-    [annotation("_Field_size_opt_(BlobSize)")] void* pBlob;
+    void* pBlob;
     GUID* pKeyInfoId;
     UINT  PrivateDataSize; 
-    [annotation("_Field_size_opt_(PrivateDataSize)")] void* pPrivateData;
+    void* pPrivateData;
 } D3D11_VIDEO_DECODER_BEGIN_FRAME_CRYPTO_SESSION;
 
 typedef enum D3D11_VIDEO_DECODER_CAPS
@@ -491,78 +491,78 @@ interface ID3D11VideoContext1
     : ID3D11VideoContext
 {
     HRESULT SubmitDecoderBuffers1(
-                [annotation("_In_")] ID3D11VideoDecoder* pDecoder,
-                [annotation("_In_")] UINT NumBuffers,
-                [annotation("_In_reads_(NumBuffers)")] const D3D11_VIDEO_DECODER_BUFFER_DESC1* pBufferDesc);
+                ID3D11VideoDecoder* pDecoder,
+                UINT NumBuffers,
+                const D3D11_VIDEO_DECODER_BUFFER_DESC1* pBufferDesc);
 
     HRESULT GetDataForNewHardwareKey(
-                [annotation("_In_")] ID3D11CryptoSession* pCryptoSession,
-                [annotation("_In_")] UINT PrivateInputSize,
-                [annotation("_In_reads_(PrivateInputSize)")] const void* pPrivatInputData,
-                [annotation("_Out_")] UINT64* pPrivateOutputData);
+                ID3D11CryptoSession* pCryptoSession,
+                UINT PrivateInputSize,
+                const void* pPrivatInputData,
+                UINT64* pPrivateOutputData);
 	
     HRESULT CheckCryptoSessionStatus(
-                [annotation("_In_")] ID3D11CryptoSession* pCryptoSession,
-                [annotation("_Out_")] D3D11_CRYPTO_SESSION_STATUS* pStatus);
+                ID3D11CryptoSession* pCryptoSession,
+                D3D11_CRYPTO_SESSION_STATUS* pStatus);
 
     HRESULT DecoderEnableDownsampling(
-                [annotation("_In_")] ID3D11VideoDecoder* pDecoder,
-                [annotation("_In_")] DXGI_COLOR_SPACE_TYPE InputColorSpace,
-                [annotation("_In_")] const D3D11_VIDEO_SAMPLE_DESC* pOutputDesc,
-                [annotation("_In_")] UINT ReferenceFrameCount);
+                ID3D11VideoDecoder* pDecoder,
+                DXGI_COLOR_SPACE_TYPE InputColorSpace,
+                const D3D11_VIDEO_SAMPLE_DESC* pOutputDesc,
+                UINT ReferenceFrameCount);
 
     HRESULT DecoderUpdateDownsampling(
-                [annotation("_In_")] ID3D11VideoDecoder* pDecoder,
-                [annotation("_In_")] const D3D11_VIDEO_SAMPLE_DESC* pOutputDesc);
+                ID3D11VideoDecoder* pDecoder,
+                const D3D11_VIDEO_SAMPLE_DESC* pOutputDesc);
 
     void VideoProcessorSetOutputColorSpace1(
-                [annotation("_In_")] ID3D11VideoProcessor* pVideoProcessor,
-                [annotation("_In_")] DXGI_COLOR_SPACE_TYPE ColorSpace);
+                ID3D11VideoProcessor* pVideoProcessor,
+                DXGI_COLOR_SPACE_TYPE ColorSpace);
 
     void VideoProcessorSetOutputShaderUsage(
-                [annotation("_In_")] ID3D11VideoProcessor* pVideoProcessor,
-                [annotation("_In_")] BOOL ShaderUsage);
+                ID3D11VideoProcessor* pVideoProcessor,
+                BOOL ShaderUsage);
 
     void VideoProcessorGetOutputColorSpace1(
-                [annotation("_In_")] ID3D11VideoProcessor* pVideoProcessor,
-                [annotation("_Out_")] DXGI_COLOR_SPACE_TYPE* pColorSpace);
+                ID3D11VideoProcessor* pVideoProcessor,
+                DXGI_COLOR_SPACE_TYPE* pColorSpace);
 
     void VideoProcessorGetOutputShaderUsage(
-                [annotation("_In_")] ID3D11VideoProcessor* pVideoProcessor,
-                [annotation("_Out_")] BOOL* pShaderUsage);
+                ID3D11VideoProcessor* pVideoProcessor,
+                BOOL* pShaderUsage);
 
     void VideoProcessorSetStreamColorSpace1(
-                [annotation("_In_")] ID3D11VideoProcessor* pVideoProcessor,
-                [annotation("_In_")] UINT StreamIndex,
-                [annotation("_In_")] DXGI_COLOR_SPACE_TYPE ColorSpace);
+                ID3D11VideoProcessor* pVideoProcessor,
+                UINT StreamIndex,
+                DXGI_COLOR_SPACE_TYPE ColorSpace);
 
     void VideoProcessorSetStreamMirror(
-                [annotation("_In_")] ID3D11VideoProcessor* pVideoProcessor,
-                [annotation("_In_")] UINT StreamIndex,
-                [annotation("_In_")] BOOL Enable,
-                [annotation("_In_")] BOOL FlipHorizontal,
-                [annotation("_In_")] BOOL FlipVertical);
+                ID3D11VideoProcessor* pVideoProcessor,
+                UINT StreamIndex,
+                BOOL Enable,
+                BOOL FlipHorizontal,
+                BOOL FlipVertical);
 
     void VideoProcessorGetStreamColorSpace1(
-                [annotation("_In_")] ID3D11VideoProcessor* pVideoProcessor,
-                [annotation("_In_")] UINT StreamIndex,
-                [annotation("_Out_")] DXGI_COLOR_SPACE_TYPE* pColorSpace);
+                ID3D11VideoProcessor* pVideoProcessor,
+                UINT StreamIndex,
+                DXGI_COLOR_SPACE_TYPE* pColorSpace);
 
     void VideoProcessorGetStreamMirror(
-                [annotation("_In_")] ID3D11VideoProcessor* pVideoProcessor,
-                [annotation("_In_")] UINT StreamIndex,
-                [annotation("_Out_")] BOOL* pEnable,
-                [annotation("_Out_")] BOOL* pFlipHorizontal,
-                [annotation("_Out_")] BOOL* pFlipVertical);
+                ID3D11VideoProcessor* pVideoProcessor,
+                UINT StreamIndex,
+                BOOL* pEnable,
+                BOOL* pFlipHorizontal,
+                BOOL* pFlipVertical);
 
     HRESULT VideoProcessorGetBehaviorHints(
-                [annotation("_In_")] ID3D11VideoProcessor* pVideoProcessor,
-                [annotation("_In_")] UINT OutputWidth,
-                [annotation("_In_")] UINT OutputHeight,
-                [annotation("_In_")] DXGI_FORMAT OutputFormat,
-                [annotation("_In_")] UINT StreamCount,
-                [annotation("_In_reads_(StreamCount)")] const D3D11_VIDEO_PROCESSOR_STREAM_BEHAVIOR_HINT *pStreams,
-                [annotation("_Out_")] UINT* pBehaviorHints);
+                ID3D11VideoProcessor* pVideoProcessor,
+                UINT OutputWidth,
+                UINT OutputHeight,
+                DXGI_FORMAT OutputFormat,
+                UINT StreamCount,
+                const D3D11_VIDEO_PROCESSOR_STREAM_BEHAVIOR_HINT *pStreams,
+                UINT* pBehaviorHints);
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -576,36 +576,36 @@ interface ID3D11VideoDevice1
     : ID3D11VideoDevice
 {
     HRESULT GetCryptoSessionPrivateDataSize(
-        [annotation("_In_")] const GUID* pCryptoType,
-        [annotation("_In_opt_")] const GUID* pDecoderProfile,
-        [annotation("_In_")] const GUID* pKeyExchangeType,
-        [annotation("_Out_")] UINT* pPrivateInputSize,
-        [annotation("_Out_")] UINT* pPrivateOutputSize);
+        const GUID* pCryptoType,
+        const GUID* pDecoderProfile,
+        const GUID* pKeyExchangeType,
+        UINT* pPrivateInputSize,
+        UINT* pPrivateOutputSize);
 
     HRESULT GetVideoDecoderCaps(
-        [annotation("_In_")] const GUID* pDecoderProfile,
-        [annotation("_In_")] UINT SampleWidth,
-        [annotation("_In_")] UINT SampleHeight,
-        [annotation("_In_")] const DXGI_RATIONAL* pFrameRate,
-        [annotation("_In_")] UINT BitRate,
-        [annotation("_In_opt_")] const GUID* pCryptoType,
-        [annotation("_Out_")] UINT* pDecoderCaps);
+        const GUID* pDecoderProfile,
+        UINT SampleWidth,
+        UINT SampleHeight,
+        const DXGI_RATIONAL* pFrameRate,
+        UINT BitRate,
+        const GUID* pCryptoType,
+        UINT* pDecoderCaps);
 
     HRESULT CheckVideoDecoderDownsampling(
-        [annotation("_In_")] const D3D11_VIDEO_DECODER_DESC* pInputDesc,
-        [annotation("_In_")] DXGI_COLOR_SPACE_TYPE InputColorSpace,
-        [annotation("_In_")] const D3D11_VIDEO_DECODER_CONFIG* pInputConfig,
-        [annotation("_In_")] const DXGI_RATIONAL* pFrameRate,
-        [annotation("_In_")] const D3D11_VIDEO_SAMPLE_DESC* pOutputDesc,
-        [annotation("_Out_")] BOOL* pSupported,
-        [annotation("_Out_")] BOOL* pRealTimeHint);
+        const D3D11_VIDEO_DECODER_DESC* pInputDesc,
+        DXGI_COLOR_SPACE_TYPE InputColorSpace,
+        const D3D11_VIDEO_DECODER_CONFIG* pInputConfig,
+        const DXGI_RATIONAL* pFrameRate,
+        const D3D11_VIDEO_SAMPLE_DESC* pOutputDesc,
+        BOOL* pSupported,
+        BOOL* pRealTimeHint);
 
     HRESULT RecommendVideoDecoderDownsampleParameters(
-        [annotation("_In_")] const D3D11_VIDEO_DECODER_DESC* pInputDesc,
-        [annotation("_In_")] DXGI_COLOR_SPACE_TYPE InputColorSpace,
-        [annotation("_In_")] const D3D11_VIDEO_DECODER_CONFIG* pInputConfig,
-        [annotation("_In_")] const DXGI_RATIONAL* pFrameRate,
-        [annotation("_Out_")] D3D11_VIDEO_SAMPLE_DESC* pRecommendedOutputDesc);
+        const D3D11_VIDEO_DECODER_DESC* pInputDesc,
+        DXGI_COLOR_SPACE_TYPE InputColorSpace,
+        const D3D11_VIDEO_DECODER_CONFIG* pInputConfig,
+        const DXGI_RATIONAL* pFrameRate,
+        D3D11_VIDEO_SAMPLE_DESC* pRecommendedOutputDesc);
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -618,50 +618,50 @@ interface ID3D11VideoProcessorEnumerator1
     : ID3D11VideoProcessorEnumerator
 {
     HRESULT CheckVideoProcessorFormatConversion(
-        [annotation("_In_")] DXGI_FORMAT InputFormat,
-        [annotation("_In_")] DXGI_COLOR_SPACE_TYPE InputColorSpace,
-        [annotation("_In_")] DXGI_FORMAT OutputFormat,
-        [annotation("_In_")] DXGI_COLOR_SPACE_TYPE OutputColorSpace,
-        [annotation("_Out_")] BOOL* pSupported);
+        DXGI_FORMAT InputFormat,
+        DXGI_COLOR_SPACE_TYPE InputColorSpace,
+        DXGI_FORMAT OutputFormat,
+        DXGI_COLOR_SPACE_TYPE OutputColorSpace,
+        BOOL* pSupported);
 };
 
 [ uuid( a04bfb29-08ef-43d6-a49c-a9bdbdcbe686 ), object, local, pointer_default( unique ) ]
 interface ID3D11Device1
     : ID3D11Device
 {
-    void GetImmediateContext1( [annotation("_Outptr_")] ID3D11DeviceContext1** ppImmediateContext );
+    void GetImmediateContext1( ID3D11DeviceContext1** ppImmediateContext );
 
     HRESULT CreateDeferredContext1(
             UINT ContextFlags, // Reserved parameter; must be 0
-            [annotation("_COM_Outptr_opt_")] ID3D11DeviceContext1** ppDeferredContext );
+            ID3D11DeviceContext1** ppDeferredContext );
 
     HRESULT CreateBlendState1(
-        [annotation("_In_")] const D3D11_BLEND_DESC1* pBlendStateDesc,
-        [annotation("_COM_Outptr_opt_")] ID3D11BlendState1** ppBlendState );
+        const D3D11_BLEND_DESC1* pBlendStateDesc,
+        ID3D11BlendState1** ppBlendState );
 
     HRESULT CreateRasterizerState1(
-        [annotation("_In_")] const D3D11_RASTERIZER_DESC1* pRasterizerDesc,
-        [annotation("_COM_Outptr_opt_")] ID3D11RasterizerState1** ppRasterizerState );
+        const D3D11_RASTERIZER_DESC1* pRasterizerDesc,
+        ID3D11RasterizerState1** ppRasterizerState );
 
     HRESULT CreateDeviceContextState(
         UINT Flags,
-        [annotation("_In_reads_( FeatureLevels )")] const D3D_FEATURE_LEVEL*pFeatureLevels,
+        const D3D_FEATURE_LEVEL*pFeatureLevels,
         UINT FeatureLevels,
         UINT SDKVersion,
         REFIID EmulatedInterface,
-        [annotation("_Out_opt_")] D3D_FEATURE_LEVEL * pChosenFeatureLevel,
-        [annotation("_Out_opt_")] ID3DDeviceContextState** ppContextState );
+        D3D_FEATURE_LEVEL * pChosenFeatureLevel,
+        ID3DDeviceContextState** ppContextState );
 
     HRESULT OpenSharedResource1(
-        [annotation("_In_")] HANDLE hResource,
-        [annotation("_In_")] REFIID returnedInterface,
-        [annotation("_COM_Outptr_")] void** ppResource);
+        HANDLE hResource,
+        REFIID returnedInterface,
+        void** ppResource);
 
     HRESULT OpenSharedResourceByName(
-        [annotation("_In_")] LPCWSTR lpName,
-        [annotation("_In_")] DWORD dwDesiredAccess,
-        [annotation("_In_")] REFIID returnedInterface,
-        [annotation("_COM_Outptr_")] void** ppResource);
+        LPCWSTR lpName,
+        DWORD dwDesiredAccess,
+        REFIID returnedInterface,
+        void** ppResource);
 };
 
 [ uuid( b2daad8b-03d4-4dbf-95eb-32ab4b63d0ab ), object, local, pointer_default( unique ) ]
@@ -669,10 +669,10 @@ interface ID3DUserDefinedAnnotation
     : IUnknown
 {
     INT BeginEvent( 
-        [annotation("_In_")] LPCWSTR Name );
+        LPCWSTR Name );
     INT EndEvent( void );
     void SetMarker( 
-        [annotation("_In_")] LPCWSTR Name );
+        LPCWSTR Name );
     BOOL GetStatus( void );
 };
 

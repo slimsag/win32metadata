@@ -229,7 +229,7 @@ typedef struct DXGI_SWAP_CHAIN_FULLSCREEN_DESC
 typedef struct DXGI_PRESENT_PARAMETERS
 {
     UINT DirtyRectsCount;
-    [annotation("_Field_size_full_opt_(DirtyRectsCount)")] RECT* pDirtyRects;
+    RECT* pDirtyRects;
     RECT* pScrollRect;
     POINT* pScrollOffset;
 } DXGI_PRESENT_PARAMETERS;
@@ -296,8 +296,8 @@ interface IDXGIFactory2 :
         [out, annotation("_COM_Outptr_")] IDXGISwapChain1 **ppSwapChain );
 
     HRESULT GetSharedResourceAdapterLuid(
-        [annotation("_In_")] HANDLE hResource,
-        [annotation("_Out_")] LUID* pLuid);
+        HANDLE hResource,
+        LUID* pLuid);
 
     HRESULT RegisterStereoStatusWindow(
         [in, annotation("_In_")] HWND WindowHandle,
