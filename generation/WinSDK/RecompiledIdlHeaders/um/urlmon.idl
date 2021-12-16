@@ -1395,10 +1395,6 @@ cpp_quote("#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_S
 
 interface IUri : IUnknown
 {
-    [helpstring("Uri_PROPERTYs represent properties that an URI may contain.  "
-        "The Uri_PROPERTIYs in the range Uri_PROPERTY_STRING_START to "
-        "Uri_PROPERTY_STRING_LAST are string properties and the rest are DWORD "
-        "properties.")]
     typedef enum
     {
         Uri_PROPERTY_ABSOLUTE_URI   = 0,
@@ -1427,8 +1423,6 @@ interface IUri : IUnknown
         Uri_PROPERTY_DWORD_LAST = Uri_PROPERTY_ZONE,
     } Uri_PROPERTY;
 
-    [helpstring("Uri_HOST_TYPE describes in what format the host in an URI "
-        "was specified.")]
     typedef enum
     {
         Uri_HOST_UNKNOWN,
@@ -1438,139 +1432,85 @@ interface IUri : IUnknown
         Uri_HOST_IDN,
     } Uri_HOST_TYPE;
 
-    [helpstring("pbstrProperty is set to a new BSTR representing the string "
-        "property specified by uriProp if it exists. "
-        "Caller must call SysFreeString to free the new BSTR on success. "
-        )]
     HRESULT GetPropertyBSTR(
         [in, range(Uri_PROPERTY_STRING_START, Uri_PROPERTY_STRING_LAST)] Uri_PROPERTY uriProp,
         [out] BSTR* pbstrProperty,
         [in] DWORD dwFlags);
 
-    [helpstring("pcchProperty is set to the length of the string property, "
-        "excluding the terminating NULL character. "
-        "Call this function if you only need the property length. "
-        )]
     HRESULT GetPropertyLength(
         [in, range(Uri_PROPERTY_STRING_START, Uri_PROPERTY_STRING_LAST)] Uri_PROPERTY uriProp,
         [out] DWORD* pcchProperty,
         [in] DWORD dwFlags);
 
-    [helpstring("pdwProperty is set to the DWORD value of the specified property "
-        )]
     HRESULT GetPropertyDWORD(
         [in, range(Uri_PROPERTY_DWORD_START, Uri_PROPERTY_DWORD_LAST)] Uri_PROPERTY uriProp,
         [out] DWORD* pdwProperty,
         [in] DWORD dwFlags);
 
-    [helpstring("pfHasProperty is set TRUE if the specified property exists "
-        "in the URI.")]
     HRESULT HasProperty(
         [in, range(Uri_PROPERTY_STRING_START, Uri_PROPERTY_DWORD_LAST)] Uri_PROPERTY uriProp,
         [out] BOOL* pfHasProperty);
 
-    [helpstring("This function is for convenience and is the same as calling "
-        "GetPropertyBSTR with the respective property.")]
     HRESULT GetAbsoluteUri(
         [out] BSTR* pbstrAbsoluteUri);
 
-    [helpstring("This function is for convenience and is the same as calling "
-        "GetPropertyBSTR with the respective property.")]
     HRESULT GetAuthority(
         [out] BSTR* pbstrAuthority);
 
-    [helpstring("This function is for convenience and is the same as calling "
-        "GetPropertyBSTR with the respective property.")]
     HRESULT GetDisplayUri(
         [out] BSTR* pbstrDisplayString);
 
-    [helpstring("This function is for convenience and is the same as calling "
-        "GetPropertyBSTR with the respective property.")]
     HRESULT GetDomain(
         [out] BSTR* pbstrDomain);
 
-    [helpstring("This function is for convenience and is the same as calling "
-        "GetPropertyBSTR with the respective property.")]
     HRESULT GetExtension(
         [out] BSTR* pbstrExtension);
 
-    [helpstring("This function is for convenience and is the same as calling "
-        "GetPropertyBSTR with the respective property.")]
     HRESULT GetFragment(
         [out] BSTR* pbstrFragment);
 
-    [helpstring("This function is for convenience and is the same as calling "
-        "GetPropertyBSTR with the respective property.")]
     HRESULT GetHost(
         [out] BSTR* pbstrHost);
 
-    [helpstring("This function is for convenience and is the same as calling "
-        "GetPropertyBSTR with the respective property.")]
     HRESULT GetPassword(
         [out] BSTR* pbstrPassword);
 
-    [helpstring("This function is for convenience and is the same as calling "
-        "GetPropertyBSTR with the respective property.")]
     HRESULT GetPath(
         [out] BSTR* pbstrPath);
 
-    [helpstring("This function is for convenience and is the same as calling "
-        "GetPropertyBSTR with the respective property.")]
     HRESULT GetPathAndQuery(
         [out] BSTR* pbstrPathAndQuery);
 
-    [helpstring("This function is for convenience and is the same as calling "
-        "GetPropertyBSTR with the respective property.")]
     HRESULT GetQuery(
         [out] BSTR* pbstrQuery);
 
-    [helpstring("This function is for convenience and is the same as calling "
-        "GetPropertyBSTR with the respective property.")]
     HRESULT GetRawUri(
         [out] BSTR* pbstrRawUri);
 
-    [helpstring("This function is for convenience and is the same as calling "
-        "GetPropertyBSTR with the respective property.")]
     HRESULT GetSchemeName(
         [out] BSTR* pbstrSchemeName);
 
-    [helpstring("This function is for convenience and is the same as calling "
-        "GetPropertyBSTR with the respective property.")]
     HRESULT GetUserInfo(
         [out] BSTR* pbstrUserInfo);
 
-    [helpstring("This function is for convenience and is the same as calling "
-        "GetPropertyBSTR with the respective property.")]
     HRESULT GetUserName(
         [out] BSTR* pbstrUserName);
 
-    [helpstring("This function is for convenience and is the same as calling "
-        "GetPropertyDWORD with the respective property.")]
     HRESULT GetHostType(
         [out] DWORD* pdwHostType);
 
-    [helpstring("This function is for convenience and is the same as calling "
-        "GetPropertyDWORD with the respective property.")]
     HRESULT GetPort(
         [out] DWORD* pdwPort);
 
-    [helpstring("This function is for convenience and is the same as calling "
-        "GetPropertyDWORD with the respective property.")]
     HRESULT GetScheme(
         [out] DWORD* pdwScheme);
 
-    [helpstring("This function is for convenience and is the same as calling "
-        "GetPropertyDWORD with the respective property.")]
     HRESULT GetZone(
         [out] DWORD* pdwZone);
 
-    [helpstring("This function sets pdwFlags to a bitmap using the values "
-        "Uri_HAS_PROPERTY.")]
     HRESULT GetProperties(
         [out] LPDWORD pdwFlags);
 
-    [helpstring("pfEqual is set TRUE if the logical content of the URIs are "
-        "the same")]
     HRESULT IsEqual(
         [in] IUri* pUri,
         [out] BOOL* pfEqual);
@@ -1692,8 +1632,6 @@ cpp_quote("#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)")
 
 interface IUriContainer : IUnknown
 {
-    [helpstring("GetIUri will set ppIUri to the IUri contained by the "
-        "IUriContainer.  The IUri is AddRefed before being passed out.")]
     HRESULT GetIUri([out] IUri** ppIUri);
 }
 
