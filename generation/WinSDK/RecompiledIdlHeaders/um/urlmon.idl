@@ -13,21 +13,21 @@
 //
 //
 //----------------------------------------------------------------------------
-cpp_quote("//=--------------------------------------------------------------------------=")
-cpp_quote("// UrlMon.h")
-cpp_quote("//=--------------------------------------------------------------------------=")
-cpp_quote("// Copyright (c) Microsoft Corporation.  All rights reserved.")
-cpp_quote("//")
-cpp_quote("// THIS CODE AND INFORMATION IS PROVIDED \"AS IS\" WITHOUT WARRANTY OF")
-cpp_quote("// ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO")
-cpp_quote("// THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A")
-cpp_quote("// PARTICULAR PURPOSE.")
-cpp_quote("//=--------------------------------------------------------------------------=")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
 cpp_quote("")
 cpp_quote("#pragma comment(lib,\"uuid.lib\")")
 cpp_quote("")
-cpp_quote("//---------------------------------------------------------------------------=")
-cpp_quote("// URL Moniker Interfaces.")
+cpp_quote("")
+cpp_quote("")
 cpp_quote("")
 
 cpp_quote("#include <winapifamily.h>")
@@ -67,7 +67,7 @@ interface IHttpNegotiate2;
 interface IHttpNegotiate3;
 interface IWinInetFileStream;
 
-cpp_quote("// Side-by-Side clsid")
+cpp_quote("")
 cpp_quote("EXTERN_C const IID CLSID_SBS_StdURLMoniker;  ")
 cpp_quote("EXTERN_C const IID CLSID_SBS_HttpProtocol;   ")
 cpp_quote("EXTERN_C const IID CLSID_SBS_FtpProtocol;    ")
@@ -81,10 +81,10 @@ cpp_quote("EXTERN_C const IID CLSID_SBS_CdlProtocol;          ")
 cpp_quote("EXTERN_C const IID CLSID_SBS_ClassInstallFilter;   ")
 cpp_quote("EXTERN_C const IID CLSID_SBS_InternetSecurityManager;  ")
 cpp_quote("EXTERN_C const IID CLSID_SBS_InternetZoneManager;  ")
-cpp_quote("// END Side-by-Side clsid")
+cpp_quote("")
 
 
-cpp_quote("// These are for backwards compatibility with previous URLMON versions")
+cpp_quote("")
 cpp_quote("#define BINDF_DONTUSECACHE BINDF_GETNEWESTVERSION")
 cpp_quote("#define BINDF_DONTPUTINCACHE BINDF_NOWRITECACHE")
 cpp_quote("#define BINDF_NOCOPYDATA BINDF_PULLDATA")
@@ -159,19 +159,19 @@ cpp_quote("#endif")
 #pragma midl_echo("STDAPI GetComponentIDFromCLSSPEC(_In_ uCLSSPEC *pClassspec,")
 #pragma midl_echo("            _Outptr_ LPSTR * ppszComponentID);                                                      ")
 
-#pragma midl_echo("// flags for FaultInIEFeature")
-#pragma midl_echo("#define FIEF_FLAG_FORCE_JITUI               0x1     // force JIT ui even if")
-#pragma midl_echo("                                                 // previoulsy rejected by ")
-#pragma midl_echo("                                                 // user in this session or")
-#pragma midl_echo("                                                 // marked as Never Ask Again")
-#pragma midl_echo("#define FIEF_FLAG_PEEK                      0x2     // just peek, don't faultin")
-#pragma midl_echo("#define FIEF_FLAG_SKIP_INSTALLED_VERSION_CHECK        0x4     // force JIT without checking local version")
-#pragma midl_echo("#define FIEF_FLAG_RESERVED_0                0x8     // reserved")
+#pragma midl_echo("")
+#pragma midl_echo("#define FIEF_FLAG_FORCE_JITUI               0x1     ")
+#pragma midl_echo("                                                 ")
+#pragma midl_echo("                                                 ")
+#pragma midl_echo("                                                 ")
+#pragma midl_echo("#define FIEF_FLAG_PEEK                      0x2     ")
+#pragma midl_echo("#define FIEF_FLAG_SKIP_INSTALLED_VERSION_CHECK        0x4     ")
+#pragma midl_echo("#define FIEF_FLAG_RESERVED_0                0x8     ")
 
 
 
 #pragma midl_echo(" ")
-#pragma midl_echo("//helper apis                                                                               ")
+#pragma midl_echo("")
 #pragma midl_echo("STDAPI IsAsyncMoniker(_In_ IMoniker* pmk);                                                       ")
 #pragma midl_echo("STDAPI CreateURLBinding(LPCWSTR lpszUrl, _In_ IBindCtx *pbc, _Inout_ IBinding **ppBdg);")
 #pragma midl_echo(" ")
@@ -198,14 +198,14 @@ cpp_quote("#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)")
 
 
 #pragma midl_echo("STDAPI FindMimeFromData(                                                                                                                  ")
-#pragma midl_echo("    _In_opt_                     LPBC    pBC,                   // bind context - can be NULL                                                 ")
-#pragma midl_echo("    _In_opt_                     LPCWSTR pwzUrl,                // url - can be null                                                          ")
-#pragma midl_echo("    _In_reads_bytes_opt_(cbSize) LPVOID  pBuffer,               // buffer with data to sniff - can be null (pwzUrl must be valid)             ")
-#pragma midl_echo("                                 DWORD   cbSize,                // size of buffer                                                             ")
-#pragma midl_echo("    _In_opt_                     LPCWSTR pwzMimeProposed,       // proposed mime if - can be null                                             ")
-#pragma midl_echo("                                 DWORD   dwMimeFlags,           // will be defined                                                            ")
-#pragma midl_echo("    _Outptr_                     LPWSTR  *ppwzMimeOut,          // the suggested mime                                                         ")
-#pragma midl_echo("    _Reserved_                   DWORD   dwReserved);           // must be 0                                                                  ")
+#pragma midl_echo("    _In_opt_                     LPBC    pBC,                   ")
+#pragma midl_echo("    _In_opt_                     LPCWSTR pwzUrl,                ")
+#pragma midl_echo("    _In_reads_bytes_opt_(cbSize) LPVOID  pBuffer,               ")
+#pragma midl_echo("                                 DWORD   cbSize,                ")
+#pragma midl_echo("    _In_opt_                     LPCWSTR pwzMimeProposed,       ")
+#pragma midl_echo("                                 DWORD   dwMimeFlags,           ")
+#pragma midl_echo("    _Outptr_                     LPWSTR  *ppwzMimeOut,          ")
+#pragma midl_echo("    _Reserved_                   DWORD   dwReserved);           ")
 
 
 #pragma midl_echo("#define     FMFD_DEFAULT             0x00000000 ")
@@ -215,7 +215,7 @@ cpp_quote("#if (_WIN32_IE >= _WIN32_IE_IE60SP2)")
 #pragma midl_echo("#define     FMFD_ENABLEMIMESNIFFING  0x00000002 ")
 #pragma midl_echo("#define     FMFD_IGNOREMIMETEXTPLAIN  0x00000004 ")
 
-cpp_quote("#endif //(_WIN32_IE >= _WIN32_IE_IE60SP2)")
+cpp_quote("#endif ")
 
 #pragma midl_echo("#define     FMFD_SERVERMIME   0x00000008 ")
 #pragma midl_echo("#define     FMFD_RESPECTTEXTPLAIN   0x00000010 ")
@@ -235,7 +235,7 @@ cpp_quote("#endif //(_WIN32_IE >= _WIN32_IE_IE60SP2)")
 
 #pragma midl_echo(" ")
 #pragma midl_echo("#if (NTDDI_VERSION > NTDDI_WINBLUE || (NTDDI_VERSION == NTDDI_WINBLUE && defined(WINBLUE_KBSPRING14)))")
-#pragma midl_echo("// Enhanced Protected Mode (EPM) Convenience Functions")
+#pragma midl_echo("")
 #pragma midl_echo(" ")
 #pragma midl_echo("typedef enum IEObjectType")
 #pragma midl_echo("{")
@@ -257,16 +257,16 @@ cpp_quote("#endif //(_WIN32_IE >= _WIN32_IE_IE60SP2)")
 #pragma midl_echo("#endif")
 #pragma midl_echo(" ")
 
-#pragma midl_echo("// URLMON-specific defines for UrlMkSetSessionOption() above")
+#pragma midl_echo("")
 #pragma midl_echo("#define URLMON_OPTION_USERAGENT           0x10000001")
 #pragma midl_echo("#define URLMON_OPTION_USERAGENT_REFRESH   0x10000002")
 #pragma midl_echo("#define URLMON_OPTION_URL_ENCODING        0x10000004")
 cpp_quote("#if (_WIN32_IE >= _WIN32_IE_IE60SP2)")
 #pragma midl_echo("#define URLMON_OPTION_USE_BINDSTRINGCREDS 0x10000008")
-cpp_quote("#endif //(_WIN32_IE >= _WIN32_IE_IE60SP2)")
+cpp_quote("#endif ")
 cpp_quote("#if (_WIN32_IE >= _WIN32_IE_IE70)")
 #pragma midl_echo("#define URLMON_OPTION_USE_BROWSERAPPSDOCUMENTS 0x10000010")
-cpp_quote("#endif //(_WIN32_IE >= _WIN32_IE_IE70)")
+cpp_quote("#endif ")
 
 cpp_quote("#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */")
 #pragma endregion
@@ -329,9 +329,9 @@ cpp_quote("#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_S
 #pragma midl_echo("#define CFSTR_MIME_APPLICATION_JAVASCRIPT (TEXT(\"application/javascript\"))")
 #pragma midl_echo(" ")
 
-cpp_quote("// MessageId: MK_S_ASYNCHRONOUS                                              ")
-cpp_quote("// MessageText: Operation is successful, but will complete asynchronously.   ")
-cpp_quote("//                                                                           ")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
 cpp_quote("#define MK_S_ASYNCHRONOUS    _HRESULT_TYPEDEF_(0x000401E8L)                  ")
 cpp_quote("#ifndef S_ASYNCHRONOUS                                                       ")
 cpp_quote("#define S_ASYNCHRONOUS       MK_S_ASYNCHRONOUS                               ")
@@ -341,18 +341,18 @@ cpp_quote("#ifndef E_PENDING                                                    
 cpp_quote("#define E_PENDING _HRESULT_TYPEDEF_(0x8000000AL)                             ")
 cpp_quote("#endif                                                                       ")
 cpp_quote("                                                                             ")
-cpp_quote("//                                                                           ")
-cpp_quote("//                                                                           ")
-cpp_quote("// WinINet and protocol specific errors are mapped to one of the following   ")
-cpp_quote("// error which are returned in IBSC::OnStopBinding                           ")
-cpp_quote("//                                                                           ")
-cpp_quote("//                                                                           ")
-cpp_quote("// Note: FACILITY C is split into ranges of 1k                               ")
-cpp_quote("// C0000 - C03FF  INET_E_ (URLMON's original hresult)                        ")
-cpp_quote("// C0400 - C07FF  INET_E_CLIENT_xxx                                          ")
-cpp_quote("// C0800 - C0BFF  INET_E_SERVER_xxx                                          ")
-cpp_quote("// C0C00 - C0FFF  INET_E_????                                                ")
-cpp_quote("// C1000 - C13FF  INET_E_AGENT_xxx (info delivery agents)                    ")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
 
 //
 // url could not be parsed
@@ -457,7 +457,7 @@ cpp_quote("#define INET_E_CANNOT_REPLACE_SFP_FILE               _HRESULT_TYPEDEF
 cpp_quote("#if (_WIN32_IE >= _WIN32_IE_IE60SP2)")
 // Authenticode prompt UI was not shown because the page is not in the ActiveX permissive state
 cpp_quote("#define INET_E_CODE_INSTALL_SUPPRESSED               _HRESULT_TYPEDEF_(0x800C0400L)      ")
-cpp_quote("#endif //(_WIN32_IE >= _WIN32_IE_IE60SP2)")
+cpp_quote("#endif ")
 
 // AX installation blocked by hash policy.
 cpp_quote("#define INET_E_CODE_INSTALL_BLOCKED_BY_HASH_POLICY   _HRESULT_TYPEDEF_(0x800C0500L)      ")
@@ -1578,14 +1578,14 @@ interface IUri : IUnknown
 
 #pragma midl_echo("STDAPI CreateUri(_In_ LPCWSTR pwzURI,")
 #pragma midl_echo("                 _In_ DWORD dwFlags,")
-#pragma midl_echo("                 _Reserved_ DWORD_PTR dwReserved,   // must be 0")
+#pragma midl_echo("                 _Reserved_ DWORD_PTR dwReserved,   ")
 #pragma midl_echo("                 _Outptr_ IUri** ppURI);")
 #pragma midl_echo("")
 #pragma midl_echo("STDAPI CreateUriWithFragment(")
 #pragma midl_echo("                 _In_ LPCWSTR pwzURI,")
-#pragma midl_echo("                 _In_opt_ LPCWSTR pwzFragment,        // can be NULL")
+#pragma midl_echo("                 _In_opt_ LPCWSTR pwzFragment,        ")
 #pragma midl_echo("                 _In_ DWORD dwFlags,")
-#pragma midl_echo("                 _Reserved_ DWORD_PTR dwReserved,   // must be 0")
+#pragma midl_echo("                 _Reserved_ DWORD_PTR dwReserved,   ")
 #pragma midl_echo("                 _Outptr_ IUri** ppURI);")
 #pragma midl_echo("")
 cpp_quote("#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM) */")
@@ -1596,10 +1596,10 @@ cpp_quote("#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)")
 #pragma midl_echo("")
 #pragma midl_echo("STDAPI CreateUriFromMultiByteString(")
 #pragma midl_echo("    _In_       LPCSTR    pszANSIInputUri,")
-#pragma midl_echo("               DWORD     dwEncodingFlags, // ORed set of Uri_ENCODING_ flags")
+#pragma midl_echo("               DWORD     dwEncodingFlags, ")
 #pragma midl_echo("               DWORD     dwCodePage,")
 #pragma midl_echo("               DWORD     dwCreateFlags,")
-#pragma midl_echo("    _Reserved_ DWORD_PTR dwReserved,   // must be 0")
+#pragma midl_echo("    _Reserved_ DWORD_PTR dwReserved,   ")
 #pragma midl_echo("    _Outptr_   IUri**    ppUri);")
 #pragma midl_echo("")
 cpp_quote("#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */")
@@ -1608,7 +1608,7 @@ cpp_quote("#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */")
 #pragma region Application Family
 cpp_quote("#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)")
 #pragma midl_echo("")
-#pragma midl_echo("//The following flags are used with IUri::GetProperties.")
+#pragma midl_echo("")
 #pragma midl_echo("#define Uri_HAS_ABSOLUTE_URI    (1 << Uri_PROPERTY_ABSOLUTE_URI)")
 #pragma midl_echo("#define Uri_HAS_AUTHORITY       (1 << Uri_PROPERTY_AUTHORITY)")
 #pragma midl_echo("#define Uri_HAS_DISPLAY_URI     (1 << Uri_PROPERTY_DISPLAY_URI)")
@@ -1629,37 +1629,37 @@ cpp_quote("#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_S
 #pragma midl_echo("#define Uri_HAS_SCHEME          (1 << Uri_PROPERTY_SCHEME)")
 #pragma midl_echo("#define Uri_HAS_ZONE            (1 << Uri_PROPERTY_ZONE)")
 #pragma midl_echo("")
-#pragma midl_echo("//The following public Uri_CREATE flags may be passed in ")
-#pragma midl_echo("//through the dwFlags parameter of the CreateUri functions.")
-#pragma midl_echo("//Note that ALLOW_RELATIVE and ALLOW_IMPLICIT_WILDCARD_SCHEME are mutually exclusive and may not be passed together.")
-#pragma midl_echo("#define Uri_CREATE_ALLOW_RELATIVE                 0x00000001    // When the scheme is unspecified and not implicit file, assume relative.")
-#pragma midl_echo("#define Uri_CREATE_ALLOW_IMPLICIT_WILDCARD_SCHEME 0x00000002    // When the scheme is unspecified and not implicit file, assume wildcard.")
-#pragma midl_echo("#define Uri_CREATE_ALLOW_IMPLICIT_FILE_SCHEME     0x00000004    // When the scheme is unspecified and it starts with X: or \\\\ assume its a file scheme.")
-#pragma midl_echo("#define Uri_CREATE_NOFRAG                         0x00000008    // If there's a query string don't look for a fragment")
-#pragma midl_echo("#define Uri_CREATE_NO_CANONICALIZE                0x00000010    // Do not canonicalize the scheme, host, authority, or path")
-#pragma midl_echo("#define Uri_CREATE_CANONICALIZE                   0x00000100    // DEFAULT: Canonicalize the scheme, host, authority, and path")
-#pragma midl_echo("#define Uri_CREATE_FILE_USE_DOS_PATH              0x00000020    // Use DOS path compat mode for file URI creation")
-#pragma midl_echo("#define Uri_CREATE_DECODE_EXTRA_INFO              0x00000040    // Beta2 DEFAULT: Decode the contents of query and fragment, then re-encode reserved characters")
-#pragma midl_echo("#define Uri_CREATE_NO_DECODE_EXTRA_INFO           0x00000080    // Beta1 DEFAULT: Neither decode nor re-encode any part of the query or fragment")
-#pragma midl_echo("#define Uri_CREATE_CRACK_UNKNOWN_SCHEMES          0x00000200    // Beta2 DEFAULT: Heirarchical URIs with present and unknown schemes will be treated like heirarchical URIs")
-#pragma midl_echo("#define Uri_CREATE_NO_CRACK_UNKNOWN_SCHEMES       0x00000400    // Beta1 DEFAULT: Heirarchical URIs with present and unknown schemes will be treated like opaque URIs")
-#pragma midl_echo("#define Uri_CREATE_PRE_PROCESS_HTML_URI           0x00000800    // DEFAULT:  Perform pre-processing on the URI to remove control characters and whitespace as if the URI comes from the raw href value of an HTML page.")
-#pragma midl_echo("#define Uri_CREATE_NO_PRE_PROCESS_HTML_URI        0x00001000    // Don't perform pre-processing to remove control characters and whitespace as appropriate.")
-#pragma midl_echo("#define Uri_CREATE_IE_SETTINGS                    0x00002000    // Use IE registry settings for such things as whether or not to use IDN.")
-#pragma midl_echo("#define Uri_CREATE_NO_IE_SETTINGS                 0x00004000    // DEFAULT: Don't use IE registry settings.")
-#pragma midl_echo("#define Uri_CREATE_NO_ENCODE_FORBIDDEN_CHARACTERS 0x00008000    // Don't percent-encode characters that are forbidden by the RFC.")
-#pragma midl_echo("#define Uri_CREATE_NORMALIZE_INTL_CHARACTERS      0x00010000    // Percent encode all extended unicode charcters, then decode all percent encoded extended unicode characters (except those identified as dangerous)")
-#pragma midl_echo("#define Uri_CREATE_CANONICALIZE_ABSOLUTE          0x00020000    // Generate a fully UTF-8 encoded value for absoluteUri")
+#pragma midl_echo("")
+#pragma midl_echo("")
+#pragma midl_echo("")
+#pragma midl_echo("#define Uri_CREATE_ALLOW_RELATIVE                 0x00000001    ")
+#pragma midl_echo("#define Uri_CREATE_ALLOW_IMPLICIT_WILDCARD_SCHEME 0x00000002    ")
+#pragma midl_echo("#define Uri_CREATE_ALLOW_IMPLICIT_FILE_SCHEME     0x00000004    ")
+#pragma midl_echo("#define Uri_CREATE_NOFRAG                         0x00000008    ")
+#pragma midl_echo("#define Uri_CREATE_NO_CANONICALIZE                0x00000010    ")
+#pragma midl_echo("#define Uri_CREATE_CANONICALIZE                   0x00000100    ")
+#pragma midl_echo("#define Uri_CREATE_FILE_USE_DOS_PATH              0x00000020    ")
+#pragma midl_echo("#define Uri_CREATE_DECODE_EXTRA_INFO              0x00000040    ")
+#pragma midl_echo("#define Uri_CREATE_NO_DECODE_EXTRA_INFO           0x00000080    ")
+#pragma midl_echo("#define Uri_CREATE_CRACK_UNKNOWN_SCHEMES          0x00000200    ")
+#pragma midl_echo("#define Uri_CREATE_NO_CRACK_UNKNOWN_SCHEMES       0x00000400    ")
+#pragma midl_echo("#define Uri_CREATE_PRE_PROCESS_HTML_URI           0x00000800    ")
+#pragma midl_echo("#define Uri_CREATE_NO_PRE_PROCESS_HTML_URI        0x00001000    ")
+#pragma midl_echo("#define Uri_CREATE_IE_SETTINGS                    0x00002000    ")
+#pragma midl_echo("#define Uri_CREATE_NO_IE_SETTINGS                 0x00004000    ")
+#pragma midl_echo("#define Uri_CREATE_NO_ENCODE_FORBIDDEN_CHARACTERS 0x00008000    ")
+#pragma midl_echo("#define Uri_CREATE_NORMALIZE_INTL_CHARACTERS      0x00010000    ")
+#pragma midl_echo("#define Uri_CREATE_CANONICALIZE_ABSOLUTE          0x00020000    ")
 
-#pragma midl_echo("//The following flags may be passed in through the dwFlags ")
-#pragma midl_echo("//parameter of the IUri::GetPropertyBSTR or IUri::GetPropertyLength functions.")
-#pragma midl_echo("//The following flags apply only to the property Uri_PROPERTY_DISPLAY_URI:")
-#pragma midl_echo("#define Uri_DISPLAY_NO_FRAGMENT               0x00000001    // Exclude fragment from the DisplayUri, if one exists")
-#pragma midl_echo("#define Uri_PUNYCODE_IDN_HOST                 0x00000002    // Show the hostname encoded as punycode inside the Host, Domain, or AbsoluteUri properties, if the Uri is IDN")
-#pragma midl_echo("#define Uri_DISPLAY_IDN_HOST                  0x00000004    // Show the hostname encoded as punycode or Unicode as it would appear in the DisplayUri property. This applies to the Host, Domain, and AbsoluteUri properties.")
-#pragma midl_echo("#define Uri_DISPLAY_NO_PUNYCODE               0x00000008    // Show the hostname encoded as Unicode from the DisplayUri, if the Uri is IDN")
+#pragma midl_echo("")
+#pragma midl_echo("")
+#pragma midl_echo("")
+#pragma midl_echo("#define Uri_DISPLAY_NO_FRAGMENT               0x00000001    ")
+#pragma midl_echo("#define Uri_PUNYCODE_IDN_HOST                 0x00000002    ")
+#pragma midl_echo("#define Uri_DISPLAY_IDN_HOST                  0x00000004    ")
+#pragma midl_echo("#define Uri_DISPLAY_NO_PUNYCODE               0x00000008    ")
 
-#pragma midl_echo("// The following are Uri_ENCODING_ flags for use with the function CreateUriFromMultiByteString")
+#pragma midl_echo("")
 #pragma midl_echo("#define Uri_ENCODING_USER_INFO_AND_PATH_IS_PERCENT_ENCODED_UTF8  0x00000001")
 #pragma midl_echo("#define Uri_ENCODING_USER_INFO_AND_PATH_IS_CP                    0x00000002")
 #pragma midl_echo("#define Uri_ENCODING_HOST_IS_IDN                                 0x00000004")
@@ -1670,9 +1670,9 @@ cpp_quote("#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_S
 #pragma midl_echo("#define Uri_ENCODING_RFC (Uri_ENCODING_USER_INFO_AND_PATH_IS_PERCENT_ENCODED_UTF8 | Uri_ENCODING_HOST_IS_PERCENT_ENCODED_UTF8 | Uri_ENCODING_QUERY_AND_FRAGMENT_IS_PERCENT_ENCODED_UTF8)")
 
 #pragma midl_echo("")
-#pragma midl_echo("//The following flags may be passed in through the dwUriBuilderFlags ")
-#pragma midl_echo("//parameter of the IUriBuilder::CreateUri")
-#pragma midl_echo("#define UriBuilder_USE_ORIGINAL_FLAGS             0x00000001    // Use the create flags from the underlying IUri if they are available.")
+#pragma midl_echo("")
+#pragma midl_echo("")
+#pragma midl_echo("#define UriBuilder_USE_ORIGINAL_FLAGS             0x00000001    ")
 #pragma midl_echo("")
 
 cpp_quote("#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM) */")
@@ -1852,7 +1852,7 @@ interface IUriBuilderFactory: IUnknown
 cpp_quote("#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */")
 #pragma endregion
 
-cpp_quote("#endif //(_WIN32_IE >= _WIN32_IE_IE70)")
+cpp_quote("#endif ")
 
 #pragma region Desktop Family
 cpp_quote("#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)")
@@ -2024,7 +2024,7 @@ interface IWinInetCacheHints : IUnknown
             );
 }
 cpp_quote("#endif")
-cpp_quote("#endif //(_WIN32_IE >= _WIN32_IE_IE60SP2)")
+cpp_quote("#endif ")
 
 cpp_quote("#if (_WIN32_IE >= _WIN32_IE_IE70)")
 //+---------------------------------------------------------------------------
@@ -2059,7 +2059,7 @@ interface IWinInetCacheHints2 : IWinInetCacheHints
             );
 }
 cpp_quote("#endif")
-cpp_quote("#endif //(_WIN32_IE >= _WIN32_IE_IE70)")
+cpp_quote("#endif ")
 
 
 cpp_quote("#define SID_IBindHost IID_IBindHost")
@@ -2128,36 +2128,35 @@ cpp_quote("#endif")
 
 // urlhlink stuff
 #pragma midl_echo("                                                                                                           ")
-cpp_quote("// These are for backwards compatibility with previous URLMON versions")
-#pragma midl_echo("// Flags for the UrlDownloadToCacheFile                                                                    ")
-#pragma midl_echo("#define URLOSTRM_USECACHEDCOPY_ONLY             0x1      // Only get from cache                            ")
-#pragma midl_echo("#define URLOSTRM_USECACHEDCOPY                  0x2      // Get from cache if available else download      ")
-#pragma midl_echo("#define URLOSTRM_GETNEWESTVERSION               0x3      // Get new version only. But put it in cache too  ")
+cpp_quote("")
+#pragma midl_echo("")
+#pragma midl_echo("#define URLOSTRM_USECACHEDCOPY_ONLY             0x1      ")
+#pragma midl_echo("#define URLOSTRM_USECACHEDCOPY                  0x2      ")
+#pragma midl_echo("#define URLOSTRM_GETNEWESTVERSION               0x3      ")
 #pragma midl_echo("                                                                                                           ")
 #pragma midl_echo("                                                                                                           ")
 #pragma midl_echo("struct IBindStatusCallback;                                                                                ")
 #pragma midl_echo("STDAPI HlinkSimpleNavigateToString(                                                                        ")
-#pragma midl_echo("    _In_opt_ LPCWSTR szTarget,         // required - target document - null if local jump w/in doc       ")
-#pragma midl_echo("    _In_opt_ LPCWSTR szLocation,       // optional, for navigation into middle of a doc                  ")
-#pragma midl_echo("    _In_opt_ LPCWSTR szTargetFrameName,// optional, for targeting frame-sets                             ")
-#pragma midl_echo("    _In_     IUnknown *pUnk,           // required - we'll search this for other necessary interfaces    ")
-#pragma midl_echo("    _In_opt_ IBindCtx *pbc,            // optional. caller may register an IBSC in this                  ")
+#pragma midl_echo("    _In_opt_ LPCWSTR szTarget,         ")
+#pragma midl_echo("    _In_opt_ LPCWSTR szLocation,       ")
+#pragma midl_echo("    _In_opt_ LPCWSTR szTargetFrameName,")
+#pragma midl_echo("    _In_     IUnknown *pUnk,           ")
+#pragma midl_echo("    _In_opt_ IBindCtx *pbc,            ")
 #pragma midl_echo("    _In_opt_ IBindStatusCallback *,                                                                      ")
-#pragma midl_echo("    /* [in] */ DWORD grfHLNF,            // flags                                                          ")
-#pragma midl_echo("    /* [in] */ DWORD dwReserved          // for future use, must be NULL                                   ")
+#pragma midl_echo("    /* [in] */ DWORD grfHLNF,            ")
+#pragma midl_echo("    /* [in] */ DWORD dwReserved          ")
 #pragma midl_echo(");                                                                                                         ")
 #pragma midl_echo("                                                                                                           ")
 #pragma midl_echo("STDAPI HlinkSimpleNavigateToMoniker(                                                                       ")
-#pragma midl_echo("    _In_opt_ IMoniker *pmkTarget,      // required - target document - (may be null                      ")
-#pragma midl_echo("    _In_opt_ LPCWSTR szLocation,       // optional, for navigation into middle of a doc                  ")
-#pragma midl_echo("    _In_opt_ LPCWSTR szTargetFrameName,// optional, for targeting frame-sets                             ")
-#pragma midl_echo("    _In_opt_ IUnknown *pUnk,           // required - we'll search this for other necessary interfaces    ")
-#pragma midl_echo("    _In_opt_ IBindCtx *pbc,            // optional. caller may register an IBSC in this                  ")
+#pragma midl_echo("    _In_opt_ IMoniker *pmkTarget,      ")
+#pragma midl_echo("    _In_opt_ LPCWSTR szLocation,       ")
+#pragma midl_echo("    _In_opt_ LPCWSTR szTargetFrameName,")
+#pragma midl_echo("    _In_opt_ IUnknown *pUnk,           ")
+#pragma midl_echo("    _In_opt_ IBindCtx *pbc,            ")
 #pragma midl_echo("    _In_opt_ IBindStatusCallback *,                                                                      ")
-#pragma midl_echo("    /* [in] */ DWORD grfHLNF,            // flags                                                          ")
-#pragma midl_echo("    /* [in] */ DWORD dwReserved          // for future use, must be NULL                                   ")
+#pragma midl_echo("    /* [in] */ DWORD grfHLNF,            ")
+#pragma midl_echo("    /* [in] */ DWORD dwReserved          ")
 #pragma midl_echo(");                                                                                                         ")
-//#pragma midl_echo("typedef HRESULT (STDAPICALLTYPE *LPFNUOSCALLBACK)(LPBINDSTATUSCALLBACK);                                   ")
 #pragma midl_echo("                                                                                                           ")
 #pragma midl_echo("STDAPI URLOpenStreamA(_In_opt_ LPUNKNOWN, _In_ LPCSTR,DWORD, _In_opt_ LPBINDSTATUSCALLBACK);                                        ")
 #pragma midl_echo("STDAPI URLOpenStreamW(_In_opt_ LPUNKNOWN, _In_ LPCWSTR,DWORD,_In_opt_ LPBINDSTATUSCALLBACK);                                       ")
@@ -2182,7 +2181,7 @@ cpp_quote("// These are for backwards compatibility with previous URLMON version
 #pragma midl_echo("#define URLDownloadToFile        URLDownloadToFileA                                                        ")
 #pragma midl_echo("#define URLDownloadToCacheFile   URLDownloadToCacheFileA                                                   ")
 #pragma midl_echo("#define URLOpenBlockingStream    URLOpenBlockingStreamA                                                    ")
-#pragma midl_echo("#endif // !UNICODE                                                                                         ")
+#pragma midl_echo("#endif ")
 #pragma midl_echo("                                                                                                           ")
 #pragma midl_echo("                                                                                                           ")
 #pragma midl_echo("STDAPI HlinkGoBack(_In_ IUnknown *pUnk);                                                                   ")
@@ -2494,7 +2493,7 @@ interface IInternetProtocolEx: IInternetProtocol
             );
 }
 cpp_quote("#endif")
-cpp_quote("#endif //(_WIN32_IE >= _WIN32_IE_IE70)")
+cpp_quote("#endif ")
 
 //+---------------------------------------------------------------------------
 //
@@ -2851,11 +2850,11 @@ interface IInternetProtocolInfo : IUnknown
 }
 
 cpp_quote("#ifndef URLMON_STRICT")
-cpp_quote("// PARSE_ENCODE was misnamed and is deprecated for PARSE_UNESCAPE")
+cpp_quote("")
 cpp_quote("#define PARSE_ENCODE PARSE_ENCODE_IS_UNESCAPE")
-cpp_quote("// PARSE_DECODE was misnamed and is deprecated for PARSE_ESCAPE")
+cpp_quote("")
 cpp_quote("#define PARSE_DECODE PARSE_DECODE_IS_ESCAPE")
-cpp_quote("#endif //!URLMON_STRICT")
+cpp_quote("#endif ")
 
 cpp_quote("#endif")
 
@@ -2870,7 +2869,7 @@ cpp_quote("#define IOInetProtocol       IInternetProtocol    ")
 
 cpp_quote("#if (_WIN32_IE >= _WIN32_IE_IE70)")
 cpp_quote("#define IOInetProtocolEx     IInternetProtocolEx  ")
-cpp_quote("#endif //(_WIN32_IE >= _WIN32_IE_IE70)")
+cpp_quote("#endif ")
 
 cpp_quote("#define IOInetProtocolSink   IInternetProtocolSink")
 cpp_quote("#define IOInetProtocolInfo   IInternetProtocolInfo")
@@ -2887,7 +2886,7 @@ cpp_quote("#define LPOINETPROTOCOL      LPIINTERNETPROTOCOL     ")
 
 cpp_quote("#if (_WIN32_IE >= _WIN32_IE_IE70)")
 cpp_quote("#define LPOINETPROTOCOLEX    LPIINTERNETPROTOCOLEX   ")
-cpp_quote("#endif //(_WIN32_IE >= _WIN32_IE_IE70)")
+cpp_quote("#endif ")
 
 cpp_quote("#define LPOINETPROTOCOLSINK  LPIINTERNETPROTOCOLSINK ")
 cpp_quote("#define LPOINETSESSION       LPIINTERNETSESSION      ")
@@ -2905,7 +2904,7 @@ cpp_quote("#define IID_IOInetProtocol       IID_IInternetProtocol    ")
 
 cpp_quote("#if (_WIN32_IE >= _WIN32_IE_IE70)")
 cpp_quote("#define IID_IOInetProtocolEx     IID_IInternetProtocolEx  ")
-cpp_quote("#endif //(_WIN32_IE >= _WIN32_IE_IE70)")
+cpp_quote("#endif ")
 
 cpp_quote("#define IID_IOInetProtocolSink   IID_IInternetProtocolSink")
 cpp_quote("#define IID_IOInetProtocolInfo   IID_IInternetProtocolInfo")
@@ -2938,7 +2937,7 @@ cpp_quote("#if (_WIN32_IE >= _WIN32_IE_IE70)")
 #pragma midl_echo("    _Out_                                    DWORD       *pcchResult,    ")
 #pragma midl_echo("    _Reserved_                               DWORD_PTR    dwReserved     ")
 #pragma midl_echo("    );                                                  ")
-cpp_quote("#endif //(_WIN32_IE >= _WIN32_IE_IE70)")
+cpp_quote("#endif ")
 
 #pragma midl_echo("STDAPI CoInternetCombineUrl(                                           ")
 #pragma midl_echo("                                             LPCWSTR   pwzBaseUrl,     ")
@@ -2965,7 +2964,7 @@ cpp_quote("#if (_WIN32_IE >= _WIN32_IE_IE70)")
 #pragma midl_echo("    _Outptr_     IUri      **ppCombinedUri,  ")
 #pragma midl_echo("    _In_opt_     DWORD_PTR   dwReserved      ")
 #pragma midl_echo("    );                                       ")
-cpp_quote("#endif //(_WIN32_IE >= _WIN32_IE_IE70)")
+cpp_quote("#endif ")
 
 #pragma midl_echo("STDAPI CoInternetCompareUrl(             ")
 #pragma midl_echo("    LPCWSTR pwzUrl1,                     ")
@@ -3016,7 +3015,7 @@ cpp_quote("#if (_WIN32_IE >= _WIN32_IE_IE70)")
 #pragma midl_echo("                 PSUACTION       psuAction,  ")
 #pragma midl_echo("    _Reserved_   DWORD_PTR       dwReserved  ")
 #pragma midl_echo("    );                                       ")
-cpp_quote("#endif //(_WIN32_IE >= _WIN32_IE_IE70)")
+cpp_quote("#endif ")
 
 
 cpp_quote("#if (_WIN32_IE >= _WIN32_IE_IE60SP2)")
@@ -3061,8 +3060,8 @@ typedef enum _tagINTERNETFEATURELIST
 } INTERNETFEATURELIST;
 
 cpp_quote("")
-cpp_quote("// CoInternetSetFeatureEnabled can be used to set/reset features. ")
-cpp_quote("// The following flags control where the feature is set")
+cpp_quote("")
+cpp_quote("")
 cpp_quote("")
 cpp_quote("#define SET_FEATURE_ON_THREAD                       0x00000001")
 cpp_quote("#define SET_FEATURE_ON_PROCESS                      0x00000002")
@@ -3074,9 +3073,9 @@ cpp_quote("#define SET_FEATURE_ON_THREAD_INTERNET              0x00000040")
 cpp_quote("#define SET_FEATURE_ON_THREAD_RESTRICTED            0x00000080")
 
 cpp_quote("")
-cpp_quote("// CoInternetIsFeatureEnabled can be used to get features. ")
-cpp_quote("// The following flags control where the feature is obtained from")
-cpp_quote("// default is from process")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
 cpp_quote("")
 cpp_quote("#define GET_FEATURE_FROM_THREAD                      0x00000001")
 cpp_quote("#define GET_FEATURE_FROM_PROCESS                     0x00000002")
@@ -3124,7 +3123,7 @@ cpp_quote("#endif")
 #pragma midl_echo("    _In_opt_ IInternetSecurityManager *pSecMgr, ")
 #pragma midl_echo("    DWORD dwFlags                               ")
 #pragma midl_echo("    );                                          ")
-cpp_quote("#endif //(_WIN32_IE >= _WIN32_IE_IE60SP2)")
+cpp_quote("#endif ")
 
 //
 // STGMEDIUMs and BINDINFO helper utils
@@ -3151,53 +3150,53 @@ cpp_quote("#define OInetCombineUrl             CoInternetCombineUrl             
 cpp_quote("#if (_WIN32_IE >= _WIN32_IE_IE70)")
 cpp_quote("#define OInetCombineUrlEx           CoInternetCombineUrlEx           ")
 cpp_quote("#define OInetCombineIUri            CoInternetCombineIUri            ")
-cpp_quote("#endif //(_WIN32_IE >= _WIN32_IE_IE70)")
+cpp_quote("#endif ")
 
 cpp_quote("#define OInetCompareUrl             CoInternetCompareUrl             ")
 cpp_quote("#define OInetQueryInfo              CoInternetQueryInfo              ")
 cpp_quote("#define OInetGetSession             CoInternetGetSession             ")
 
-#pragma midl_echo("#endif // !_URLMON_NO_ASYNC_PLUGABLE_PROTOCOLS_ ")
+#pragma midl_echo("#endif ")
 
-cpp_quote("//")
-cpp_quote("// Static Protocol flags")
-cpp_quote("//")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
 cpp_quote("#define PROTOCOLFLAG_NO_PICS_CHECK     0x00000001")
 cpp_quote("")
 
-#pragma midl_echo("// Do not take a dependency on the exact value of the private namespace, no guarantee is given that it won't change.")
+#pragma midl_echo("")
 #pragma midl_echo("STDAPI_(PWSTR) IEGetUserPrivateNamespaceName(void);")
 #pragma midl_echo(" ")
 
 
-cpp_quote("// Creates the security manager object. The first argument is the Service provider")
-cpp_quote("// to allow for delegation")
+cpp_quote("")
+cpp_quote("")
 cpp_quote("STDAPI CoInternetCreateSecurityManager(_In_opt_ IServiceProvider *pSP, _Outptr_ IInternetSecurityManager **ppSM, DWORD dwReserved);")
 cpp_quote("")
 cpp_quote("STDAPI CoInternetCreateZoneManager(_In_opt_ IServiceProvider *pSP, _Outptr_ IInternetZoneManager **ppZM, DWORD dwReserved);")
 cpp_quote("")
 cpp_quote("")
 
-cpp_quote("// Security manager CLSID's")
+cpp_quote("")
 cpp_quote("EXTERN_C const IID CLSID_InternetSecurityManager;  ")
 cpp_quote("EXTERN_C const IID CLSID_InternetZoneManager;  ")
 
 cpp_quote("#if (_WIN32_IE >= _WIN32_IE_IE60SP2)")
 cpp_quote("EXTERN_C const IID CLSID_PersistentZoneIdentifier;  ")
-cpp_quote("#endif //(_WIN32_IE >= _WIN32_IE_IE60SP2)")
+cpp_quote("#endif ")
 
-cpp_quote("// This service is used for delegation support on the Security Manager interface")
+cpp_quote("")
 cpp_quote("#define SID_SInternetSecurityManager         IID_IInternetSecurityManager")
 cpp_quote("")
 
 cpp_quote("#if (_WIN32_IE >= _WIN32_IE_IE60SP2)")
 cpp_quote("#define SID_SInternetSecurityManagerEx         IID_IInternetSecurityManagerEx")
-cpp_quote("#endif //(_WIN32_IE >= _WIN32_IE_IE60SP2)")
+cpp_quote("#endif ")
 cpp_quote("")
 
 cpp_quote("#if (_WIN32_IE >= _WIN32_IE_IE70)")
 cpp_quote("#define SID_SInternetSecurityManagerEx2         IID_IInternetSecurityManagerEx2")
-cpp_quote("#endif //(_WIN32_IE >= _WIN32_IE_IE70)")
+cpp_quote("#endif ")
 cpp_quote("")
 
 cpp_quote("#define SID_SInternetHostSecurityManager     IID_IInternetHostSecurityManager")
@@ -3245,16 +3244,16 @@ interface IInternetSecurityManager : IUnknown
         [out]   IInternetSecurityMgrSite **ppSite
     );
 
-cpp_quote("#define MUTZ_NOSAVEDFILECHECK        0x00000001 // don't check file: for saved file comment")
-cpp_quote("#define MUTZ_ISFILE                  0x00000002 // Assume URL if File, url does not need file://")
-cpp_quote("#define MUTZ_ACCEPT_WILDCARD_SCHEME  0x00000080 // Accept a wildcard scheme")
-cpp_quote("#define MUTZ_ENFORCERESTRICTED       0x00000100 // enforce restricted zone independent of URL")
-cpp_quote("#define MUTZ_RESERVED                0x00000200 // This is same as PUAF_NOSAVEDFILECHECK. However we already have MUTZ_NOSAVEDFILECHECK for this.")
-cpp_quote("#define MUTZ_REQUIRESAVEDFILECHECK   0x00000400 // always check the file for MOTW (overriding FEATURE_UNC_SAVEDFILECHECK)")
-cpp_quote("#define MUTZ_DONT_UNESCAPE           0x00000800 // Do not unescape the url")
-cpp_quote("#define MUTZ_DONT_USE_CACHE          0x00001000 // Do not check the cache")
-cpp_quote("#define MUTZ_FORCE_INTRANET_FLAGS    0x00002000 // Force the intranet flags to be active")
-cpp_quote("#define MUTZ_IGNORE_ZONE_MAPPINGS    0x00004000 // Don't look up the Zone Mappings")
+cpp_quote("#define MUTZ_NOSAVEDFILECHECK        0x00000001 ")
+cpp_quote("#define MUTZ_ISFILE                  0x00000002 ")
+cpp_quote("#define MUTZ_ACCEPT_WILDCARD_SCHEME  0x00000080 ")
+cpp_quote("#define MUTZ_ENFORCERESTRICTED       0x00000100 ")
+cpp_quote("#define MUTZ_RESERVED                0x00000200 ")
+cpp_quote("#define MUTZ_REQUIRESAVEDFILECHECK   0x00000400 ")
+cpp_quote("#define MUTZ_DONT_UNESCAPE           0x00000800 ")
+cpp_quote("#define MUTZ_DONT_USE_CACHE          0x00001000 ")
+cpp_quote("#define MUTZ_FORCE_INTRANET_FLAGS    0x00002000 ")
+cpp_quote("#define MUTZ_IGNORE_ZONE_MAPPINGS    0x00004000 ")
 
     HRESULT MapUrlToZone
     (
@@ -3263,9 +3262,9 @@ cpp_quote("#define MUTZ_IGNORE_ZONE_MAPPINGS    0x00004000 // Don't look up the 
         [in]    DWORD       dwFlags
     );
 
-cpp_quote("// MapUrlToZone returns the zone index given a URL")
+cpp_quote("")
 
-cpp_quote("#define MAX_SIZE_SECURITY_ID 512 // bytes")
+cpp_quote("#define MAX_SIZE_SECURITY_ID 512 ")
 
 midl_pragma warning(disable:2495) // annotation is allowed on local interface and local methods only
     HRESULT GetSecurityId
@@ -3313,18 +3312,18 @@ midl_pragma warning (default: 2495)
         PUAFOUT_ISLOCKZONEPOLICY               = 0x00000001
     } PUAFOUT ;
 
-cpp_quote("// Note that for the below function, the semantics of the 'pwszUrl',")
-cpp_quote("// 'pContext', and 'cbContext' parameters depend on the specific")
-cpp_quote("// URLACTION_* enum value that is passed for 'dwAction'. For example,")
-cpp_quote("// when 'dwAction' is URLACTION_HTML_MIXED_CONTENT, 'pwszUrl' will be")
-cpp_quote("// the target URL of the resource, 'pContext' will be the containing")
-cpp_quote("// document's IUri* cast to BYTE*, and 'cbContext' will be sizeof(Uri*).")
-cpp_quote("// When 'dwAction' is URLACTION_CROSS_DOMAIN_DATA, 'pwszUrl' will be")
-cpp_quote("// the source URL, 'pContext' will be the target PCWSTR cast to BYTE*,")
-cpp_quote("// and 'cbContext' will be the size of the string including its null")
-cpp_quote("// terminator. Implementers should use the value of 'dwAction' to")
-cpp_quote("// correctly interpret the 'pswzUrl', 'pContext' and 'cbContext' for")
-cpp_quote("// each action type.")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
     HRESULT     ProcessUrlAction
     (
         [in]    LPCWSTR     pwszUrl,
@@ -3339,11 +3338,11 @@ cpp_quote("// each action type.")
         [in]    DWORD   dwReserved
     );
 
-cpp_quote("// This is the wrapper function that most clients will use.")
-cpp_quote("// It figures out the current Policy for the passed in Action,")
-cpp_quote("// and puts up UI if the current Policy indicates that the user")
-cpp_quote("// should be queried. It returns back the Policy which the caller")
-cpp_quote("// will use to determine if the action should be allowed")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
 
     HRESULT     QueryCustomPolicy
     (
@@ -3356,7 +3355,7 @@ cpp_quote("// will use to determine if the action should be allowed")
         [in]    DWORD   cbContext,  // size of the Context
         [in]    DWORD   dwReserved
     );
-cpp_quote("// This is the wrapper function to conveniently read a custom policy.")
+cpp_quote("")
 
 // create/enumerate mappings
 
@@ -3374,20 +3373,20 @@ cpp_quote("// This is the wrapper function to conveniently read a custom policy.
         [in]    DWORD   dwFlags       // add, change, delete
     );
 
-cpp_quote("// SetZoneMapping")
-cpp_quote("//    lpszPattern: string denoting a URL pattern")
-cpp_quote("//        Examples of valid patterns:   ")
-cpp_quote("//            *://*.msn.com             ")
-cpp_quote("//            http://*.sony.co.jp       ")
-cpp_quote("//            *://et.msn.com            ")
-cpp_quote("//            ftp://157.54.23.41/       ")
-cpp_quote("//            https://localsvr          ")
-cpp_quote("//            file:\\localsvr\share     ")
-cpp_quote("//            *://157.54.100-200.*      ")
-cpp_quote("//        Examples of invalid patterns: ")
-cpp_quote("//            http://*.lcs.mit.edu      ")
-cpp_quote("//            ftp://*                   ")
-cpp_quote("//    dwFlags: SZM_FLAGS values         ")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
 
     HRESULT GetZoneMappings
     (
@@ -3414,7 +3413,7 @@ cpp_quote("#define _LPINTERNETSECURITYMANANGEREX_DEFINED")
 
 interface IInternetSecurityManagerEx : IInternetSecurityManager
 {
-cpp_quote("// Please see notes on IInternetSecurityManager::ProcessUrlAction")
+cpp_quote("")
     HRESULT     ProcessUrlActionEx
     (
         [in]    LPCWSTR     pwszUrl,
@@ -3429,14 +3428,14 @@ cpp_quote("// Please see notes on IInternetSecurityManager::ProcessUrlAction")
         [out]   DWORD   *pdwOutFlags //See enum PUAF for details
     );
 
-cpp_quote("// This is the wrapper function that most clients will use.")
-cpp_quote("// It figures out the current Policy for the passed in Action,")
-cpp_quote("// and puts up UI if the current Policy indicates that the user")
-cpp_quote("// should be queried. It returns back the Policy which the caller")
-cpp_quote("// will use to determine if the action should be allowed")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
 }
 cpp_quote("#endif")
-cpp_quote("#endif //(_WIN32_IE >= _WIN32_IE_IE60SP2)")
+cpp_quote("#endif ")
 
 cpp_quote("#if (_WIN32_IE >= _WIN32_IE_IE70)")
 cpp_quote("#ifndef _LPINTERNETSECURITYMANANGEREx2_DEFINED")
@@ -3464,7 +3463,7 @@ midl_pragma warning (disable:2495) // annotation is allowed on local interface a
                 DWORD*      pdwOutFlags
     );
 
-cpp_quote("// Please see notes on IInternetSecurityManager::ProcessUrlAction")
+cpp_quote("")
     HRESULT ProcessUrlActionEx2
     (
         [in, annotation("_In_")]
@@ -3507,7 +3506,7 @@ midl_pragma warning(default:2495)
 }
 
 cpp_quote("#endif")
-cpp_quote("#endif //(_WIN32_IE >= _WIN32_IE_IE70)")
+cpp_quote("#endif ")
 
 cpp_quote("#if (_WIN32_IE >= _WIN32_IE_IE60SP2)")
 //  implmented by CLSID_ PersistentZoneIdentifier (along with IPersistFile)
@@ -3523,7 +3522,7 @@ interface IZoneIdentifier : IUnknown
     HRESULT SetId([in] DWORD dwZone);
     HRESULT Remove();
 };
-cpp_quote("#endif //(_WIN32_IE >= _WIN32_IE_IE60SP2)")
+cpp_quote("#endif ")
 
 cpp_quote("#if (_WIN32_IE >= _WIN32_IE_WIN10)")
 //  implemented by CLSID_PersistentZoneIdentifier (along with IPersistFile,
@@ -3544,14 +3543,14 @@ interface IZoneIdentifier2 : IZoneIdentifier
     HRESULT SetAppZoneId([in] DWORD zone);
     HRESULT RemoveAppZoneId();
 };
-cpp_quote("#endif //(_WIN32_IE >= _WIN32_IE_WIN10")
+cpp_quote("#endif ")
 
 cpp_quote("#ifndef _LPINTERNETHOSTSECURITYMANANGER_DEFINED")
 cpp_quote("#define _LPINTERNETHOSTSECURITYMANANGER_DEFINED")
 
-cpp_quote("//This is the interface MSHTML exposes to its clients")
-cpp_quote("//The clients need not pass in a URL to these functions")
-cpp_quote("//since MSHTML maintains the notion of the current URL")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
 
 [
 
@@ -3574,7 +3573,7 @@ interface IInternetHostSecurityManager : IUnknown
         [in]    DWORD_PTR dwReserved
     );
 
-cpp_quote("// Please see notes on IInternetSecurityManager::ProcessUrlAction")
+cpp_quote("")
     HRESULT     ProcessUrlAction
     (
         [in]    DWORD       dwAction,
@@ -3602,11 +3601,11 @@ cpp_quote("// Please see notes on IInternetSecurityManager::ProcessUrlAction")
 cpp_quote("#endif")
 
 cpp_quote("")
-cpp_quote("// The zone manager maintains policies for a set of standard actions. ")
-cpp_quote("// These actions are identified by integral values (called action indexes)")
-cpp_quote("// specified below.")
 cpp_quote("")
-cpp_quote("// Minimum legal value for an action    ")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
 cpp_quote("#define URLACTION_MIN                                          0x00001000")
 cpp_quote("")
 cpp_quote("#define URLACTION_DOWNLOAD_MIN                                 0x00001000")
@@ -3618,17 +3617,17 @@ cpp_quote("")
 cpp_quote("#define URLACTION_ACTIVEX_MIN                                  0x00001200")
 cpp_quote("#define URLACTION_ACTIVEX_RUN                                  0x00001200")
 cpp_quote("#define URLPOLICY_ACTIVEX_CHECK_LIST                           0x00010000")
-cpp_quote("#define URLACTION_ACTIVEX_OVERRIDE_OBJECT_SAFETY               0x00001201 // aggregate next four")
-cpp_quote("#define URLACTION_ACTIVEX_OVERRIDE_DATA_SAFETY                 0x00001202 //")
-cpp_quote("#define URLACTION_ACTIVEX_OVERRIDE_SCRIPT_SAFETY               0x00001203 //")
-cpp_quote("#define URLACTION_SCRIPT_OVERRIDE_SAFETY                       0x00001401 //")
-cpp_quote("#define URLACTION_ACTIVEX_CONFIRM_NOOBJECTSAFETY               0x00001204 //")
+cpp_quote("#define URLACTION_ACTIVEX_OVERRIDE_OBJECT_SAFETY               0x00001201 ")
+cpp_quote("#define URLACTION_ACTIVEX_OVERRIDE_DATA_SAFETY                 0x00001202 ")
+cpp_quote("#define URLACTION_ACTIVEX_OVERRIDE_SCRIPT_SAFETY               0x00001203 ")
+cpp_quote("#define URLACTION_SCRIPT_OVERRIDE_SAFETY                       0x00001401 ")
+cpp_quote("#define URLACTION_ACTIVEX_CONFIRM_NOOBJECTSAFETY               0x00001204 ")
 cpp_quote("#define URLACTION_ACTIVEX_TREATASUNTRUSTED                     0x00001205")
 cpp_quote("#define URLACTION_ACTIVEX_NO_WEBOC_SCRIPT                      0x00001206")
 cpp_quote("#define URLACTION_ACTIVEX_OVERRIDE_REPURPOSEDETECTION          0x00001207")
 cpp_quote("#define URLACTION_ACTIVEX_OVERRIDE_OPTIN                       0x00001208")
 cpp_quote("#define URLACTION_ACTIVEX_SCRIPTLET_RUN                        0x00001209")
-cpp_quote("#define URLACTION_ACTIVEX_DYNSRC_VIDEO_AND_ANIMATION           0x0000120A //")
+cpp_quote("#define URLACTION_ACTIVEX_DYNSRC_VIDEO_AND_ANIMATION           0x0000120A ")
 cpp_quote("#define URLACTION_ACTIVEX_OVERRIDE_DOMAINLIST                  0x0000120B")
 cpp_quote("#define URLACTION_ACTIVEX_ALLOW_TDC                            0x0000120C")
 cpp_quote("#define URLACTION_ACTIVEX_CURR_MAX                             0x0000120C")
@@ -3650,11 +3649,11 @@ cpp_quote("#define URLACTION_SCRIPT_CURR_MAX                              0x0000
 cpp_quote("#define URLACTION_SCRIPT_MAX                                   0x000015ff")
 cpp_quote("")
 cpp_quote("#define URLACTION_HTML_MIN                                     0x00001600")
-cpp_quote("#define URLACTION_HTML_SUBMIT_FORMS                            0x00001601 // aggregate next two")
-cpp_quote("#define URLACTION_HTML_SUBMIT_FORMS_FROM                       0x00001602 //")
-cpp_quote("#define URLACTION_HTML_SUBMIT_FORMS_TO                         0x00001603 //")
+cpp_quote("#define URLACTION_HTML_SUBMIT_FORMS                            0x00001601 ")
+cpp_quote("#define URLACTION_HTML_SUBMIT_FORMS_FROM                       0x00001602 ")
+cpp_quote("#define URLACTION_HTML_SUBMIT_FORMS_TO                         0x00001603 ")
 cpp_quote("#define URLACTION_HTML_FONT_DOWNLOAD                           0x00001604")
-cpp_quote("#define URLACTION_HTML_JAVA_RUN                                0x00001605 // derive from Java custom policy")
+cpp_quote("#define URLACTION_HTML_JAVA_RUN                                0x00001605 ")
 cpp_quote("#define URLACTION_HTML_USERDATA_SAVE                           0x00001606")
 cpp_quote("#define URLACTION_HTML_SUBFRAME_NAVIGATE                       0x00001607")
 cpp_quote("#define URLACTION_HTML_META_REFRESH                            0x00001608")
@@ -3667,7 +3666,6 @@ cpp_quote("#define URLACTION_HTML_ALLOW_WINDOW_CLOSE                      0x0000
 cpp_quote("#define URLACTION_HTML_ALLOW_CROSS_DOMAIN_WEBWORKER            0x0000160F")
 cpp_quote("#define URLACTION_HTML_ALLOW_CROSS_DOMAIN_TEXTTRACK            0x00001610")
 cpp_quote("#define URLACTION_HTML_ALLOW_INDEXEDDB                         0x00001611")
-//cpp_quote("#define URLACTION_HTML_CURR_MAX                                0x00001611")
 cpp_quote("#define URLACTION_HTML_MAX                                     0x000017ff")
 cpp_quote("")
 cpp_quote("#define URLACTION_SHELL_MIN                                    0x00001800")
@@ -3688,13 +3686,13 @@ cpp_quote("#define URLACTION_SHELL_RTF_OBJECTS_LOAD                       0x0000
 cpp_quote("#define URLACTION_SHELL_ENHANCED_DRAGDROP_SECURITY             0x0000180B")
 cpp_quote("#define URLACTION_SHELL_EXTENSIONSECURITY                      0x0000180C")
 cpp_quote("#define URLACTION_SHELL_SECURE_DRAGSOURCE                      0x0000180D")
-cpp_quote("#endif //(_WIN32_IE >= _WIN32_IE_IE60SP2)")
+cpp_quote("#endif ")
 cpp_quote("#if (_WIN32_IE >= _WIN32_IE_WIN7)")
 cpp_quote("#define URLACTION_SHELL_REMOTEQUERY                            0x0000180E")
 cpp_quote("#define URLACTION_SHELL_PREVIEW                                0x0000180F")
 cpp_quote("#define URLACTION_SHELL_SHARE                                  0x00001810")
 cpp_quote("#define URLACTION_SHELL_ALLOW_CROSS_SITE_SHARE                 0x00001811")
-cpp_quote("#endif //(_WIN32_IE >= _WIN32_IE_WIN7)")
+cpp_quote("#endif ")
 cpp_quote("#define URLACTION_SHELL_TOCTOU_RISK                            0x00001812")
 cpp_quote("#define URLACTION_SHELL_CURR_MAX                               0x00001812")
 cpp_quote("#define URLACTION_SHELL_MAX                                    0x000019ff")
@@ -3740,10 +3738,10 @@ cpp_quote("#define URLACTION_JAVA_MAX                                     0x0000
 
 cpp_quote("")
 cpp_quote("")
-cpp_quote("// The following Infodelivery actions should have no default policies")
-cpp_quote("// in the registry.  They assume that no default policy means fall")
-cpp_quote("// back to the global restriction.  If an admin sets a policy per")
-cpp_quote("// zone, then it overrides the global restriction.")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
 cpp_quote("")
 cpp_quote("#define URLACTION_INFODELIVERY_MIN                           0x00001D00")
 cpp_quote("#define URLACTION_INFODELIVERY_NO_ADDING_CHANNELS            0x00001D00")
@@ -3765,15 +3763,15 @@ cpp_quote("#define URLACTION_CHANNEL_SOFTDIST_MAX                       0x00001E
 
 cpp_quote("#if (_WIN32_IE >= _WIN32_IE_IE80)")
 cpp_quote("#define URLACTION_DOTNET_USERCONTROLS                        0x00002005")
-cpp_quote("#endif //(_WIN32_IE >= _WIN32_IE_IE80)")
+cpp_quote("#endif ")
 
 cpp_quote("#if (_WIN32_IE >= _WIN32_IE_IE60SP2)")
 cpp_quote("#define URLACTION_BEHAVIOR_MIN                               0x00002000")
 cpp_quote("#define URLACTION_BEHAVIOR_RUN                               0x00002000")
 cpp_quote("#define URLPOLICY_BEHAVIOR_CHECK_LIST                        0x00010000")
 cpp_quote("")
-cpp_quote("// The following actions correspond to the Feature options above." )
-cpp_quote("// However, they are NOT in the same order." )
+cpp_quote("" )
+cpp_quote("" )
 cpp_quote("#define URLACTION_FEATURE_MIN                                0x00002100")
 cpp_quote("#define URLACTION_FEATURE_MIME_SNIFFING                      0x00002100")
 cpp_quote("#define URLACTION_FEATURE_ZONE_ELEVATION                     0x00002101")
@@ -3793,25 +3791,25 @@ cpp_quote("")
 cpp_quote("#define URLACTION_ALLOW_RESTRICTEDPROTOCOLS                0x00002300")
 cpp_quote("")
 
-cpp_quote("#endif //(_WIN32_IE >= _WIN32_IE_IE60SP2)")
+cpp_quote("#endif ")
 cpp_quote("#if (_WIN32_IE >= _WIN32_IE_IE70)")
 
-cpp_quote("// Whether to do the Anti-Phishing check." )
+cpp_quote("" )
 cpp_quote("#define URLACTION_ALLOW_APEVALUATION                       0x00002301")
 cpp_quote("#define URLACTION_ALLOW_XHR_EVALUATION                     0x00002302")
 cpp_quote("")
 
-cpp_quote("// The following ExpressAPP and XPS actions are trumped by registry in")
-cpp_quote("// case of Internet Explorer upgrade from IE 6.0 which honors registry.")
+cpp_quote("")
+cpp_quote("")
 cpp_quote("#define URLACTION_WINDOWS_BROWSER_APPLICATIONS             0x00002400")
 cpp_quote("#define URLACTION_XPS_DOCUMENTS                            0x00002401")
 cpp_quote("#define URLACTION_LOOSE_XAML                               0x00002402")
 cpp_quote("#define URLACTION_LOWRIGHTS                                0x00002500")
-cpp_quote("// The following action belong to WinFX Bootstrapper")
+cpp_quote("")
 cpp_quote("#define URLACTION_WINFX_SETUP                              0x00002600")
 cpp_quote("")
 cpp_quote("#define URLACTION_INPRIVATE_BLOCKING                       0x00002700")
-cpp_quote("#endif //(_WIN32_IE >= _WIN32_IE_IE70)")
+cpp_quote("#endif ")
 
 cpp_quote("")
 cpp_quote("#define URLACTION_ALLOW_AUDIO_VIDEO                        0x00002701")
@@ -3829,7 +3827,7 @@ cpp_quote("")
 cpp_quote("#define URLACTION_ALLOW_AUDIO_VIDEO_PLUGINS                0x00002704")
 cpp_quote("")
 
-cpp_quote("// The following two URLACTIONs each have as their context parameter a string that is the destination URI.")
+cpp_quote("")
 cpp_quote("#define URLACTION_ALLOW_ZONE_ELEVATION_VIA_OPT_OUT         0x00002705")
 cpp_quote("#define URLACTION_ALLOW_ZONE_ELEVATION_OPT_OUT_ADDITION    0x00002706")
 cpp_quote("")
@@ -3856,25 +3854,25 @@ cpp_quote("")
 cpp_quote("#define URLACTION_ALLOW_CSS_EXPRESSIONS                    0x0000270D")
 cpp_quote("")
 
-cpp_quote("// For each action specified above the system maintains")
-cpp_quote("// a set of policies for the action. ")
-cpp_quote("// The only policies supported currently are permissions (i.e. is something allowed)")
-cpp_quote("// and logging status. ")
-cpp_quote("// IMPORTANT: If you are defining your own policies don't overload the meaning of the")
-cpp_quote("// loword of the policy. You can use the hiword to store any policy bits which are only")
-cpp_quote("// meaningful to your action.")
-cpp_quote("// For an example of how to do this look at the URLPOLICY_JAVA above")
 cpp_quote("")
-cpp_quote("// Permissions ")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
 cpp_quote("#define URLPOLICY_ALLOW                0x00")
 cpp_quote("#define URLPOLICY_QUERY                0x01")
 cpp_quote("#define URLPOLICY_DISALLOW             0x03")
 cpp_quote("")
-cpp_quote("// Notifications are not done when user already queried.")  // CUT
+cpp_quote("")  // CUT
 cpp_quote("#define URLPOLICY_NOTIFY_ON_ALLOW      0x10")
 cpp_quote("#define URLPOLICY_NOTIFY_ON_DISALLOW   0x20")
 cpp_quote("")
-cpp_quote("// Logging is done regardless of whether user was queried.") // CUT
+cpp_quote("") // CUT
 cpp_quote("#define URLPOLICY_LOG_ON_ALLOW         0x40")
 cpp_quote("#define URLPOLICY_LOG_ON_DISALLOW      0x80")
 cpp_quote("")
@@ -3885,15 +3883,15 @@ cpp_quote("")
 cpp_quote("")
 cpp_quote("#define URLPOLICY_DONTCHECKDLGBOX     0x100")
 
-cpp_quote("// The ordinal #'s that define the predefined zones internet explorer knows about. ")
-cpp_quote("// When we support user-defined zones their zone numbers should be between ")
-cpp_quote("// URLZONE_USER_MIN and URLZONE_USER_MAX")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
 
 cpp_quote("#if (_WIN32_IE >= _WIN32_IE_IE60SP2)")
-cpp_quote("// Custom policy to query whether the local machine zone")
-cpp_quote("// has been unlocked for current document.")
+cpp_quote("")
+cpp_quote("")
 cpp_quote("EXTERN_C const GUID GUID_CUSTOM_LOCALMACHINEZONEUNLOCKED; ")
-cpp_quote("#endif //(_WIN32_IE >= _WIN32_IE_IE60SP2)")
+cpp_quote("#endif ")
 
 
 //+---------------------------------------------------------------------------
@@ -3935,7 +3933,7 @@ interface IInternetZoneManager : IUnknown
         URLZONE_USER_MAX = 10000,
     }  URLZONE;
 
-cpp_quote("// Enhanced Security Configuration zone mapping flag for IInternetSecurityManager::SetZoneMapping")
+cpp_quote("")
 cpp_quote("#define URLZONE_ESC_FLAG     0x100")
 
     typedef enum tagURLTEMPLATE
@@ -3996,8 +3994,8 @@ cpp_quote("#define URLZONE_ESC_FLAG     0x100")
                 ZONEATTRIBUTES* pZoneAttributes
     );
 
-cpp_quote("// Gets the zone attributes (information in registry other than actual security")
-cpp_quote("// policies associated with the zone).  Zone attributes are fixed as:")
+cpp_quote("")
+cpp_quote("")
 
 
     HRESULT    SetZoneAttributes
@@ -4005,9 +4003,9 @@ cpp_quote("// policies associated with the zone).  Zone attributes are fixed as:
         [in]    DWORD   dwZone,
         [in, annotation("_In_")]    ZONEATTRIBUTES* pZoneAttributes
     );
-cpp_quote("// Sets the zone attributes (information in registry other than actual security")
-cpp_quote("// policies associated with the zone).  Zone attributes as above.")
-cpp_quote("// Returns S_OK or ??? if failed to write the zone attributes.")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
 
 
 cpp_quote("/* Registry Flags")
@@ -4039,18 +4037,18 @@ cpp_quote("*/")
         [in]    URLZONEREG  urlZoneReg    // effective, HKCU, or HKLM
     );
 
-cpp_quote("// Gets a named custom policy associated with a zone;")
-cpp_quote("// e.g. the Java VM settings can be defined with a unique key such as 'Java'.")
-cpp_quote("// Custom policy support is intended to allow extensibility from the predefined")
-cpp_quote("// set of policies that IE4 has built in.")
-cpp_quote("// ")
-cpp_quote("// pwszKey is the string name designating the custom policy.  Components are")
-cpp_quote("//   responsible for having unique names.")
-cpp_quote("// ppPolicy is the callee allocated buffer for the policy byte blob; caller is")
-cpp_quote("//   responsible for freeing this buffer eventually.")
-cpp_quote("// pcbPolicy is the size of the byte blob returned.")
-cpp_quote("// dwRegFlags determines how registry is accessed (see above).")
-cpp_quote("// Returns S_OK if key is found and buffer allocated; ??? if key is not found (no buffer alloced).")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
 
     HRESULT SetZoneCustomPolicy
     (
@@ -4061,17 +4059,17 @@ cpp_quote("// Returns S_OK if key is found and buffer allocated; ??? if key is n
         [in]    DWORD   cbPolicy,   // input data size
         [in]    URLZONEREG urlZoneReg    // default, HKCU, or HKLM
     );
-cpp_quote("// Sets a named custom policy associated with a zone;")
-cpp_quote("// e.g. the Java VM settings can be defined with a unique key such as 'Java'.")
-cpp_quote("// Custom policy support is intended to allow extensibility from the predefined")
-cpp_quote("// set of policies that IE4 has built in.  ")
-cpp_quote("// ")
-cpp_quote("// pwszKey is the string name designating the custom policy.  Components are")
-cpp_quote("//   responsible for having unique names.")
-cpp_quote("// ppPolicy is the caller allocated buffer for the policy byte blob.")
-cpp_quote("// pcbPolicy is the size of the byte blob to be set.")
-cpp_quote("// dwRegFlags determines if HTCU or HKLM is set.")
-cpp_quote("// Returns S_OK or ??? if failed to write the zone custom policy.")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
 
 
     HRESULT GetZoneActionPolicy
@@ -4084,13 +4082,13 @@ cpp_quote("// Returns S_OK or ??? if failed to write the zone custom policy.")
         [in]    URLZONEREG urlZoneReg // effective, HKCU, or HKLM
     );
 
-cpp_quote("// Gets action policy associated with a zone, the builtin, fixed-length policies info.")
 cpp_quote("")
-cpp_quote("// dwAction is the action code for the action as defined above.")
-cpp_quote("// pPolicy is the caller allocated buffer for the policy data.")
-cpp_quote("// cbPolicy is the size of the caller allocated buffer.")
-cpp_quote("// dwRegFlags determines how registry is accessed (see above).")
-cpp_quote("// Returns S_OK if action is valid; ??? if action is not valid.")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
 
     HRESULT SetZoneActionPolicy
     (
@@ -4204,14 +4202,14 @@ interface IInternetZoneManagerEx : IInternetZoneManager
         [in]    DWORD    dwFlags   //Lockdown Zones or Normal Zones via ZAFLAGS
     );
 
-cpp_quote("// Gets action policy associated with a zone, the builtin, fixed-length policies info.")
 cpp_quote("")
-cpp_quote("// dwAction is the action code for the action as defined above.")
-cpp_quote("// pPolicy is the caller allocated buffer for the policy data.")
-cpp_quote("// cbPolicy is the size of the caller allocated buffer.")
-cpp_quote("// dwRegFlags determines how registry is accessed (see above).")
-cpp_quote("// dwFlags determine which registry policies are accessed (see above).")
-cpp_quote("// Returns S_OK if action is valid; ??? if action is not valid.")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
 
     HRESULT SetZoneActionPolicyEx
     (
@@ -4233,7 +4231,7 @@ cpp_quote("// Returns S_OK if action is valid; ??? if action is not valid.")
 // Returns S_OK if action is valid; ??? if action is not valid.
 }
 cpp_quote("#endif")
-cpp_quote("#endif //(_WIN32_IE >= _WIN32_IE_IE60SP2)")
+cpp_quote("#endif ")
 
 cpp_quote("#if (_WIN32_IE >= _WIN32_IE_IE70)")
 //+---------------------------------------------------------------------------
@@ -4286,12 +4284,12 @@ interface IInternetZoneManagerEx2 : IInternetZoneManagerEx
 
     HRESULT FixUnsecureSettings();
 
-cpp_quote("// Gets the zone attributes (information in registry other than actual security")
-cpp_quote("// policies associated with the zone).  Zone attributes are fixed as:")
-cpp_quote("// Can also verify template settings by matching current settings with security template")
+cpp_quote("")
+cpp_quote("")
+cpp_quote("")
 }
 cpp_quote("#endif")
-cpp_quote("#endif //(_WIN32_IE >= _WIN32_IE_IE70)")
+cpp_quote("#endif ")
 
 cpp_quote("EXTERN_C const IID CLSID_SoftDistExt;  ")
 //+---------------------------------------------------------------------------
@@ -4549,7 +4547,7 @@ cpp_quote("#endif")
 cpp_quote("#ifndef _HITLOGGING_DEFINED")
 cpp_quote("#define _HITLOGGING_DEFINED")
 
-cpp_quote("// Logging-specific apis")
+cpp_quote("")
 #pragma midl_echo("BOOL WINAPI IsLoggingEnabledA(_In_ LPCSTR  pszUrl);                    ")
 #pragma midl_echo("BOOL WINAPI IsLoggingEnabledW(_In_ LPCWSTR  pwszUrl);                  ")
 
@@ -4557,7 +4555,7 @@ cpp_quote("#ifdef UNICODE                                                       
 cpp_quote("#define IsLoggingEnabled         IsLoggingEnabledW                   ")
 cpp_quote("#else                                                                ")
 cpp_quote("#define IsLoggingEnabled         IsLoggingEnabledA                   ")
-cpp_quote("#endif // !UNICODE                                                   ")
+cpp_quote("#endif ")
 
 // HIT_LOGGING_INFO
 typedef struct _tagHIT_LOGGING_INFO {
