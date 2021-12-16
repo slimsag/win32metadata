@@ -699,7 +699,7 @@ interface IStorage : IUnknown
     typedef [unique] RemSNB * wireSNB;
 
     midl_pragma warning(disable: 2525) // SAL annotation on typedef
-    typedef [wire_marshal(wireSNB), annotation("_Null_terminated_")] LPOLESTR *SNB;
+    typedef [wire_marshal(wireSNB)] LPOLESTR *SNB;
     midl_pragma warning(default: 2525)
 
     HRESULT CreateStream(

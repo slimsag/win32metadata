@@ -312,8 +312,6 @@ interface IExternalConnection : IUnknown
 }
 
 
-typedef [unique] IMultiQI* LPMULTIQI;
-
 cpp_quote("#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES) */")
 #pragma endregion
 
@@ -346,6 +344,7 @@ interface IMultiQI : IUnknown
         [in, out, annotation("_Inout_updates_(cMQIs)")] MULTI_QI  *pMQIs
     );
 }
+typedef [unique] IMultiQI* LPMULTIQI;
 
 cpp_quote("#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES) */")
 #pragma endregion
