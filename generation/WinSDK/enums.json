@@ -11276,6 +11276,30 @@
     ]
   },
   {
+    "name": "ICM_MODE",
+    "type": "int",
+    "members": [
+      {
+        "name": "ICM_OFF"
+      },
+      {
+        "name": "ICM_ON"
+      },
+      {
+        "name": "ICM_QUERY"
+      },
+      {
+        "name": "ICM_DONE_OUTSIDEDC"
+      }
+    ],
+    "uses": [
+      {
+        "method": "SetICMMode",
+        "parameter": "mode"
+      }
+    ]
+  },
+  {
     "name": "USER_OBJECT_INFORMATION_INDEX",
     "members": [
       {
@@ -29482,6 +29506,64 @@
         "interface": "IStorage",
         "method": "MoveElementTo",
         "parameter": "grfFlags"
+      }
+    ]
+  },
+  {
+    "name": "DCB_STOP_BITS",
+    "flags": false,
+    "type": "byte",
+    "members": [
+      {
+        "name": "ONESTOPBIT",
+        "value": 0
+      },
+      {
+        "name": "ONE5STOPBITS",
+        "value": 1
+      },
+      {
+        "name": "TWOSTOPBITS",
+        "value": 2
+      }
+    ],
+    "uses": [
+      {
+        "struct": "DCB",
+        "field": "StopBits"
+      }
+    ]
+  },
+  {
+    "name": "DCB_PARITY",
+    "flags": false,
+    "type": "byte",
+    "members": [
+      {
+        "name": "EVENPARITY",
+        "value": 2
+      },
+      {
+        "name": "MARKPARITY",
+        "value": 3
+      },
+      {
+        "name": "NOPARITY",
+        "value": 0
+      },
+      {
+        "name": "ODDPARITY",
+        "value": 1
+      },
+      {
+        "name": "SPACEPARITY",
+        "value": 4
+      }
+    ],
+    "uses": [
+      {
+        "struct": "DCB",
+        "field": "Parity"
       }
     ]
   }
