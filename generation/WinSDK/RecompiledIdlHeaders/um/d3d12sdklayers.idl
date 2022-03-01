@@ -215,7 +215,7 @@ interface ID3D12DebugCommandList2
 interface ID3D12SharingContract
     : IUnknown
 {
-    void Present(HWND window);
+    void Present(ID3D12Resource* pResource, UINT Subresource, HWND window);
     void SharedFenceSignal(ID3D12Fence* pFence, UINT64 FenceValue);
     void BeginCapturableWork(REFGUID guid);
     void EndCapturableWork(REFGUID guid);
