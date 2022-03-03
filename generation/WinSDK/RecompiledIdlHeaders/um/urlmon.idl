@@ -3216,7 +3216,6 @@ midl_pragma warning(disable:2495) // annotation is allowed on local interface an
         [in, annotation("_In_")]
                 DWORD_PTR dwReserved
     );
-midl_pragma warning (default: 2495)
 
     // Flags passed into ProcessUrlAction.
     typedef enum
@@ -3440,7 +3439,6 @@ cpp_quote("")
         [in]    DWORD       cbContext,  // size of the Context
         [in]    DWORD_PTR   dwReserved
     );
-midl_pragma warning(default:2495)
 }
 
 cpp_quote("#endif")

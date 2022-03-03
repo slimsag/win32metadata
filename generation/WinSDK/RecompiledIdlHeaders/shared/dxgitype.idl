@@ -29,10 +29,10 @@ typedef struct DXGI_GAMMA_CONTROL
 
 typedef struct DXGI_GAMMA_CONTROL_CAPABILITIES
 {
-    BOOL ScaleAndOffsetSupported;
+    int ScaleAndOffsetSupported;
     float MaxConvertedValue;
     float MinConvertedValue;
-    UINT NumGammaControlPoints;
+    unsigned int NumGammaControlPoints;
     float ControlPointPositions[1025];
 } DXGI_GAMMA_CONTROL_CAPABILITIES;
 
@@ -62,8 +62,8 @@ typedef enum DXGI_MODE_ROTATION
 
 typedef struct DXGI_MODE_DESC
 {
-    UINT Width;
-    UINT Height;
+    unsigned int Width;
+    unsigned int Height;
     DXGI_RATIONAL RefreshRate;
     DXGI_FORMAT Format;
     DXGI_MODE_SCANLINE_ORDER ScanlineOrdering;
@@ -72,18 +72,18 @@ typedef struct DXGI_MODE_DESC
 
 typedef struct DXGI_JPEG_DC_HUFFMAN_TABLE
 {
-    BYTE CodeCounts[12];
-    BYTE CodeValues[12];
+    unsigned char CodeCounts[12];
+    unsigned char CodeValues[12];
 } DXGI_JPEG_DC_HUFFMAN_TABLE;
 
 typedef struct DXGI_JPEG_AC_HUFFMAN_TABLE
 {
-    BYTE CodeCounts[16];
-    BYTE CodeValues[162];
+    unsigned char CodeCounts[16];
+    unsigned char CodeValues[162];
 } DXGI_JPEG_AC_HUFFMAN_TABLE;
 
 typedef struct DXGI_JPEG_QUANTIZATION_TABLE
 {
-    BYTE Elements[64];
+    unsigned char Elements[64];
 } DXGI_JPEG_QUANTIZATION_TABLE;
 

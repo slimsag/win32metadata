@@ -700,7 +700,6 @@ interface IStorage : IUnknown
 
     midl_pragma warning(disable: 2525) // SAL annotation on typedef
     typedef [wire_marshal(wireSNB)] LPOLESTR *SNB;
-    midl_pragma warning(default: 2525)
 
     HRESULT CreateStream(
         [in, string] const OLECHAR *pwcsName,
@@ -985,7 +984,6 @@ midl_pragma warning( disable: 2480 )
         [size_is(tdSize - sizeof(DWORD) - 4*sizeof(WORD))]
         BYTE tdData[];
     }DVTARGETDEVICE;
-midl_pragma warning( default: 2480 )
 
 
     typedef CLIPFORMAT *LPCLIPFORMAT;

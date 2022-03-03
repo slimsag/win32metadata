@@ -1329,7 +1329,6 @@ midl_pragma warning (disable: 2495) // annotation is allowed on local interface 
                 [in, annotation("_In_")] LPARAM lParam,
                 [out] LRESULT * plResult
             );
-midl_pragma warning (default: 2495)
 }
 
 

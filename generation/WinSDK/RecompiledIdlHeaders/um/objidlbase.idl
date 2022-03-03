@@ -99,7 +99,6 @@ typedef struct _COSERVERINFO
     COAUTHINFO *      pAuthInfo;
     DWORD             dwReserved2;
 } COSERVERINFO;
-midl_pragma warning (default: 2480)
 
 /****************************************************************************
  *  Component Object Interfaces

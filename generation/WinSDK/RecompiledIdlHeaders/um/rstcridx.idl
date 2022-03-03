@@ -19,19 +19,21 @@ cpp_quote("#include <winapifamily.h>")
 cpp_quote("#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)")
 
 #include "idlmulti.h"
-    
-    LOCAL_INTERFACE(0c733abd-2a1c-11ce-ade5-00aa0044773d)
 
-    
-interface IRowsetCurrentIndex : IRowsetIndex {
+// WIDL cannot compile this at present.
 
-	HRESULT GetIndex(
-		[out]	DBID **		ppIndexID);
-
-	HRESULT SetIndex(
-		[in]	DBID *		pIndexID);
-
-}
+//     LOCAL_INTERFACE(0c733abd-2a1c-11ce-ade5-00aa0044773d)
+// 
+//     
+// interface IRowsetCurrentIndex : IRowsetIndex {
+// 
+// 	HRESULT GetIndex(
+// 		[out]	DBID **		ppIndexID);
+// 
+// 	HRESULT SetIndex(
+// 		[in]	DBID *		pIndexID);
+// 
+// }
 
 cpp_quote("#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */")
 #pragma endregion

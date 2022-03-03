@@ -6,8 +6,8 @@
 
 typedef struct DXGI_RATIONAL
 {
-    UINT Numerator;
-    UINT Denominator;
+    unsigned int Numerator;
+    unsigned int Denominator;
 } DXGI_RATIONAL;
 
 // The following values are used with DXGI_SAMPLE_DESC::Quality:
@@ -16,8 +16,8 @@ typedef struct DXGI_RATIONAL
 
 typedef struct DXGI_SAMPLE_DESC
 {
-    UINT Count;
-    UINT Quality;
+    unsigned int Count;
+    unsigned int Quality;
 } DXGI_SAMPLE_DESC;
 
 typedef enum DXGI_COLOR_SPACE_TYPE
